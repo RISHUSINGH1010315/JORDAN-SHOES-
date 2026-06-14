@@ -37,7 +37,7 @@ function preloadImages() {
     const img = new Image();
     // Padding numbers to 3 digits (e.g. 001, 042, 240)
     const paddedIndex = String(i).padStart(3, '0');
-    img.src = `/frames/ezgif-frame-${paddedIndex}.jpg`;
+    img.src = `frames/ezgif-frame-${paddedIndex}.jpg`;
     
     img.onload = () => {
       loadedCount++;
