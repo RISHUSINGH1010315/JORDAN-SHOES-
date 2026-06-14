@@ -1,17 +1,27 @@
 /* Jordan 1 Fluid Motion Theme Styles */
 
 :root {
+  --bg-primary: #fafafa;
+  --bg-secondary: #ffffff;
+  --accent-red: #ff1a25;
+  --accent-red-glow: rgba(255, 26, 37, 0.1);
+  --text-primary: #000000;
+  --text-secondary: #4a4a4a;
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html.dark, :root.dark {
   --bg-primary: #0a0a0a;
   --bg-secondary: #121212;
-  --accent-red: #ff1a25;
   --accent-red-glow: rgba(255, 26, 37, 0.4);
   --text-primary: #ffffff;
   --text-secondary: #a0a0a0;
   --glass-bg: rgba(18, 18, 18, 0.6);
   --glass-border: rgba(255, 255, 255, 0.08);
-  --font-heading: 'Space Grotesk', sans-serif;
-  --font-body: 'Inter', sans-serif;
-  --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Base Reset & Styling */
@@ -266,7 +276,7 @@ p {
   width: 100vw;
   height: 100vh;
   z-index: 1;
-  background-color: var(--bg-primary);
+  background-color: #0a0a0a !important;
   overflow: hidden;
   will-change: transform;
 }
@@ -828,10 +838,10 @@ header.site-header {
   left: 0;
   width: 100%;
   z-index: 100;
-  background: rgba(10, 10, 10, 0.4) !important;
+  background: var(--glass-bg) !important;
   backdrop-filter: blur(24px) !important;
   -webkit-backdrop-filter: blur(24px) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-bottom: 1px solid var(--glass-border) !important;
   transition: var(--transition-smooth);
 }
 
@@ -849,7 +859,7 @@ header.site-header .font-display-xl {
   font-size: 2.2rem;
   font-weight: 900;
   letter-spacing: -0.04em;
-  color: #fff;
+  color: var(--text-primary);
   text-transform: uppercase;
 }
 
@@ -866,13 +876,13 @@ header.site-header .hidden.md\:flex a {
   text-transform: uppercase;
   letter-spacing: 0.15em;
   text-decoration: none;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--text-secondary);
   transition: var(--transition-smooth);
   padding-bottom: 4px;
 }
 
 header.site-header .hidden.md\:flex a:hover {
-  color: #fff;
+  color: var(--text-primary);
 }
 
 header.site-header .hidden.md\:flex a.text-primary {
@@ -889,12 +899,13 @@ header.site-header .flex.items-center.gap-6 {
 header.site-header button {
   background: transparent;
   border: none;
-  color: #fff;
+  color: var(--text-primary);
   cursor: pointer;
   transition: var(--transition-smooth);
   display: flex;
   align-items: center;
   justify-content: center;
+  pointer-events: auto;
 }
 
 header.site-header button:hover {
@@ -906,28 +917,35 @@ header.site-header button:active {
   transform: scale(0.95);
 }
 
-/* Navigation Cart Link & Profile Link styles for index.html */
+/* Navigation Cart Link, Profile Link & Theme Toggle styles */
 header.site-header .cart-link,
-header.site-header .profile-link {
+header.site-header .profile-link,
+header.site-header #theme-toggle {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  color: #ffffff;
+  color: var(--text-primary);
   transition: var(--transition-smooth);
   width: 24px;
   height: 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
 }
 
 header.site-header .cart-link:hover,
-header.site-header .profile-link:hover {
+header.site-header .profile-link:hover,
+header.site-header #theme-toggle:hover {
   color: var(--accent-red);
   transform: scale(1.05);
 }
 
 header.site-header .cart-link:active,
-header.site-header .profile-link:active {
+header.site-header .profile-link:active,
+header.site-header #theme-toggle:active {
   transform: scale(0.95);
 }
 

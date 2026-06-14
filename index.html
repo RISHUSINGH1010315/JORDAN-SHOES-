@@ -2,6 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <!-- Theme Initializer -->
+  <script>
+    (function() {
+      const theme = localStorage.getItem('jordan_theme') || 'dark';
+      if (theme === 'dark') document.documentElement.classList.add('dark');
+      else document.documentElement.classList.remove('dark');
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Air Jordan 1 | Fluid Motion Experience</title>
   <meta name="description" content="Experience the iconic Air Jordan 1 in a beautiful, high-performance fluid scroll animation. Watch the legend emerge from chaotic red and black splashes.">
@@ -46,6 +54,9 @@
         <a class="text-on-background/70 hover:text-on-background transition-colors duration-400 font-subheading-spaced text-subheading-spaced uppercase tracking-widest" href="threed.html">STUDIO</a>
       </div>
       <div class="flex items-center gap-6">
+        <button id="theme-toggle" aria-label="Toggle Theme">
+          <span class="material-symbols-outlined text-[24px]">dark_mode</span>
+        </button>
         <a href="bag.html" class="cart-link" aria-label="Shopping Bag">
           <span class="material-symbols-outlined text-[24px]">shopping_bag</span>
           <span id="cart-badge" class="cart-badge scale-0 hidden">0</span>
@@ -247,6 +258,7 @@
   </footer>
 
   <!-- Entry Script -->
+  <script type="module" src="theme.js"></script>
   <script type="module" src="main.js"></script>
 </body>
 </html>

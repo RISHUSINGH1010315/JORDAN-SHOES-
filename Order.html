@@ -1,7 +1,15 @@
 <!DOCTYPE html>
 
-<html class="dark" lang="en"><head>
+<html lang="en"><head>
 <meta charset="utf-8"/>
+<!-- Theme Initializer -->
+<script>
+  (function() {
+    const theme = localStorage.getItem('jordan_theme') || 'dark';
+    if (theme === 'dark') document.documentElement.classList.add('dark');
+    else document.documentElement.classList.remove('dark');
+  })();
+</script>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>JORDAN | Secure Checkout</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -15,16 +23,69 @@
         .ease-out-expo {
             transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
         }
+        
+        :root {
+          --bg-primary: #fafafa;
+          --bg-secondary: #ffffff;
+          --text-primary: #000000;
+          --text-secondary: #111111;
+          --text-muted: #4a4a4a;
+          
+          --surface-lowest: #eeeeee;
+          --surface-low: #f5f5f5;
+          --surface-high: #ffffff;
+          --surface-highest: #e0e0e0;
+          --outline: #7a7a7a;
+          --outline-variant: rgba(0, 0, 0, 0.08);
+          
+          --glass-bg: rgba(255, 255, 255, 0.85);
+          --glass-border: rgba(0, 0, 0, 0.08);
+          --site-footer-bg: #fafafa;
+          --site-footer-border: rgba(0, 0, 0, 0.08);
+          --site-footer-text: rgba(0, 0, 0, 0.7);
+          --site-footer-link: rgba(0, 0, 0, 0.5);
+          --site-footer-link-hover: #000000;
+          
+          --input-border: rgba(0, 0, 0, 0.1);
+          --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        html.dark {
+          --bg-primary: #0a0a0a;
+          --bg-secondary: #121212;
+          --text-primary: #ffffff;
+          --text-secondary: #e5e2e1;
+          --text-muted: #a0a0a0;
+          
+          --surface-lowest: #050505;
+          --surface-low: #0d0d0d;
+          --surface-high: #1e1e1e;
+          --surface-highest: #353534;
+          --outline: #aa8986;
+          --outline-variant: rgba(255, 255, 255, 0.08);
+          
+          --glass-bg: rgba(18, 18, 18, 0.75);
+          --glass-border: rgba(255, 255, 255, 0.06);
+          --site-footer-bg: #050505;
+          --site-footer-border: rgba(255, 255, 255, 0.08);
+          --site-footer-text: rgba(255, 255, 255, 0.8);
+          --site-footer-link: rgba(255, 255, 255, 0.6);
+          --site-footer-link-hover: #ffffff;
+          
+          --input-border: rgba(255, 255, 255, 0.1);
+        }
+        
         .glass-panel {
-            background: rgba(255, 255, 255, 0.85);
+            background: var(--glass-bg);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--glass-border);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
         }
         .input-border-bottom {
             border: none;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid var(--input-border);
             background: transparent;
+            color: var(--text-primary);
         }
         .input-border-bottom:focus {
             border-bottom-color: #ff1a25;
@@ -35,10 +96,32 @@
             width: 4px;
         }
         ::-webkit-scrollbar-track {
-            background: #fafafa;
+            background: var(--bg-primary);
         }
         ::-webkit-scrollbar-thumb {
             background: #ff1a25;
+        }
+
+        #theme-toggle {
+          color: var(--text-primary);
+          transition: var(--transition-smooth);
+        }
+        #theme-toggle:hover {
+          color: #ff1a25;
+        }
+
+        /* Light theme overrides for hardcoded values in checkout page */
+        html:not(.dark) .text-white:not(.bg-primary):not(.bg-primary-container) {
+          color: var(--text-primary) !important;
+        }
+        html:not(.dark) .hover\:text-white:hover {
+          color: var(--text-primary) !important;
+        }
+        html:not(.dark) .border-black\/10 {
+          border-color: var(--outline-variant) !important;
+        }
+        html:not(.dark) .border-t.border-black\/10 {
+          border-top-color: var(--outline-variant) !important;
         }
     </style>
 <script id="tailwind-config">
@@ -52,7 +135,7 @@
                         "surface-container-highest": "#e0e0e0",
                         "tertiary-fixed": "#cbe6ff",
                         "error": "#ff1a25",
-                        "background": "#fafafa",
+                        "background": "var(--bg-primary)",
                         "secondary-container": "#920703",
                         "primary-fixed": "#ffdad6",
                         "primary-fixed-dim": "#ffb4ac",
@@ -61,39 +144,39 @@
                         "on-primary": "#ffffff",
                         "on-primary-fixed-variant": "#92030f",
                         "tertiary": "#8fcdff",
-                        "surface-container-lowest": "#eeeeee",
-                        "outline": "#7a7a7a",
-                        "surface-container": "#ffffff",
+                        "surface-container-lowest": "var(--surface-lowest)",
+                        "outline": "var(--outline)",
+                        "surface-container": "var(--bg-secondary)",
                         "primary-container": "#ff1a25",
                         "on-error-container": "#ffdad6",
                         "on-tertiary-fixed": "#001e30",
                         "inverse-primary": "#ff1a25",
-                        "surface": "#ffffff",
-                        "inverse-surface": "#121212",
+                        "surface": "var(--bg-secondary)",
+                        "inverse-surface": "var(--text-primary)",
                         "on-secondary-fixed-variant": "#920703",
                         "on-secondary-fixed": "#410000",
                         "secondary-fixed-dim": "#ffb4a8",
                         "on-tertiary-container": "#b1daff",
                         "on-tertiary-fixed-variant": "#004b71",
-                        "outline-variant": "#dcdcdc",
+                        "outline-variant": "var(--outline-variant)",
                         "primary": "#ff1a25",
-                        "inverse-on-surface": "#f5f5f5",
+                        "inverse-on-surface": "var(--bg-primary)",
                         "tertiary-container": "#006292",
                         "secondary": "#ffb4a8",
-                        "surface-container-low": "#f5f5f5",
-                        "surface-bright": "#ffffff",
+                        "surface-container-low": "var(--surface-low)",
+                        "surface-bright": "var(--bg-secondary)",
                         "secondary-fixed": "#ffdad4",
                         "on-secondary": "#690000",
-                        "on-background": "#000000",
-                        "surface-dim": "#f0f0f0",
+                        "on-background": "var(--text-primary)",
+                        "surface-dim": "var(--bg-secondary)",
                         "on-tertiary": "#003450",
                         "tertiary-fixed-dim": "#8fcdff",
-                        "surface-variant": "#e0e0e0",
-                        "on-surface": "#111111",
+                        "surface-variant": "var(--surface-highest)",
+                        "on-surface": "var(--text-secondary)",
                         "on-error": "#690005",
                         "surface-tint": "#ff1a25",
-                        "surface-container-high": "#ffffff",
-                        "on-surface-variant": "#4a4a4a"
+                        "surface-container-high": "var(--surface-high)",
+                        "on-surface-variant": "var(--text-muted)"
                     },
                     "borderRadius": {
                         "DEFAULT": "0.25rem",
@@ -135,13 +218,18 @@
 </head>
 <body class="bg-background text-on-background font-body-md overflow-x-hidden">
 <!-- Top Navigation (Reduced for Focus) -->
-<nav class="fixed top-0 w-full z-50 bg-background/40 backdrop-blur-xl border-b border-black/10">
+<nav class="fixed top-0 w-full z-50 bg-background/40 backdrop-blur-xl border-b border-outline-variant">
 <div class="flex justify-between items-center px-6 md:px-margin-desktop py-6 w-full max-w-container-max-width mx-auto">
 <a href="index.html" class="font-display-xl text-headline-lg font-black tracking-tighter text-on-background cursor-pointer hover:text-primary transition-colors">JORDAN</a>
+<div class="flex items-center gap-6">
+<button id="theme-toggle" aria-label="Toggle Theme" class="scale-95 active:scale-90 transition-transform duration-400 hover:text-primary flex items-center justify-center text-on-background">
+<span class="material-symbols-outlined text-on-background text-[24px]">dark_mode</span>
+</button>
 <a class="flex items-center gap-2 group transition-transform active:scale-95" href="Collection.html">
 <span class="material-symbols-outlined text-on-background/70 group-hover:text-primary transition-colors">close</span>
-<span class="font-label-sm text-label-sm uppercase tracking-widest hidden md:block">Exit Checkout</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest hidden md:block text-on-background/70 group-hover:text-primary">Exit Checkout</span>
 </a>
+</div>
 </div>
 </nav>
 <main class="min-h-screen pt-32 pb-margin-desktop px-6 md:px-margin-desktop max-w-container-max-width mx-auto">
@@ -472,4 +560,5 @@
             });
         });
     </script>
+    <script type="module" src="theme.js"></script>
 </body></html>

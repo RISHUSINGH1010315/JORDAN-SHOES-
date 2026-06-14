@@ -1,7 +1,15 @@
 <!DOCTYPE html>
-<html class="dark" lang="en">
+<html lang="en">
 <head>
   <meta charset="utf-8"/>
+  <!-- Theme Initializer -->
+  <script>
+    (function() {
+      const theme = localStorage.getItem('jordan_theme') || 'dark';
+      if (theme === 'dark') document.documentElement.classList.add('dark');
+      else document.documentElement.classList.remove('dark');
+    })();
+  </script>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>Shopping Bag | JORDAN</title>
   <meta name="description" content="Review the items in your shopping bag, select sizes, adjust quantities, and proceed to checkout.">
@@ -16,30 +24,92 @@
     }
     .ease-out-expo { transition-timing-function: var(--ease-out-expo); }
     
+    :root {
+      --bg-primary: #fafafa;
+      --bg-secondary: #ffffff;
+      --text-primary: #000000;
+      --text-secondary: #111111;
+      --text-muted: #4a4a4a;
+      
+      --surface-lowest: #eeeeee;
+      --surface-low: #f5f5f5;
+      --surface-high: #ffffff;
+      --surface-highest: #e0e0e0;
+      --outline: #7a7a7a;
+      --outline-variant: rgba(0, 0, 0, 0.08);
+      
+      --glass-bg: rgba(255, 255, 255, 0.85);
+      --glass-border: rgba(0, 0, 0, 0.08);
+      --site-footer-bg: #fafafa;
+      --site-footer-border: rgba(0, 0, 0, 0.08);
+      --site-footer-text: rgba(0, 0, 0, 0.7);
+      --site-footer-link: rgba(0, 0, 0, 0.5);
+      --site-footer-link-hover: #000000;
+      
+      --glass-card-bg: rgba(0, 0, 0, 0.02);
+      --glass-card-border: rgba(0, 0, 0, 0.05);
+      --glass-card-hover: rgba(0, 0, 0, 0.04);
+      --vignette-color: rgba(178, 34, 36, 0.05);
+      --vignette-bg: rgba(250, 250, 250, 1);
+      --input-border: rgba(0, 0, 0, 0.1);
+      
+      --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    html.dark {
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #121212;
+      --text-primary: #ffffff;
+      --text-secondary: #e5e2e1;
+      --text-muted: #a0a0a0;
+      
+      --surface-lowest: #050505;
+      --surface-low: #0d0d0d;
+      --surface-high: #1e1e1e;
+      --surface-highest: #353534;
+      --outline: #aa8986;
+      --outline-variant: rgba(255, 255, 255, 0.08);
+      
+      --glass-bg: rgba(18, 18, 18, 0.75);
+      --glass-border: rgba(255, 255, 255, 0.06);
+      --site-footer-bg: #050505;
+      --site-footer-border: rgba(255, 255, 255, 0.08);
+      --site-footer-text: rgba(255, 255, 255, 0.8);
+      --site-footer-link: rgba(255, 255, 255, 0.6);
+      --site-footer-link-hover: #ffffff;
+      
+      --glass-card-bg: rgba(255, 255, 255, 0.03);
+      --glass-card-border: rgba(255, 255, 255, 0.08);
+      --glass-card-hover: rgba(255, 255, 255, 0.06);
+      --vignette-color: rgba(178, 34, 36, 0.15);
+      --vignette-bg: rgba(10, 10, 10, 1);
+      --input-border: rgba(255, 255, 255, 0.1);
+    }
+    
     .glass-panel {
-      background: rgba(255, 255, 255, 0.85);
+      background: var(--glass-bg);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(0, 0, 0, 0.08);
+      border: 1px solid var(--glass-border);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     }
     
     .glass-card {
-      background: rgba(0, 0, 0, 0.02);
-      border: 1px solid rgba(0, 0, 0, 0.05);
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      background: var(--glass-card-bg);
+      border: 1px solid var(--glass-card-border);
+      transition: var(--transition-smooth);
     }
     
     /* Radial Vignette */
     .bg-vignette {
-      background: radial-gradient(circle at center, rgba(178, 34, 36, 0.05) 0%, rgba(250, 250, 250, 1) 75%);
+      background: radial-gradient(circle at center, var(--vignette-color) 0%, var(--vignette-bg) 75%);
     }
 
     .custom-scrollbar::-webkit-scrollbar {
       width: 4px;
     }
     .custom-scrollbar::-webkit-scrollbar-track {
-      background: #fafafa;
+      background: var(--bg-primary);
     }
     .custom-scrollbar::-webkit-scrollbar-thumb {
       background: #ff1a25;
@@ -49,11 +119,12 @@
     .site-footer {
       position: relative;
       z-index: 3;
-      background-color: #fafafa !important;
+      background-color: var(--site-footer-bg) !important;
       padding: 3.5rem 0;
-      border-top: 1px solid rgba(0, 0, 0, 0.08);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      border-top: 1px solid var(--site-footer-border);
+      border-bottom: 1px solid var(--site-footer-border);
       width: 100%;
+      transition: var(--transition-smooth);
     }
     .footer-container {
       max-width: 1440px;
@@ -73,7 +144,7 @@
     }
     .site-footer p {
       font-size: 0.85rem;
-      color: rgba(0, 0, 0, 0.7) !important;
+      color: var(--site-footer-text) !important;
       font-family: 'Inter', sans-serif;
     }
     .footer-links {
@@ -81,14 +152,30 @@
       gap: 2rem;
     }
     .footer-links a {
-      color: rgba(0, 0, 0, 0.5) !important;
+      color: var(--site-footer-link) !important;
       font-size: 0.85rem;
       text-decoration: none;
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       font-family: 'Inter', sans-serif;
     }
     .footer-links a:hover {
-      color: #000000 !important;
+      color: var(--site-footer-link-hover) !important;
+    }
+
+    #theme-toggle {
+      color: var(--text-primary);
+      transition: var(--transition-smooth);
+    }
+    #theme-toggle:hover {
+      color: #ff1a25;
+    }
+
+    /* Light theme overrides for text-white utility classes on non-primary-button elements */
+    html:not(.dark) .text-white:not(.bg-primary):not(.bg-primary-container):not(.bg-red-600) {
+      color: var(--text-primary) !important;
+    }
+    html:not(.dark) .hover\:text-white:hover {
+      color: var(--text-primary) !important;
     }
   </style>
   <script id="tailwind-config">
@@ -102,7 +189,7 @@
             "surface-container-highest": "#353534",
             "tertiary-fixed": "#cbe6ff",
             "error": "#ff1a25",
-            "background": "#fafafa",
+            "background": "var(--bg-primary)",
             "secondary-container": "#920703",
             "primary-fixed": "#ffdad6",
             "primary-fixed-dim": "#ffb4ac",
@@ -111,39 +198,39 @@
             "on-primary": "#ffffff",
             "on-primary-fixed-variant": "#92030f",
             "tertiary": "#8fcdff",
-            "surface-container-lowest": "#eeeeee",
-            "outline": "#7a7a7a",
-            "surface-container": "#ffffff",
+            "surface-container-lowest": "var(--surface-lowest)",
+            "outline": "var(--outline)",
+            "surface-container": "var(--bg-secondary)",
             "primary-container": "#ff1a25",
             "on-error-container": "#ffdad6",
             "on-tertiary-fixed": "#001e30",
             "inverse-primary": "#ff1a25",
-            "surface": "#ffffff",
-            "inverse-surface": "#121212",
+            "surface": "var(--bg-secondary)",
+            "inverse-surface": "var(--text-primary)",
             "on-secondary-fixed-variant": "#920703",
             "on-secondary-fixed": "#410000",
             "secondary-fixed-dim": "#ffb4a8",
             "on-tertiary-container": "#b1daff",
             "on-tertiary-fixed-variant": "#004b71",
-            "outline-variant": "#dcdcdc",
+            "outline-variant": "var(--outline-variant)",
             "primary": "#ff1a25",
-            "inverse-on-surface": "#f5f5f5",
+            "inverse-on-surface": "var(--bg-primary)",
             "tertiary-container": "#006292",
             "secondary": "#ffb4a8",
-            "surface-container-low": "#f5f5f5",
-            "surface-bright": "#ffffff",
+            "surface-container-low": "var(--surface-low)",
+            "surface-bright": "var(--bg-secondary)",
             "secondary-fixed": "#ffdad4",
             "on-secondary": "#690000",
-            "on-background": "#000000",
-            "surface-dim": "#f0f0f0",
+            "on-background": "var(--text-primary)",
+            "surface-dim": "var(--bg-secondary)",
             "on-tertiary": "#003450",
             "tertiary-fixed-dim": "#8fcdff",
-            "surface-variant": "#e0e0e0",
-            "on-surface": "#111111",
+            "surface-variant": "var(--surface-highest)",
+            "on-surface": "var(--text-secondary)",
             "on-error": "#690005",
             "surface-tint": "#ff1a25",
-            "surface-container-high": "#ffffff",
-            "on-surface-variant": "#4a4a4a"
+            "surface-container-high": "var(--surface-high)",
+            "on-surface-variant": "var(--text-muted)"
           },
           "borderRadius": {
             "DEFAULT": "4px",
@@ -186,7 +273,8 @@
 <body class="bg-background text-on-background selection:bg-primary selection:text-on-primary overflow-x-hidden custom-scrollbar min-h-screen flex flex-col bg-vignette">
 
   <!-- Top Navigation Bar -->
-  <header class="fixed top-0 w-full z-50 bg-background/40 backdrop-blur-xl border-b border-black/10">
+  <!-- Top Navigation Bar -->
+  <header class="fixed top-0 w-full z-50 bg-background/40 backdrop-blur-xl border-b border-outline-variant">
     <div class="flex justify-between items-center px-margin-desktop py-8 w-full max-w-container-max-width mx-auto">
       <a href="index.html" class="font-display-xl text-headline-lg font-black tracking-tighter text-on-background cursor-pointer hover:text-primary transition-colors">JORDAN</a>
       <nav class="hidden md:flex items-center gap-10">
@@ -197,12 +285,15 @@
         <a class="font-subheading-spaced text-subheading-spaced uppercase tracking-widest text-on-background/70 hover:text-on-background transition-colors duration-400" href="threed.html">STUDIO</a>
       </nav>
       <div class="flex items-center gap-6">
+        <button id="theme-toggle" aria-label="Toggle Theme" class="scale-95 active:scale-90 transition-transform duration-400 hover:text-primary flex items-center justify-center text-on-background">
+          <span class="material-symbols-outlined text-on-background text-[24px]">dark_mode</span>
+        </button>
         <a href="bag.html" class="scale-95 active:scale-90 transition-transform duration-400 text-primary flex items-center justify-center relative" aria-label="Shopping Bag">
           <span class="material-symbols-outlined text-[24px]">shopping_bag</span>
           <span id="cart-badge" class="absolute -top-1 -right-1 bg-primary text-white font-bold text-[9px] w-4 h-4 rounded-full flex items-center justify-center scale-0 transition-transform duration-300">0</span>
         </a>
-        <a href="Profile.html" class="scale-95 active:scale-90 transition-transform duration-400 hover:text-primary flex items-center justify-center" aria-label="User Profile">
-          <span class="material-symbols-outlined text-[24px]">person</span>
+        <a href="Profile.html" class="scale-95 active:scale-90 transition-transform duration-400 hover:text-primary flex items-center justify-center" aria-label="User Account">
+          <span class="material-symbols-outlined text-on-background text-[24px]">person</span>
         </a>
       </div>
     </div>
@@ -443,5 +534,6 @@
       renderCart();
     });
   </script>
+  <script type="module" src="theme.js"></script>
 </body>
 </html>

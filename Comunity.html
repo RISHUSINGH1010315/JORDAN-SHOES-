@@ -1,7 +1,15 @@
 <!DOCTYPE html>
-<html class="dark" lang="en">
+<html lang="en">
 <head>
   <meta charset="utf-8"/>
+  <!-- Theme Initializer -->
+  <script>
+    (function() {
+      const theme = localStorage.getItem('jordan_theme') || 'dark';
+      if (theme === 'dark') document.documentElement.classList.add('dark');
+      else document.documentElement.classList.remove('dark');
+    })();
+  </script>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>JORDAN | COMMUNITY HUB</title>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -15,11 +23,59 @@
     }
     .ease-out-expo { transition-timing-function: var(--ease-out-expo); }
     
+    :root {
+      --bg-primary: #fafafa;
+      --bg-secondary: #ffffff;
+      --text-primary: #000000;
+      --text-secondary: #111111;
+      --text-muted: #4a4a4a;
+      
+      --surface-lowest: #eeeeee;
+      --surface-low: #f5f5f5;
+      --surface-high: #ffffff;
+      --surface-highest: #e0e0e0;
+      --outline: #7a7a7a;
+      --outline-variant: rgba(0, 0, 0, 0.08);
+      
+      --glass-bg: rgba(255, 255, 255, 0.85);
+      --glass-border: rgba(0, 0, 0, 0.08);
+      --site-footer-bg: #fafafa;
+      --site-footer-border: rgba(0, 0, 0, 0.08);
+      --site-footer-text: rgba(0, 0, 0, 0.7);
+      --site-footer-link: rgba(0, 0, 0, 0.5);
+      --site-footer-link-hover: #000000;
+      
+      --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    html.dark {
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #121212;
+      --text-primary: #ffffff;
+      --text-secondary: #e5e2e1;
+      --text-muted: #a0a0a0;
+      
+      --surface-lowest: #050505;
+      --surface-low: #0d0d0d;
+      --surface-high: #1e1e1e;
+      --surface-highest: #353534;
+      --outline: #aa8986;
+      --outline-variant: rgba(255, 255, 255, 0.08);
+      
+      --glass-bg: rgba(18, 18, 18, 0.75);
+      --glass-border: rgba(255, 255, 255, 0.06);
+      --site-footer-bg: #050505;
+      --site-footer-border: rgba(255, 255, 255, 0.08);
+      --site-footer-text: rgba(255, 255, 255, 0.8);
+      --site-footer-link: rgba(255, 255, 255, 0.6);
+      --site-footer-link-hover: #ffffff;
+    }
+    
     .glass-panel {
-      background: rgba(18, 18, 18, 0.75);
+      background: var(--glass-bg);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--glass-border);
     }
     
     .neon-glow-red {
@@ -34,7 +90,7 @@
       width: 4px;
     }
     .custom-scrollbar::-webkit-scrollbar-track {
-      background: #0a0a0a;
+      background: var(--bg-primary);
     }
     .custom-scrollbar::-webkit-scrollbar-thumb {
       background: #ff1a25;
@@ -69,11 +125,12 @@
     .site-footer {
       position: relative;
       z-index: 3;
-      background-color: #050505 !important;
+      background-color: var(--site-footer-bg) !important;
       padding: 3.5rem 0;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      border-top: 1px solid var(--site-footer-border);
+      border-bottom: 1px solid var(--site-footer-border);
       width: 100%;
+      transition: var(--transition-smooth);
     }
     .footer-container {
       max-width: 1440px;
@@ -93,8 +150,7 @@
     }
     .site-footer p {
       font-size: 0.85rem;
-      color: rgba(255, 255, 255, 0.8) !important;
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+      color: var(--site-footer-text) !important;
       font-family: 'Inter', sans-serif;
     }
     .footer-links {
@@ -102,16 +158,56 @@
       gap: 2rem;
     }
     .footer-links a {
-      color: rgba(255, 255, 255, 0.6) !important;
+      color: var(--site-footer-link) !important;
       font-size: 0.85rem;
       text-decoration: none;
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       font-family: 'Inter', sans-serif;
     }
     .footer-links a:hover {
-      color: #fff !important;
-      text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+      color: var(--site-footer-link-hover) !important;
+    }
+
+    nav.fixed.top-0 {
+      transition: var(--transition-smooth);
+    }
+    nav.fixed.top-0.scrolled {
+      background: var(--glass-bg) !important;
+      border-bottom: 1px solid var(--glass-border) !important;
+    }
+
+    /* Style for theme toggle button */
+    #theme-toggle {
+      color: var(--text-primary);
+      transition: var(--transition-smooth);
+    }
+    #theme-toggle:hover {
+      color: #ff1a25;
+    }
+
+    /* Premium Theme Utility overrides in light mode */
+    html:not(.dark) .border-white\/5,
+    html:not(.dark) .border-white\/10 {
+      border-color: var(--outline-variant) !important;
+    }
+    html:not(.dark) .border-t.border-white\/5 {
+      border-top-color: var(--outline-variant) !important;
+    }
+    html:not(.dark) .border-b.border-white\/10 {
+      border-bottom-color: var(--outline-variant) !important;
+    }
+    html:not(.dark) main .font-bold.text-white,
+    html:not(.dark) main .font-black.text-white,
+    html:not(.dark) main h3.text-white,
+    html:not(.dark) main h4.text-white,
+    html:not(.dark) main .meetup-item span.text-white,
+    html:not(.dark) main #map-station-name,
+    html:not(.dark) main .glass-panel.text-white,
+    html:not(.dark) #post-modal h3.text-white,
+    html:not(.dark) #post-modal .font-bold.text-white,
+    html:not(.dark) #post-modal input,
+    html:not(.dark) #post-modal textarea {
+      color: var(--text-primary) !important;
     }
   </style>
   <script id="tailwind-config">
@@ -122,10 +218,10 @@
           "colors": {
             "error-container": "#93000a",
             "on-primary-container": "#ffc8c2",
-            "surface-container-highest": "#353534",
+            "surface-container-highest": "var(--surface-highest)",
             "tertiary-fixed": "#cbe6ff",
             "error": "#ff1a25",
-            "background": "#0a0a0a",
+            "background": "var(--bg-primary)",
             "secondary-container": "#920703",
             "primary-fixed": "#ffdad6",
             "primary-fixed-dim": "#ffb4ac",
@@ -134,39 +230,39 @@
             "on-primary": "#ffffff",
             "on-primary-fixed-variant": "#92030f",
             "tertiary": "#8fcdff",
-            "surface-container-lowest": "#050505",
-            "outline": "#aa8986",
-            "surface-container": "#121212",
+            "surface-container-lowest": "var(--surface-lowest)",
+            "outline": "var(--outline)",
+            "surface-container": "var(--bg-secondary)",
             "primary-container": "#ff1a25",
             "on-error-container": "#ffdad6",
             "on-tertiary-fixed": "#001e30",
             "inverse-primary": "#ff1a25",
-            "surface": "#121212",
-            "inverse-surface": "#e5e2e1",
+            "surface": "var(--bg-secondary)",
+            "inverse-surface": "var(--text-primary)",
             "on-secondary-fixed-variant": "#920703",
             "on-secondary-fixed": "#410000",
             "secondary-fixed-dim": "#ffb4a8",
             "on-tertiary-container": "#b1daff",
             "on-tertiary-fixed-variant": "#004b71",
-            "outline-variant": "#5a403e",
+            "outline-variant": "var(--outline-variant)",
             "primary": "#ff1a25",
-            "inverse-on-surface": "#313030",
+            "inverse-on-surface": "var(--bg-primary)",
             "tertiary-container": "#006292",
             "secondary": "#ffb4a8",
-            "surface-container-low": "#0d0d0d",
-            "surface-bright": "#393939",
+            "surface-container-low": "var(--surface-low)",
+            "surface-bright": "var(--bg-secondary)",
             "secondary-fixed": "#ffdad4",
             "on-secondary": "#690000",
-            "on-background": "#ffffff",
-            "surface-dim": "#121212",
+            "on-background": "var(--text-primary)",
+            "surface-dim": "var(--bg-secondary)",
             "on-tertiary": "#003450",
             "tertiary-fixed-dim": "#8fcdff",
-            "surface-variant": "#353534",
-            "on-surface": "#e5e2e1",
+            "surface-variant": "var(--surface-highest)",
+            "on-surface": "var(--text-secondary)",
             "on-error": "#690005",
             "surface-tint": "#ff1a25",
-            "surface-container-high": "#1e1e1e",
-            "on-surface-variant": "#a0a0a0"
+            "surface-container-high": "var(--surface-high)",
+            "on-surface-variant": "var(--text-muted)"
           },
           "borderRadius": {
             "DEFAULT": "4px",
@@ -209,7 +305,7 @@
 <body class="bg-background text-on-background selection:bg-primary selection:text-on-primary overflow-x-hidden custom-scrollbar min-h-screen flex flex-col">
 
   <!-- Top Navigation Bar -->
-  <nav class="fixed top-0 w-full z-50 bg-background/40 backdrop-blur-xl border-b border-white/10">
+  <nav class="fixed top-0 w-full z-50 bg-background/40 backdrop-blur-xl border-b border-outline-variant transition-all duration-400">
     <div class="flex justify-between items-center px-margin-desktop py-8 w-full max-w-container-max-width mx-auto">
       <a href="index.html" class="font-display-xl text-headline-lg font-black tracking-tighter text-on-background cursor-pointer hover:text-primary transition-colors">JORDAN</a>
       <div class="hidden md:flex gap-10">
@@ -220,6 +316,9 @@
         <a class="font-subheading-spaced text-subheading-spaced uppercase tracking-widest text-on-background/70 hover:text-primary transition-all ease-out-expo duration-400" href="threed.html">STUDIO</a>
       </div>
       <div class="flex items-center gap-6">
+        <button id="theme-toggle" aria-label="Toggle Theme" class="scale-95 active:scale-90 transition-transform duration-400 hover:text-primary flex items-center justify-center">
+          <span class="material-symbols-outlined text-[24px]">dark_mode</span>
+        </button>
         <a href="bag.html" class="scale-95 active:scale-90 transition-transform duration-400 hover:text-primary flex items-center justify-center relative" aria-label="Shopping Bag">
           <span class="material-symbols-outlined text-[24px]">shopping_bag</span>
           <span id="cart-badge" class="absolute -top-1 -right-1 bg-primary text-white font-bold text-[9px] w-4 h-4 rounded-full flex items-center justify-center scale-0 transition-transform duration-300">0</span>
@@ -238,12 +337,12 @@
       <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
       <div class="absolute inset-0 bg-black/50"></div>
     </div>
-    <div class="relative z-10 w-full max-w-container-max-width mx-auto">
+    <div class="relative z-10 w-full max-w-container-max-width mx-auto text-white">
       <span class="font-subheading-spaced text-subheading-spaced uppercase tracking-widest text-primary mb-4 block">GLOBAL FAMILY</span>
-      <h1 class="font-display-xl text-display-xl max-w-4xl mb-8 leading-tight tracking-tight">BELONG TO <br/>THE FLIGHT.</h1>
+      <h1 class="font-display-xl text-display-xl max-w-4xl mb-8 leading-tight tracking-tight text-white">BELONG TO <br/>THE FLIGHT.</h1>
       <div class="flex flex-wrap gap-6">
         <button id="join-crew-btn" class="bg-primary text-white px-12 py-5 font-subheading-spaced text-subheading-spaced uppercase transition-all duration-400 hover:bg-white hover:text-black">JOIN THE CREW</button>
-        <button id="watch-stories-btn" class="border border-white/20 backdrop-blur-md px-12 py-5 font-subheading-spaced text-subheading-spaced uppercase transition-all duration-400 hover:bg-white/10">WATCH STORIES</button>
+        <button id="watch-stories-btn" class="border border-white/20 backdrop-blur-md px-12 py-5 font-subheading-spaced text-subheading-spaced uppercase transition-all duration-400 hover:bg-white/10 text-white">WATCH STORIES</button>
       </div>
     </div>
   </header>
@@ -799,11 +898,11 @@
       window.addEventListener('scroll', () => {
         const nav = document.querySelector('nav');
         if (window.scrollY > 100) {
-          nav.classList.add('bg-[#0a0a0a]/80', 'py-4');
-          nav.classList.remove('bg-transparent', 'py-8');
+          nav.classList.add('scrolled', 'py-4');
+          nav.classList.remove('py-8');
         } else {
-          nav.classList.remove('bg-[#0a0a0a]/80', 'py-4');
-          nav.classList.add('bg-transparent', 'py-8');
+          nav.classList.remove('scrolled', 'py-4');
+          nav.classList.add('py-8');
         }
       });
 
@@ -816,5 +915,6 @@
       });
     });
   </script>
+  <script type="module" src="theme.js"></script>
 </body>
 </html>
