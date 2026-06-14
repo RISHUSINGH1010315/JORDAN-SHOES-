@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>JORDAN | COMMUNITY HUB</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <style>
+    @layer base {
+      :root {
+        --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      }
+    }
+    .ease-out-expo { transition-timing-function: var(--ease-out-expo); }
+    
+    .glass-panel {
+      background: rgba(18, 18, 18, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    
+    .neon-glow-red {
+      box-shadow: 0 0 20px rgba(255, 26, 37, 0.3);
+    }
+
+    .kinetic-hover:hover {
+      transform: translateY(-8px) scale(1.02);
+    }
+
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #0a0a0a;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #ff1a25;
+    }
+    
+    /* Animation Keyframes */
+    @keyframes fadeInUp {
+      from { transform: translateY(30px) scale(0.95); opacity: 0; }
+      to { transform: translateY(0) scale(1); opacity: 1; }
+    }
+    .animate-fade-in-up {
+      animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    
+    /* Toast styles */
+    @keyframes slideIn {
+      from { transform: translateX(120%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slideOut {
+      from { transform: translateX(0); opacity: 1; }
+      to { transform: translateX(120%); opacity: 0; }
+    }
+    .animate-slide-in {
+      animation: slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .animate-slide-out {
+      animation: slideOut 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    
+    /* Premium Solid Black Footer */
+    .site-footer {
+      position: relative;
+      z-index: 3;
+      background-color: #050505 !important;
+      padding: 3.5rem 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      width: 100%;
+    }
+    .footer-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 64px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    @media (max-width: 768px) {
+      .footer-container {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+        padding: 0 24px;
+      }
+    }
+    .site-footer p {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.8) !important;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+      font-family: 'Inter', sans-serif;
+    }
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+    }
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.6) !important;
+      font-size: 0.85rem;
+      text-decoration: none;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      font-family: 'Inter', sans-serif;
+    }
+    .footer-links a:hover {
+      color: #fff !important;
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+    }
+  </style>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "error-container": "#93000a",
+            "on-primary-container": "#ffc8c2",
+            "surface-container-highest": "#353534",
+            "tertiary-fixed": "#cbe6ff",
+            "error": "#ff1a25",
+            "background": "#0a0a0a",
+            "secondary-container": "#920703",
+            "primary-fixed": "#ffdad6",
+            "primary-fixed-dim": "#ffb4ac",
+            "on-primary-fixed": "#410003",
+            "on-secondary-container": "#ff9a8a",
+            "on-primary": "#ffffff",
+            "on-primary-fixed-variant": "#92030f",
+            "tertiary": "#8fcdff",
+            "surface-container-lowest": "#050505",
+            "outline": "#aa8986",
+            "surface-container": "#121212",
+            "primary-container": "#ff1a25",
+            "on-error-container": "#ffdad6",
+            "on-tertiary-fixed": "#001e30",
+            "inverse-primary": "#ff1a25",
+            "surface": "#121212",
+            "inverse-surface": "#e5e2e1",
+            "on-secondary-fixed-variant": "#920703",
+            "on-secondary-fixed": "#410000",
+            "secondary-fixed-dim": "#ffb4a8",
+            "on-tertiary-container": "#b1daff",
+            "on-tertiary-fixed-variant": "#004b71",
+            "outline-variant": "#5a403e",
+            "primary": "#ff1a25",
+            "inverse-on-surface": "#313030",
+            "tertiary-container": "#006292",
+            "secondary": "#ffb4a8",
+            "surface-container-low": "#0d0d0d",
+            "surface-bright": "#393939",
+            "secondary-fixed": "#ffdad4",
+            "on-secondary": "#690000",
+            "on-background": "#ffffff",
+            "surface-dim": "#121212",
+            "on-tertiary": "#003450",
+            "tertiary-fixed-dim": "#8fcdff",
+            "surface-variant": "#353534",
+            "on-surface": "#e5e2e1",
+            "on-error": "#690005",
+            "surface-tint": "#ff1a25",
+            "surface-container-high": "#1e1e1e",
+            "on-surface-variant": "#a0a0a0"
+          },
+          "borderRadius": {
+            "DEFAULT": "4px",
+            "lg": "8px",
+            "xl": "12px",
+            "full": "9999px"
+          },
+          "spacing": {
+            "base": "8px",
+            "section-gap-desktop": "120px",
+            "section-gap-mobile": "60px",
+            "margin-mobile": "24px",
+            "gutter": "24px",
+            "margin-desktop": "64px",
+            "container-max-width": "1440px"
+          },
+          "fontFamily": {
+            "headline-lg-mobile": ["Montserrat"],
+            "subheading-spaced": ["Inter"],
+            "body-lg": ["Inter"],
+            "label-sm": ["Inter"],
+            "headline-lg": ["Montserrat"],
+            "display-xl": ["Montserrat"],
+            "body-md": ["Inter"]
+          },
+          "fontSize": {
+            "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+            "subheading-spaced": ["14px", {"lineHeight": "1.5", "letterSpacing": "0.2em", "fontWeight": "600"}],
+            "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+            "label-sm": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "600"}],
+            "headline-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "display-xl": ["80px", {"lineHeight": "1.0", "letterSpacing": "-0.04em", "fontWeight": "900"}],
+            "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}]
+          }
+        },
+      },
+    }
+  </script>
+</head>
+<body class="bg-background text-on-background selection:bg-primary selection:text-on-primary overflow-x-hidden custom-scrollbar min-h-screen flex flex-col">
+
+  <!-- Top Navigation Bar -->
+  <nav class="fixed top-0 w-full z-50 bg-background/40 backdrop-blur-xl border-b border-white/10">
+    <div class="flex justify-between items-center px-margin-desktop py-8 w-full max-w-container-max-width mx-auto">
+      <a href="index.html" class="font-display-xl text-headline-lg font-black tracking-tighter text-on-background cursor-pointer hover:text-primary transition-colors">JORDAN</a>
+      <div class="hidden md:flex gap-10">
+        <a class="font-subheading-spaced text-subheading-spaced uppercase tracking-widest text-on-background/70 hover:text-primary transition-all ease-out-expo duration-400" href="index.html">SHOP</a>
+        <a class="font-subheading-spaced text-subheading-spaced uppercase tracking-widest text-on-background/70 hover:text-primary transition-all ease-out-expo duration-400" href="Collection.html">COLLECTIONS</a>
+        <a class="font-subheading-spaced text-subheading-spaced uppercase tracking-widest text-primary font-bold border-b border-primary pb-1" href="Comunity.html">COMMUNITY</a>
+        <a class="font-subheading-spaced text-subheading-spaced uppercase tracking-widest text-on-background/70 hover:text-primary transition-all ease-out-expo duration-400" href="Hertiage.html">HERITAGE</a>
+        <a class="font-subheading-spaced text-subheading-spaced uppercase tracking-widest text-on-background/70 hover:text-primary transition-all ease-out-expo duration-400" href="threed.html">STUDIO</a>
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="bag.html" class="scale-95 active:scale-90 transition-transform duration-400 hover:text-primary flex items-center justify-center relative" aria-label="Shopping Bag">
+          <span class="material-symbols-outlined text-[24px]">shopping_bag</span>
+          <span id="cart-badge" class="absolute -top-1 -right-1 bg-primary text-white font-bold text-[9px] w-4 h-4 rounded-full flex items-center justify-center scale-0 transition-transform duration-300">0</span>
+        </a>
+        <a href="Profile.html" class="scale-95 active:scale-90 transition-transform duration-400 hover:text-primary flex items-center justify-center" aria-label="User Account">
+          <span class="material-symbols-outlined text-[24px]">person</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="relative min-h-screen flex items-end pt-32 pb-margin-desktop px-margin-desktop">
+    <div class="absolute inset-0 z-0">
+      <img alt="Jordan Community Family" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClU5rkIg2PYCqMXQsx4ON1MxUbRDnle-IxzMyYRuYzxRe-z7X6w8vb0vtgq4eWfvPI5nDfG7lUwZzki5QdXgSCCi1BGCz2rdKi-jtSeIoJ-2xBPWCF4GThCe6MJvWycer8go6bMDa3lJ6xaTx1L7KxOWHBP6URxu7fVc6r7nKnxnwVZ8pD1ND49ULfuPoxQ-xLxL-eVVHC1Xlxd9MjffQ7_YIm_4f-BKb0pXRmeGIuVCPM6rEAIIBVZYPVT6XNbVmMpM8qi-hQpghR"/>
+      <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+      <div class="absolute inset-0 bg-black/50"></div>
+    </div>
+    <div class="relative z-10 w-full max-w-container-max-width mx-auto">
+      <span class="font-subheading-spaced text-subheading-spaced uppercase tracking-widest text-primary mb-4 block">GLOBAL FAMILY</span>
+      <h1 class="font-display-xl text-display-xl max-w-4xl mb-8 leading-tight tracking-tight">BELONG TO <br/>THE FLIGHT.</h1>
+      <div class="flex flex-wrap gap-6">
+        <button id="join-crew-btn" class="bg-primary text-white px-12 py-5 font-subheading-spaced text-subheading-spaced uppercase transition-all duration-400 hover:bg-white hover:text-black">JOIN THE CREW</button>
+        <button id="watch-stories-btn" class="border border-white/20 backdrop-blur-md px-12 py-5 font-subheading-spaced text-subheading-spaced uppercase transition-all duration-400 hover:bg-white/10">WATCH STORIES</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="max-w-container-max-width mx-auto px-margin-desktop space-y-section-gap-desktop pb-section-gap-desktop flex-1 w-full">
+    <!-- Bento Grid: Athlete Stories & Exclusive Content -->
+    <section class="mt-section-gap-desktop">
+      <div class="flex justify-between items-end mb-12">
+        <div>
+          <h2 class="font-headline-lg text-headline-lg uppercase mb-2">PRO PERSPECTIVES</h2>
+          <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">Exclusive stories from the court, the street, and everywhere in between.</p>
+        </div>
+        <button class="hidden md:flex items-center gap-2 font-label-sm text-label-sm uppercase tracking-widest hover:text-primary transition-colors">
+          VIEW ALL <span class="material-symbols-outlined text-sm">arrow_forward</span>
+        </button>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+        <!-- Large Feature Story -->
+        <div class="md:col-span-8 group relative aspect-[16/9] overflow-hidden bg-surface-container-high kinetic-hover ease-out-expo duration-500 cursor-pointer border border-white/5">
+          <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrXbT0yMl1w3YMdzkDo_gD_yCSRX54x6XkCw7m7lPY9SFqstwvNniEdNeHxLeZtEga-am7kygkj3uIcfgme1lxXYcRNopD_fts_Cl8b14cnqiwcp0lEy5ResHKpZcmSB4WhDQ5LIBx-TtxG7FhX0u4HK5fJqsgY96gXQKSSV9mmPLe_eJsEhY69ljALBd8V1UxysXypR43eEhMyZbaXVtYG-JC9463LOz_9tV-oT3NTMpf-HIgzHSvL8iZZTCg85XhiCfuVek_g65D"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 p-10">
+            <span class="inline-block px-3 py-1 border border-primary text-primary font-label-sm text-[10px] mb-4">EXCLUSIVE STORY</span>
+            <h3 class="font-headline-lg text-headline-lg uppercase mb-4 leading-tight">JAYSON TATUM: <br/>THE MENTORSHIP EFFECT</h3>
+            <p class="font-body-md text-body-md text-on-surface-variant max-w-md">How the next generation of flight is being shaped by those who soared before them.</p>
+          </div>
+        </div>
+        <!-- Secondary Stories -->
+        <div class="md:col-span-4 flex flex-col gap-gutter">
+          <div class="flex-1 group relative overflow-hidden bg-surface-container-high kinetic-hover ease-out-expo duration-500 cursor-pointer border border-white/5 min-h-[200px]">
+            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArkEyJbLJ79efT_EX4WHzDHbPmyR_yptEbeKSwzt88wuxWakIXrhDfF6UQZoyHN5dsWqSrNBhnmDeaa3wJ83eiA4khSGchAmFPcpJPMlkcTchlD5NbnfEKaj96Q2XnnrEAtUacUGjl10Nff6YjARZq1RK5_jrntn6pfErqvV6fX0AgorCOcMPuwI-4dUweBGwWd98LgoDwJhk0MuXMTkxFT1Dt3N_O77pZbvyFqjtJH7U0N4ML6Alo4OE-KjvoYoTqHD2Cmh5d6-VM"/>
+            <div class="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors"></div>
+            <div class="absolute inset-0 p-8 flex flex-col justify-end">
+              <h4 class="font-headline-lg text-headline-lg-mobile uppercase tracking-wide">SOLE ROOTS</h4>
+            </div>
+          </div>
+          <div class="flex-1 group relative overflow-hidden bg-surface-container-high kinetic-hover ease-out-expo duration-500 cursor-pointer border border-white/5 min-h-[200px]">
+            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBa3Y4_AVwn7y2iQSLooe-IKtWfaceSbZ0oPX6Zd6FpZvBuzTn75QpaMZ2HuZXUF_1JtMfoIRee4iFi_SOFy-_JZh2rqIR8vKjU-F9SZlmrI7CbiGmc6x5dYKDYQW93m_Uwx9oI1jja9qlzFqyfZE1y0Qhz9UW_f0UJ-enDIA61qtwUSOC5PO_gtgvLdICh1VmTjsk6iDEKLiUPg9e0zJbTA1FUpPADQ0C95DVDpFSW5afFP6v5casyC_8o04QWakLt7lol4nj2TYrB"/>
+            <div class="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors"></div>
+            <div class="absolute inset-0 p-8 flex flex-col justify-end">
+              <h4 class="font-headline-lg text-headline-lg-mobile uppercase tracking-wide">STYLE IS POWER</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Social Feed Section -->
+    <section>
+      <div class="flex items-center gap-4 mb-12">
+        <div class="h-px flex-1 bg-white/10"></div>
+        <h2 class="font-subheading-spaced text-subheading-spaced uppercase text-center px-4">THE #JORDANDNA FEED</h2>
+        <div class="h-px flex-1 bg-white/10"></div>
+      </div>
+      
+      <div class="columns-1 md:columns-2 lg:columns-4 gap-gutter space-y-gutter" id="social-grid">
+        
+        <!-- Social Card 1 -->
+        <div class="break-inside-avoid glass-panel p-4 space-y-4 kinetic-hover transition-all duration-500 cursor-pointer rounded-sm social-card">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-surface-container-high border border-white/10 overflow-hidden">
+                <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqcCpdbCEPkClBwHtuoEDZ00lWVcClnHD106Gja02iRgMq6C0bJZNFxBsQcVsWNDq330ptL0gv8TCLHQ2xTiX5fu33vooKEviHEyP_S7kRgWyYcquuqEIYd6bSM5EMp3yrHzlmeWW8kNSy7JC06Iemri3fm6a8bDpYA0I6h84Yzx16pYWwvfpR7dmHtqkviyf0001XCKhKREIRGDcWY9l8gQcOE51ADV7T9fEPcAqOwljrjQ6-n5wYlMNQliGyuM6u6ikQ_oqleERY"/>
+              </div>
+              <div>
+                <div class="font-label-sm text-label-sm font-bold text-white">@court_king_nyc</div>
+                <div class="font-label-sm text-[9px] text-on-surface-variant">BROOKLYN, NY</div>
+              </div>
+            </div>
+            <span class="material-symbols-outlined text-primary text-xl">verified</span>
+          </div>
+          <img class="w-full aspect-[4/5] object-cover grayscale hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMIGA9zd-h2kh8G68BQ3dGfMFAuq8Fj5Mv2lbLsllLmbVzGJs_n5lXnLQ11qGogzbT7S_A8kN3e-Wod1um_aGDrQIC7P1lTsD7Q3nRIsrZhS1Vz6lYNTX7kqO02d-AfTiq6x2fGhPgT6KL2pwFi_jfWa7fVYpXVPUJ8PxMnNNUP7mOBiTdu21jTeKKUpCxXC7XtBrLksIdHtchWf-tVQGDItyUBOwRlQoQ64aTGFf7vRrX-Z9kWTPg5aQa33IoekgODFp59Y6SS-wQ"/>
+          <p class="font-body-md text-sm leading-relaxed text-on-surface-variant">Putting in the overtime. The grind doesn't stop when the sun goes down. #JordanDNA</p>
+          <div class="flex items-center justify-between pt-2 border-t border-white/5 text-on-surface-variant">
+            <div class="flex items-center gap-4">
+              <button class="like-btn flex items-center gap-1.5 hover:text-primary transition-colors">
+                <span class="material-symbols-outlined text-lg">favorite</span>
+                <span class="like-count font-label-sm text-xs">248</span>
+              </button>
+              <button class="comment-btn flex items-center gap-1.5 hover:text-primary transition-colors">
+                <span class="material-symbols-outlined text-lg">chat_bubble</span>
+                <span class="font-label-sm text-xs">12</span>
+              </button>
+            </div>
+            <button class="bookmark-btn hover:text-primary transition-colors">
+              <span class="material-symbols-outlined text-lg">bookmark</span>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Social Card 2 -->
+        <div class="break-inside-avoid glass-panel p-4 space-y-4 kinetic-hover transition-all duration-500 cursor-pointer rounded-sm social-card">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-surface-container-high border border-white/10 overflow-hidden">
+                <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgPQblfkXHniyRkWx7m0As-035v8ooBMlDpfaRJhy8llsOgpOso-R7teYZfSf9boEJQLc0meWWcfqpVx-UG3vvW9e6fv1wfLWReyN2Mac-UgehopsKhDgPYU7leAgIyNL73aiSzFgsE4CDn2eqbDTedCI55NL8VNCE3-Q2YG9iMXeM4vHZQW87COAlUwV8cB5byjjjNE0itHjnYypv4yfyM8OoTugMdKhFMdWzNLEHdS0AOZMi84UIkAbQHNToYiFUpV4ZO84RPiIG"/>
+              </div>
+              <div>
+                <div class="font-label-sm text-label-sm font-bold text-white">@design_flight</div>
+                <div class="font-label-sm text-[9px] text-on-surface-variant">TOKYO, JP</div>
+              </div>
+            </div>
+          </div>
+          <div class="aspect-square bg-[#ff1a25]/10 flex items-center justify-center p-6 border border-[#ff1a25]/20">
+            <p class="font-display-xl text-2xl italic text-center text-primary leading-tight font-black uppercase">"LIMITS ARE JUST AN ILLUSION."</p>
+          </div>
+          <p class="font-body-md text-sm text-on-surface-variant">New concept work for the Flight Series. Stay tuned. ⚡️</p>
+          <div class="flex items-center justify-between pt-2 border-t border-white/5 text-on-surface-variant">
+            <button class="like-btn flex items-center gap-1.5 hover:text-primary transition-colors">
+              <span class="material-symbols-outlined text-lg">favorite</span>
+              <span class="like-count font-label-sm text-xs">1,248</span>
+            </button>
+            <button class="bookmark-btn hover:text-primary transition-colors">
+              <span class="material-symbols-outlined text-lg">bookmark</span>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Social Card 3 -->
+        <div class="break-inside-avoid glass-panel p-4 space-y-4 kinetic-hover transition-all duration-500 cursor-pointer rounded-sm social-card">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-surface-container-high border border-white/10 overflow-hidden">
+              <span class="material-symbols-outlined text-2xl text-on-surface-variant flex items-center justify-center w-full h-full">person</span>
+            </div>
+            <div>
+              <div class="font-label-sm text-label-sm font-bold text-white">@tokyo_hoops</div>
+              <div class="font-label-sm text-[9px] text-on-surface-variant">SHIBUYA, TOKYO</div>
+            </div>
+          </div>
+          <img class="w-full aspect-[9/16] object-cover grayscale hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAt05FPa9FwPCf14tyiZZPFqFX7wNmt6Mjni9fN1UWiMc89CPUS3I4Btp9nYsoP2bu7qBTLfqL14z6yY8pYWMXt5DF_WB_rRrU5WlCId_ypAo1tUgGvGpgEkHtjSJr7OPpHZG4MVwEVePJbpiPtOnVCey8NeqwgnddQe-O8loMMbtVgC5GFDf9NQHj5QL3a1fVF4AvztlVTTDWubioPgsJkVOloqKGBywE99n-sN0kEYlHISp9QiP-PNod9JyW83NDuhTi1A9pZeNp0"/>
+          <p class="font-body-md text-sm text-on-surface-variant">Tokyo vibes. The court is our canvas. 🎨🏀</p>
+          <div class="flex items-center justify-between pt-2 border-t border-white/5 text-on-surface-variant">
+            <button class="like-btn flex items-center gap-1.5 hover:text-primary transition-colors">
+              <span class="material-symbols-outlined text-lg">favorite</span>
+              <span class="like-count font-label-sm text-xs">512</span>
+            </button>
+            <button class="bookmark-btn hover:text-primary transition-colors">
+              <span class="material-symbols-outlined text-lg">bookmark</span>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Social Card 4 -->
+        <div class="break-inside-avoid glass-panel p-4 space-y-4 kinetic-hover transition-all duration-500 cursor-pointer rounded-sm social-card">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-surface-container-high border border-white/10 overflow-hidden">
+                <span class="material-symbols-outlined text-2xl text-on-surface-variant flex items-center justify-center w-full h-full">person</span>
+              </div>
+              <div>
+                <div class="font-label-sm text-label-sm font-bold text-white">@jumpman_collector</div>
+                <div class="font-label-sm text-[9px] text-on-surface-variant">CHICAGO, IL</div>
+              </div>
+            </div>
+          </div>
+          <img class="w-full aspect-square object-cover grayscale hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmLDnIKSKvjTg0SpIRMXGBLi0L5H-bHd1pwcolVi4SNIu_wveiVvdLEaMjEBaS6Ns0s8uJ3f_wQkvwEvTrRVJOJIn0VxpS4Yr54MkiVYQD5_bL7r_VGACg6klSHEn3Rggkxk18mEzGmXUytiTSJyOkm2tc33mTU8BTOUduHRYn0Zkd-OwyHKi0-NzhvDjV5JCUQ_ei2o030Q8IE1pnvcEcfsk_28kh-QIt55hSK13J4-sX5_rO2QupFv6l1m4hNmticSw9KcpMJ_-J"/>
+          <p class="font-body-md text-sm text-on-surface-variant">Archiving history. Clean display cabinet setup. 👟🏺</p>
+          <div class="flex items-center justify-between pt-2 border-t border-white/5 text-on-surface-variant">
+            <button class="like-btn flex items-center gap-1.5 hover:text-primary transition-colors">
+              <span class="material-symbols-outlined text-lg">favorite</span>
+              <span class="like-count font-label-sm text-xs">844</span>
+            </button>
+            <button class="bookmark-btn hover:text-primary transition-colors">
+              <span class="material-symbols-outlined text-lg">bookmark</span>
+            </button>
+          </div>
+        </div>
+        
+      </div>
+    </section>
+
+    <!-- Court Meetups: Interactive Section -->
+    <section class="bg-surface-container-low p-margin-desktop relative overflow-hidden border border-white/5 rounded-sm">
+      <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-margin-desktop items-center">
+        <div>
+          <span class="font-subheading-spaced text-subheading-spaced uppercase tracking-widest text-primary mb-4 block">LOCAL SQUAD</span>
+          <h2 class="font-headline-lg text-headline-lg uppercase mb-8 leading-tight">FIND YOUR <br/>NEXT RUN.</h2>
+          <p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-lg">Connect with local players, join exclusive court takeovers, and level up your game with Jordan Brand community coaches.</p>
+          
+          <div class="space-y-4" id="meetups-list">
+            <!-- Meetup Item 1 -->
+            <div class="meetup-item flex items-center gap-6 p-6 border border-primary bg-primary/5 hover:border-primary transition-all cursor-pointer group rounded-sm active" data-map="nyc" data-title="THE CAGE: 3X3 TOURNAMENT" data-loc="West 4th St, NYC" data-players="12 PLAYERS">
+              <div class="flex flex-col items-center justify-center bg-surface-container-high p-4 min-w-[80px]">
+                <span class="font-label-sm text-primary text-[10px]">OCT</span>
+                <span class="font-headline-lg text-2xl font-black text-white">24</span>
+              </div>
+              <div class="flex-1">
+                <h4 class="font-subheading-spaced text-subheading-spaced uppercase mb-1 text-primary group-hover:text-primary transition-colors">THE CAGE: 3X3 TOURNAMENT</h4>
+                <p class="font-body-md text-sm text-on-surface-variant">West 4th St, New York City • 6:00 PM</p>
+              </div>
+              <span class="material-symbols-outlined text-primary group-hover:translate-x-2 transition-transform">arrow_forward</span>
+            </div>
+            <!-- Meetup Item 2 -->
+            <div class="meetup-item flex items-center gap-6 p-6 border border-white/5 hover:border-primary/50 transition-all cursor-pointer group rounded-sm" data-map="la" data-title="WINGS ACADEMY: CLINIC" data-loc="Venice Beach, LA" data-players="8 PLAYERS">
+              <div class="flex flex-col items-center justify-center bg-surface-container-high p-4 min-w-[80px]">
+                <span class="font-label-sm text-primary text-[10px]">OCT</span>
+                <span class="font-headline-lg text-2xl font-black text-white">27</span>
+              </div>
+              <div class="flex-1">
+                <h4 class="font-subheading-spaced text-subheading-spaced uppercase mb-1 text-white group-hover:text-primary transition-colors">WINGS ACADEMY: CLINIC</h4>
+                <p class="font-body-md text-sm text-on-surface-variant">Venice Beach, LA • 9:00 AM</p>
+              </div>
+              <span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-2 transition-transform">arrow_forward</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Interactive Map Container -->
+        <div class="relative h-[500px] bg-[#050505] border border-white/10 group rounded-sm overflow-hidden flex items-center justify-center">
+          <div class="absolute inset-0 grayscale opacity-30 mix-blend-screen bg-cover bg-center transition-all duration-700" id="map-bg" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuClU5rkIg2PYCqMXQsx4ON1MxUbRDnle-IxzMyYRuYzxRe-z7X6w8vb0vtgq4eWfvPI5nDfG7lUwZzki5QdXgSCCi1BGCz2rdKi-jtSeIoJ-2xBPWCF4GThCe6MJvWycer8go6bMDa3lJ6xaTx1L7KxOWHBP6URxu7fVc6r7nKnxnwVZ8pD1ND49ULfuPoxQ-xLxL-eVVHC1Xlxd9MjffQ7_YIm_4f-BKb0pXRmeGIuVCPM6rEAIIBVZYPVT6XNbVmMpM8qi-hQpghR')"></div>
+          <!-- Map Overlay HUD -->
+          <div class="absolute inset-0 p-10 flex flex-col justify-between z-10">
+            <div class="flex justify-between items-center">
+              <div class="glass-panel px-4 py-2 font-label-sm text-[9px] tracking-wider text-white">TACTICAL MAP VIEW</div>
+              <div class="flex gap-2">
+                <button class="w-8 h-8 glass-panel flex items-center justify-center hover:bg-white/10 text-white"><span class="material-symbols-outlined text-sm">add</span></button>
+                <button class="w-8 h-8 glass-panel flex items-center justify-center hover:bg-white/10 text-white"><span class="material-symbols-outlined text-sm">remove</span></button>
+              </div>
+            </div>
+            
+            <div class="flex flex-col items-center gap-4">
+              <div class="relative">
+                <div class="w-12 h-12 bg-primary rounded-full animate-ping absolute inset-0 opacity-20"></div>
+                <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center relative neon-glow-red">
+                  <span class="material-symbols-outlined text-white font-bold">location_on</span>
+                </div>
+              </div>
+              <div class="glass-panel p-4 text-center min-w-[180px]">
+                <p id="map-station-name" class="font-label-sm text-xs font-bold text-white tracking-widest uppercase">THE CAGE: 3X3</p>
+                <p id="map-station-loc" class="font-body-md text-[9px] text-on-surface-variant tracking-wider uppercase mt-1">West 4th St, NYC</p>
+                <p id="map-station-players" class="font-body-md text-[9px] text-primary tracking-widest mt-1">ACTIVE: 12 PLAYERS</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Create Post Modal Dialog -->
+  <div id="post-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="glass-panel max-w-md w-full p-8 rounded-none border border-primary/20 shadow-2xl relative animate-fade-in-up">
+      <button id="close-modal" class="absolute top-4 right-4 material-symbols-outlined text-on-surface-variant hover:text-white transition-colors">close</button>
+      <h3 class="font-subheading-spaced text-sm font-bold uppercase tracking-wider text-white mb-6">CREATE COMMUNITY POST</h3>
+      <form id="create-post-form" class="space-y-4">
+        <div>
+          <label class="block font-label-sm text-[10px] text-on-surface-variant uppercase tracking-widest mb-2">Your Handle</label>
+          <input type="text" id="post-handle" value="@flight_enthusiast" required class="w-full bg-surface-container border border-white/10 px-4 py-3 text-sm text-white focus:ring-1 focus:ring-primary focus:border-primary outline-none">
+        </div>
+        <div>
+          <label class="block font-label-sm text-[10px] text-on-surface-variant uppercase tracking-widest mb-2">Location</label>
+          <input type="text" id="post-location" value="CHICAGO, IL" required class="w-full bg-surface-container border border-white/10 px-4 py-3 text-sm text-white focus:ring-1 focus:ring-primary focus:border-primary outline-none">
+        </div>
+        <div>
+          <label class="block font-label-sm text-[10px] text-on-surface-variant uppercase tracking-widest mb-2">Content</label>
+          <textarea id="post-content" rows="3" required class="w-full bg-surface-container border border-white/10 px-4 py-3 text-sm text-white focus:ring-1 focus:ring-primary focus:border-primary outline-none resize-none" placeholder="Share your Jordan story..."></textarea>
+        </div>
+        <div>
+          <label class="block font-label-sm text-[10px] text-on-surface-variant uppercase tracking-widest mb-2">Choose Image Preset</label>
+          <div class="grid grid-cols-3 gap-2" id="preset-images">
+            <button type="button" class="preset-img-btn border-2 border-primary aspect-square bg-cover bg-center rounded-sm" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBMIGA9zd-h2kh8G68BQ3dGfMFAuq8Fj5Mv2lbLsllLmbVzGJs_n5lXnLQ11qGogzbT7S_A8kN3e-Wod1um_aGDrQIC7P1lTsD7Q3nRIsrZhS1Vz6lYNTX7kqO02d-AfTiq6x2fGhPgT6KL2pwFi_jfWa7fVYpXVPUJ8PxMnNNUP7mOBiTdu21jTeKKUpCxXC7XtBrLksIdHtchWf-tVQGDItyUBOwRlQoQ64aTGFf7vRrX-Z9kWTPg5aQa33IoekgODFp59Y6SS-wQ')" data-url="https://lh3.googleusercontent.com/aida-public/AB6AXuBMIGA9zd-h2kh8G68BQ3dGfMFAuq8Fj5Mv2lbLsllLmbVzGJs_n5lXnLQ11qGogzbT7S_A8kN3e-Wod1um_aGDrQIC7P1lTsD7Q3nRIsrZhS1Vz6lYNTX7kqO02d-AfTiq6x2fGhPgT6KL2pwFi_jfWa7fVYpXVPUJ8PxMnNNUP7mOBiTdu21jTeKKUpCxXC7XtBrLksIdHtchWf-tVQGDItyUBOwRlQoQ64aTGFf7vRrX-Z9kWTPg5aQa33IoekgODFp59Y6SS-wQ"></button>
+            <button type="button" class="preset-img-btn border border-white/10 aspect-square bg-cover bg-center rounded-sm" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAt05FPa9FwPCf14tyiZZPFqFX7wNmt6Mjni9fN1UWiMc89CPUS3I4Btp9nYsoP2bu7qBTLfqL14z6yY8pYWMXt5DF_WB_rRrU5WlCId_ypAo1tUgGvGpgEkHtjSJr7OPpHZG4MVwEVePJbpiPtOnVCey8NeqwgnddQe-O8loMMbtVgC5GFDf9NQHj5QL3a1fVF4AvztlVTTDWubioPgsJkVOloqKGBywE99n-sN0kEYlHISp9QiP-PNod9JyW83NDuhTi1A9pZeNp0')" data-url="https://lh3.googleusercontent.com/aida-public/AB6AXuAt05FPa9FwPCf14tyiZZPFqFX7wNmt6Mjni9fN1UWiMc89CPUS3I4Btp9nYsoP2bu7qBTLfqL14z6yY8pYWMXt5DF_WB_rRrU5WlCId_ypAo1tUgGvGpgEkHtjSJr7OPpHZG4MVwEVePJbpiPtOnVCey8NeqwgnddQe-O8loMMbtVgC5GFDf9NQHj5QL3a1fVF4AvztlVTTDWubioPgsJkVOloqKGBywE99n-sN0kEYlHISp9QiP-PNod9JyW83NDuhTi1A9pZeNp0"></button>
+            <button type="button" class="preset-img-btn border border-white/10 aspect-square bg-cover bg-center rounded-sm" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAmLDnIKSKvjTg0SpIRMXGBLi0L5H-bHd1pwcolVi4SNIu_wveiVvdLEaMjEBaS6Ns0s8uJ3f_wQkvwEvTrRVJOJIn0VxpS4Yr54MkiVYQD5_bL7r_VGACg6klSHEn3Rggkxk18mEzGmXUytiTSJyOkm2tc33mTU8BTOUduHRYn0Zkd-OwyHKi0-NzhvDjV5JCUQ_ei2o030Q8IE1pnvcEcfsk_28kh-QIt55hSK13J4-sX5_rO2QupFv6l1m4hNmticSw9KcpMJ_-J')" data-url="https://lh3.googleusercontent.com/aida-public/AB6AXuAmLDnIKSKvjTg0SpIRMXGBLi0L5H-bHd1pwcolVi4SNIu_wveiVvdLEaMjEBaS6Ns0s8uJ3f_wQkvwEvTrRVJOJIn0VxpS4Yr54MkiVYQD5_bL7r_VGACg6klSHEn3Rggkxk18mEzGmXUytiTSJyOkm2tc33mTU8BTOUduHRYn0Zkd-OwyHKi0-NzhvDjV5JCUQ_ei2o030Q8IE1pnvcEcfsk_28kh-QIt55hSK13J4-sX5_rO2QupFv6l1m4hNmticSw9KcpMJ_-J"></button>
+          </div>
+        </div>
+        <button type="submit" class="w-full bg-white text-black py-4 font-subheading-spaced text-subheading-spaced uppercase hover:bg-primary hover:text-white transition-colors">PUBLISH POST</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- FAB Button (Post Creator Trigger) -->
+  <button id="post-fab" class="fixed bottom-10 right-10 w-16 h-16 bg-white text-black flex items-center justify-center rounded-full shadow-2xl hover:bg-primary hover:text-white transition-all duration-400 z-40 group border border-white/10">
+    <span class="material-symbols-outlined text-3xl group-hover:rotate-90 transition-transform">add</span>
+    <div class="absolute right-20 bg-white text-black px-4 py-2 font-label-sm text-[10px] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity rounded-sm shadow-xl font-bold uppercase tracking-wider">POST TO COMMUNITY</div>
+  </button>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <p>&copy; 2026 JORDAN BRAND. All Rights Reserved. Created by RISHU.</p>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module">
+    import './cart.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Security Sanitizer
+      function escapeHTML(str) {
+        if (!str) return '';
+        return str.replace(/[&<>"']/g, (m) => {
+          const map = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#x27;'
+          };
+          return map[m];
+        });
+      }
+
+      // Elements
+      const postFab = document.getElementById('post-fab');
+      const postModal = document.getElementById('post-modal');
+      const closeModal = document.getElementById('close-modal');
+      const createPostForm = document.getElementById('create-post-form');
+      const socialGrid = document.getElementById('social-grid');
+      const presetImgBtns = document.querySelectorAll('.preset-img-btn');
+      
+      const meetupsList = document.getElementById('meetups-list');
+      const meetupItems = document.querySelectorAll('.meetup-item');
+      const mapStationName = document.getElementById('map-station-name');
+      const mapStationLoc = document.getElementById('map-station-loc');
+      const mapStationPlayers = document.getElementById('map-station-players');
+      const mapBg = document.getElementById('map-bg');
+      
+      const joinCrewBtn = document.getElementById('join-crew-btn');
+      const watchStoriesBtn = document.getElementById('watch-stories-btn');
+      
+      let selectedPresetUrl = "https://lh3.googleusercontent.com/aida-public/AB6AXuBMIGA9zd-h2kh8G68BQ3dGfMFAuq8Fj5Mv2lbLsllLmbVzGJs_n5lXnLQ11qGogzbT7S_A8kN3e-Wod1um_aGDrQIC7P1lTsD7Q3nRIsrZhS1Vz6lYNTX7kqO02d-AfTiq6x2fGhPgT6KL2pwFi_jfWa7fVYpXVPUJ8PxMnNNUP7mOBiTdu21jTeKKUpCxXC7XtBrLksIdHtchWf-tVQGDItyUBOwRlQoQ64aTGFf7vRrX-Z9kWTPg5aQa33IoekgODFp59Y6SS-wQ";
+      
+      // Toast notification helper
+      function showToast(title, body) {
+        let container = document.getElementById('toast-container');
+        if (!container) {
+          container = document.createElement('div');
+          container.id = 'toast-container';
+          container.className = 'fixed bottom-8 right-8 z-50 flex flex-col gap-3 pointer-events-none';
+          document.body.appendChild(container);
+        }
+        
+        const toast = document.createElement('div');
+        toast.className = 'glass-card px-6 py-4 rounded-none border border-primary/20 shadow-2xl flex items-center gap-4 animate-slide-in pointer-events-auto max-w-sm';
+        toast.innerHTML = `
+          <span class="material-symbols-outlined text-primary text-[28px]">stars</span>
+          <div class="flex-1">
+            <p class="font-subheading-spaced text-xs uppercase tracking-widest text-white font-bold">${title}</p>
+            <p class="font-body-md text-xs text-on-surface-variant mt-1">${body}</p>
+          </div>
+        `;
+        container.appendChild(toast);
+        
+        setTimeout(() => {
+          toast.classList.remove('animate-slide-in');
+          toast.classList.add('animate-slide-out');
+          setTimeout(() => {
+            toast.remove();
+          }, 400);
+        }, 3500);
+      }
+
+      // --- MEETUPS & INTERACTIVE MAP ---
+      const mapPresets = {
+        nyc: {
+          bg: "https://lh3.googleusercontent.com/aida-public/AB6AXuClU5rkIg2PYCqMXQsx4ON1MxUbRDnle-IxzMyYRuYzxRe-z7X6w8vb0vtgq4eWfvPI5nDfG7lUwZzki5QdXgSCCi1BGCz2rdKi-jtSeIoJ-2xBPWCF4GThCe6MJvWycer8go6bMDa3lJ6xaTx1L7KxOWHBP6URxu7fVc6r7nKnxnwVZ8pD1ND49ULfuPoxQ-xLxL-eVVHC1Xlxd9MjffQ7_YIm_4f-BKb0pXRmeGIuVCPM6rEAIIBVZYPVT6XNbVmMpM8qi-hQpghR"
+        },
+        la: {
+          bg: "https://lh3.googleusercontent.com/aida-public/AB6AXuBa3Y4_AVwn7y2iQSLooe-IKtWfaceSbZ0oPX6Zd6FpZvBuzTn75QpaMZ2HuZXUF_1JtMfoIRee4iFi_SOFy-_JZh2rqIR8vKjU-F9SZlmrI7CbiGmc6x5dYKDYQW93m_Uwx9oI1jja9qlzFqyfZE1y0Qhz9UW_f0UJ-enDIA61qtwUSOC5PO_gtgvLdICh1VmTjsk6iDEKLiUPg9e0zJbTA1FUpPADQ0C95DVDpFSW5afFP6v5casyC_8o04QWakLt7lol4nj2TYrB"
+        }
+      };
+
+      meetupItems.forEach((item) => {
+        item.addEventListener('click', () => {
+          // Toggle active classes on list items
+          meetupItems.forEach(i => {
+            i.classList.remove('border-primary', 'bg-primary/5', 'active');
+            i.classList.add('border-white/5');
+            i.querySelector('h4').classList.remove('text-primary');
+            i.querySelector('h4').classList.add('text-white');
+            i.querySelector('span:last-child').classList.remove('text-primary');
+            i.querySelector('span:last-child').classList.add('text-on-surface-variant');
+          });
+
+          item.classList.remove('border-white/5');
+          item.classList.add('border-primary', 'bg-primary/5', 'active');
+          item.querySelector('h4').classList.remove('text-white');
+          item.querySelector('h4').classList.add('text-primary');
+          item.querySelector('span:last-child').classList.remove('text-on-surface-variant');
+          item.querySelector('span:last-child').classList.add('text-primary');
+
+          // Update Map HUD details
+          const mapId = item.getAttribute('data-map');
+          const title = item.getAttribute('data-title');
+          const loc = item.getAttribute('data-loc');
+          const players = item.getAttribute('data-players');
+
+          mapStationName.textContent = title;
+          mapStationLoc.textContent = loc;
+          mapStationPlayers.textContent = `ACTIVE: ${players}`;
+
+          // Switch map background image with crossfade opacity transition
+          if (mapPresets[mapId]) {
+            mapBg.style.opacity = '0';
+            setTimeout(() => {
+              mapBg.style.backgroundImage = `url('${mapPresets[mapId].bg}')`;
+              mapBg.style.opacity = '0.3';
+            }, 300);
+          }
+
+          // Trigger register meetup toast
+          showToast("REGISTERED FOR EVENT", `Successfully signed up for ${title}. See you there!`);
+        });
+      });
+
+      // --- SOCIAL INTERACTION LOGIC ---
+      function setupSocialCardInteractions(card) {
+        const likeBtn = card.querySelector('.like-btn');
+        const bookmarkBtn = card.querySelector('.bookmark-btn');
+        
+        if (likeBtn) {
+          likeBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const heartIcon = likeBtn.querySelector('.material-symbols-outlined');
+            const likeCountSpan = likeBtn.querySelector('.like-count');
+            let likes = parseInt(likeCountSpan.textContent.replace(/,/g, ''));
+            
+            if (likeBtn.classList.contains('text-primary')) {
+              // Unlike
+              likeBtn.classList.remove('text-primary');
+              heartIcon.style.fontVariationSettings = "'FILL' 0";
+              likes--;
+            } else {
+              // Like
+              likeBtn.classList.add('text-primary');
+              heartIcon.style.fontVariationSettings = "'FILL' 1";
+              likes++;
+            }
+            likeCountSpan.textContent = likes.toLocaleString();
+          });
+        }
+        
+        if (bookmarkBtn) {
+          bookmarkBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const bookmarkIcon = bookmarkBtn.querySelector('.material-symbols-outlined');
+            if (bookmarkBtn.classList.contains('text-primary')) {
+              bookmarkBtn.classList.remove('text-primary');
+              bookmarkIcon.style.fontVariationSettings = "'FILL' 0";
+            } else {
+              bookmarkBtn.classList.add('text-primary');
+              bookmarkIcon.style.fontVariationSettings = "'FILL' 1";
+              showToast("BOOKMARK SAVED", "Post saved to your global profile collections.");
+            }
+          });
+        }
+      }
+
+      document.querySelectorAll('.social-card').forEach(card => setupSocialCardInteractions(card));
+
+      // --- FAB MODAL TRIGGERS ---
+      postFab.addEventListener('click', () => {
+        postModal.classList.remove('hidden');
+        postModal.classList.add('flex');
+      });
+
+      closeModal.addEventListener('click', () => {
+        postModal.classList.add('hidden');
+        postModal.classList.remove('flex');
+      });
+
+      postModal.addEventListener('click', (e) => {
+        if (e.target === postModal) {
+          postModal.classList.add('hidden');
+          postModal.classList.remove('flex');
+        }
+      });
+
+      // Preset Image Selection Handler
+      presetImgBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          presetImgBtns.forEach(b => {
+            b.classList.remove('border-2', 'border-primary');
+            b.classList.add('border', 'border-white/10');
+          });
+          btn.classList.remove('border', 'border-white/10');
+          btn.classList.add('border-2', 'border-primary');
+          selectedPresetUrl = btn.getAttribute('data-url');
+        });
+      });
+
+      // Form Submit -> Prepend Card Action
+      createPostForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const handle = escapeHTML(document.getElementById('post-handle').value.trim());
+        const location = escapeHTML(document.getElementById('post-location').value.trim().toUpperCase());
+        const content = escapeHTML(document.getElementById('post-content').value.trim());
+        
+        // Build new social card HTML
+        const card = document.createElement('div');
+        card.className = 'break-inside-avoid glass-panel p-4 space-y-4 kinetic-hover transition-all duration-500 cursor-pointer rounded-sm social-card animate-fade-in-up';
+        
+        card.innerHTML = `
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-surface-container-high border border-white/10 overflow-hidden flex items-center justify-center">
+                <span class="material-symbols-outlined text-2xl text-on-surface-variant">person</span>
+              </div>
+              <div>
+                <div class="font-label-sm text-label-sm font-bold text-white">${handle}</div>
+                <div class="font-label-sm text-[9px] text-on-surface-variant">${location}</div>
+              </div>
+            </div>
+          </div>
+          <img class="w-full aspect-[4/5] object-cover grayscale hover:grayscale-0 transition-all duration-700" src="${selectedPresetUrl}"/>
+          <p class="font-body-md text-sm leading-relaxed text-on-surface-variant">${content}</p>
+          <div class="flex items-center justify-between pt-2 border-t border-white/5 text-on-surface-variant">
+            <div class="flex items-center gap-4">
+              <button class="like-btn flex items-center gap-1.5 hover:text-primary transition-colors">
+                <span class="material-symbols-outlined text-lg">favorite</span>
+                <span class="like-count font-label-sm text-xs">0</span>
+              </button>
+              <button class="comment-btn flex items-center gap-1.5 hover:text-primary transition-colors">
+                <span class="material-symbols-outlined text-lg">chat_bubble</span>
+                <span class="font-label-sm text-xs">0</span>
+              </button>
+            </div>
+            <button class="bookmark-btn hover:text-primary transition-colors">
+              <span class="material-symbols-outlined text-lg">bookmark</span>
+            </button>
+          </div>
+        `;
+        
+        // Prepend to feed
+        socialGrid.insertBefore(card, socialGrid.firstChild);
+        setupSocialCardInteractions(card);
+        
+        // Reset form & close modal
+        document.getElementById('post-content').value = "";
+        postModal.classList.add('hidden');
+        postModal.classList.remove('flex');
+        
+        showToast("POST PUBLISHED", "Your story has been added to the global #JordanDNA feed.");
+      });
+
+      // Hero Buttons Triggers
+      joinCrewBtn.addEventListener('click', () => {
+        showToast("CREW INVITATION SENT", "Registration form sent! Welcome to the Jumpman community.");
+      });
+
+      watchStoriesBtn.addEventListener('click', () => {
+        showToast("BUFFERING VIDEOS", "Connecting to exclusive Tatum 2026 footage feeds...");
+      });
+
+      // --- HEADER & PARALLAX ---
+      window.addEventListener('scroll', () => {
+        const nav = document.querySelector('nav');
+        if (window.scrollY > 100) {
+          nav.classList.add('bg-[#0a0a0a]/80', 'py-4');
+          nav.classList.remove('bg-transparent', 'py-8');
+        } else {
+          nav.classList.remove('bg-[#0a0a0a]/80', 'py-4');
+          nav.classList.add('bg-transparent', 'py-8');
+        }
+      });
+
+      window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const heroImg = document.querySelector('header img');
+        if (heroImg) {
+          heroImg.style.transform = `translateY(${scrolled * 0.4}px)`;
+        }
+      });
+    });
+  </script>
+</body>
+</html>

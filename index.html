@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Air Jordan 1 | Fluid Motion Experience</title>
+  <meta name="description" content="Experience the iconic Air Jordan 1 in a beautiful, high-performance fluid scroll animation. Watch the legend emerge from chaotic red and black splashes.">
+  
+  <!-- Premium Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Preloading Overlay Screen -->
+  <div id="loader" class="loader-overlay">
+    <div class="loader-content">
+      <div class="loader-brand">
+        <span class="brand-title">JORDAN</span>
+        <span class="brand-subtitle">FLUID ART</span>
+      </div>
+      <div class="progress-ring-container">
+        <svg class="progress-ring" width="120" height="120">
+          <circle class="progress-ring__circle-bg" stroke="rgba(255,255,255,0.05)" stroke-width="4" fill="transparent" r="50" cx="60" cy="60" />
+          <circle id="progress-circle" class="progress-ring__circle" stroke="#e51b24" stroke-width="4" fill="transparent" r="50" cx="60" cy="60" />
+        </svg>
+        <div id="progress-percent" class="progress-text">0%</div>
+      </div>
+      <div id="loader-status" class="loader-status">INITIALIZING ASSETS...</div>
+    </div>
+  </div>
+
+  <!-- TopNavBar -->
+  <header class="fixed top-0 w-full z-50 bg-transparent backdrop-blur-xl dark:bg-transparent border-b border-white/10 site-header">
+    <nav class="flex justify-between items-center px-margin-desktop py-8 w-full max-w-container-max-width mx-auto">
+      <a href="index.html" class="font-display-xl text-headline-lg font-black tracking-tighter text-on-background cursor-pointer hover:text-primary transition-colors">JORDAN</a>
+      <div class="hidden md:flex items-center gap-10">
+        <a class="text-primary font-bold border-b border-primary pb-1 font-subheading-spaced text-subheading-spaced uppercase tracking-widest transition-all duration-400" href="Collection.html">SHOP</a>
+        <a class="text-on-background/70 hover:text-on-background transition-colors duration-400 font-subheading-spaced text-subheading-spaced uppercase tracking-widest" href="Collection.html">COLLECTIONS</a>
+        <a class="text-on-background/70 hover:text-on-background transition-colors duration-400 font-subheading-spaced text-subheading-spaced uppercase tracking-widest" href="Comunity.html">COMMUNITY</a>
+        <a class="text-on-background/70 hover:text-on-background transition-colors duration-400 font-subheading-spaced text-subheading-spaced uppercase tracking-widest" href="Hertiage.html">HERITAGE</a>
+        <a class="text-on-background/70 hover:text-on-background transition-colors duration-400 font-subheading-spaced text-subheading-spaced uppercase tracking-widest" href="threed.html">STUDIO</a>
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="bag.html" class="cart-link" aria-label="Shopping Bag">
+          <span class="material-symbols-outlined text-[24px]">shopping_bag</span>
+          <span id="cart-badge" class="cart-badge scale-0 hidden">0</span>
+        </a>
+        <a href="Profile.html" class="profile-link" aria-label="User Account">
+          <span class="material-symbols-outlined text-[24px]">person</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Canvas Pinned Container (Will remain fixed as user scrolls through sections) -->
+  <div id="canvas-container" class="canvas-wrapper">
+    <div class="glow-bg"></div>
+    <canvas id="animation-canvas"></canvas>
+  </div>
+
+  <!-- Scroll-Triggered Text Overlay Sections -->
+  <main id="scroll-wrapper" class="scroll-container">
+    
+    <!-- Hero / Section 1 -->
+    <section id="section-intro" class="scroll-section" data-section="0">
+      <div class="section-content align-left">
+        <div class="tagline">THE LEGEND REIMAGINED</div>
+        <h1 class="section-title">AIR JORDAN 1</h1>
+        <p class="section-description">
+          A timeless icon born on the court, redefined at the intersection of raw motion, digital art, and fluid physics. Scroll to unleash the paint.
+        </p>
+        <div class="scroll-indicator">
+          <span class="mouse-icon"><span class="wheel"></span></span>
+          <span class="scroll-text">SCROLL TO COLLIDE</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Splash / Section 2 -->
+    <section id="section-splash" class="scroll-section" data-section="1">
+      <div class="section-content align-right">
+        <div class="tagline">01 / CHAOTIC COLLISION</div>
+        <h2 class="section-title">THE EXPLOSION</h2>
+        <p class="section-description">
+          Red and black liquid medium collide, encapsulating the high-impact energy of gravity-defying moves. The paint behaves like pure momentum suspended in time.
+        </p>
+      </div>
+    </section>
+
+    <!-- Rising / Section 3 -->
+    <section id="section-emergence" class="scroll-section" data-section="2">
+      <div class="section-content align-left">
+        <div class="tagline">02 / OUT OF THE FLUIDITY</div>
+        <h2 class="section-title">THE EMERGENCE</h2>
+        <p class="section-description">
+          Out of the chaotic explosion rises the unmistakable silhouette of the Air Jordan 1 Retro. Precision molding meets organic chaos, forming a perfect equilibrium.
+        </p>
+      </div>
+    </section>
+
+    <!-- Full Pair / Section 4 -->
+    <section id="section-pair" class="scroll-section" data-section="3">
+      <div class="section-content align-center">
+        <div class="tagline">03 / ICONIC DUO</div>
+        <h2 class="section-title">THE COMPLETED PAIR</h2>
+        <p class="section-description">
+          The transformation completes. A matching pair in the legendary Chicago colorway stands suspended. A monuments of sneaker culture and modern performance design.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive Section: Deep Dive & Details -->
+  <section id="interactive-showcase" class="interactive-details-section">
+    <div class="interactive-container">
+      
+      <div class="section-header">
+        <span class="tagline">ANATOMY OF A CLASSIC</span>
+        <h2 class="showcase-title">ENGINEERED FOR THE STREETS</h2>
+        <p class="showcase-subtitle">Click on the hot-spots to inspect the craftsmanship and details that defined a generation.</p>
+      </div>
+
+      <div class="interactive-interactive-wrapper">
+        <!-- Shoe Image Container with Hotspots -->
+        <div class="shoe-display-container">
+          <!-- We will render the final frame 240 here inside a canvas or use the loaded frame to guarantee visual alignment -->
+          <canvas id="details-canvas" class="details-shoe-canvas"></canvas>
+          
+          <!-- Hotspots overlayed -->
+          <button id="hotspot-collar" class="hotspot pulsing" style="top: 30%; left: 63%;" aria-label="Ankle Support Details">
+            <span class="hotspot-dot"></span>
+          </button>
+          <button id="hotspot-swoosh" class="hotspot pulsing" style="top: 48%; left: 45%;" aria-label="Swoosh Heritage Details">
+            <span class="hotspot-dot"></span>
+          </button>
+          <button id="hotspot-toe" class="hotspot pulsing" style="top: 73%; left: 29%;" aria-label="Breathable Toe Box Details">
+            <span class="hotspot-dot"></span>
+          </button>
+          <button id="hotspot-sole" class="hotspot pulsing" style="top: 82%; left: 49%;" aria-label="Traction Sole Details">
+            <span class="hotspot-dot"></span>
+          </button>
+        </div>
+
+        <!-- Details Info Card (Populates based on clicked hotspot) -->
+        <div class="details-info-panel">
+          <div id="details-default-message" class="info-card active">
+            <div class="info-card-icon">
+              <svg viewBox="0 0 24 24" width="32" height="32" stroke="currentColor" stroke-width="1.5" fill="none">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 16v-4M12 8h.01"></path>
+              </svg>
+            </div>
+            <h3>EXPLORE DETAILS</h3>
+            <p>Select any pulsing hotspot on the Air Jordan 1 to learn more about its design heritage, premium materials, and performance features.</p>
+          </div>
+
+          <div id="details-collar" class="info-card">
+            <span class="card-num">01</span>
+            <h3>PADDED ANKLE COLLAR</h3>
+            <p>Designed originally to protect high-flying basketball players, the padded ankle collar provides exceptional support, stabilizing the ankle during explosive directional changes while offering plush, day-long cushioning.</p>
+            <div class="spec-tag">PREMIUM FOAM LINER</div>
+          </div>
+
+          <div id="details-swoosh" class="info-card">
+            <span class="card-num">02</span>
+            <h3>THE ICONIC SWOOSH</h3>
+            <p>First designed by Carolyn Davidson, the Swoosh represents the wing of Nike, the Greek goddess of victory. Made of premium full-grain leather, it serves as a structural support band across the shoe's midfoot panel.</p>
+            <div class="spec-tag">FULL-GRAIN LEATHER</div>
+          </div>
+
+          <div id="details-toe" class="info-card">
+            <span class="card-num">03</span>
+            <h3>PERFORATED TOE BOX</h3>
+            <p>Featuring a precise grid of air vents, the perforated toe box delivers critical breathability where heat builds up most. The overlay wrap provides reinforcement to prevent scuffing and maintain shape.</p>
+            <div class="spec-tag">AIR PERFORATIONS</div>
+          </div>
+
+          <div id="details-sole" class="info-card">
+            <span class="card-num">04</span>
+            <h3>RUBBER Pivot CUP SOLE</h3>
+            <p>The solid rubber cupsole houses an encapsulated Air unit in the heel. Underneath, the circular pivot pattern was engineered specifically for basketball players to spin and change direction with maximum traction.</p>
+            <div class="spec-tag">PIVOT TRACTION PATTERN</div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- Grid Specifications Section -->
+  <section id="specs-section" class="specs-grid-section">
+    <div class="specs-container">
+      <div class="specs-grid">
+        <div class="spec-box glass">
+          <h4>DESIGNER</h4>
+          <p class="spec-highlight">Peter Moore</p>
+          <span class="spec-caption">Debuted in 1985</span>
+        </div>
+        <div class="spec-box glass">
+          <h4>COLORWAY</h4>
+          <p class="spec-highlight">Varsity Red / Black</p>
+          <span class="spec-caption">The famous "Banned" color palette</span>
+        </div>
+        <div class="spec-box glass">
+          <h4>MATERIAL</h4>
+          <p class="spec-highlight">Premium Leather</p>
+          <span class="spec-caption">Hand-selected tumbled overlays</span>
+        </div>
+        <div class="spec-box glass">
+          <h4>TECHNOLOGY</h4>
+          <p class="spec-highlight">Air Sole Unit</p>
+          <span class="spec-caption">Responsive heel cushioning</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section id="cta-section" class="purchase-cta-section">
+    <canvas id="shader-canvas-above-footer" class="shader-canvas"></canvas>
+    <div class="cta-background-glow"></div>
+    <div class="cta-container">
+      <h2>READY TO RUN?</h2>
+      <p>Secure the masterpiece that started a revolution. Experience history on your feet.</p>
+      <div class="cta-buttons">
+        <a href="#" class="btn btn-lg btn-primary" id="buy-button">CLAIM YOURS NOW</a>
+        <a href="#" class="btn btn-lg btn-outline" id="learn-more-button">EXPLORE MORE</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <p>&copy; 2026 JORDAN BRAND. All Rights Reserved. Created by RISHU.</p>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Entry Script -->
+  <script type="module" src="main.js"></script>
+</body>
+</html>

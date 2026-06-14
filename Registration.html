@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Register | JORDAN</title>
+  <meta name="description" content="Create a Jordan Brand account to register your sneaker collection, log events, and gain access to the Flight Club.">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <style>
+    @layer base {
+      :root {
+        --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      }
+    }
+    .ease-out-expo { transition-timing-function: var(--ease-out-expo); }
+    
+    .glass-panel {
+      background: rgba(18, 18, 18, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    
+    /* Radial Vignette */
+    .bg-vignette {
+      background: radial-gradient(circle at center, rgba(178, 34, 36, 0.15) 0%, rgba(10, 10, 10, 1) 75%);
+    }
+    
+    /* Input border effect */
+    .input-border-bottom {
+      border: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      background: transparent;
+      transition: all 0.4s;
+    }
+    .input-border-bottom:focus {
+      border-bottom-color: #ff1a25;
+      outline: none;
+      box-shadow: 0 1px 0 0 #ff1a25;
+    }
+    
+    /* Shake animation on invalid inputs */
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-8px); }
+      40%, 80% { transform: translateX(8px); }
+    }
+    .shake-animate {
+      animation: shake 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Checklist status icons style */
+    .rule-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.3s;
+    }
+
+    /* Premium Solid Black Footer */
+    .site-footer {
+      position: relative;
+      z-index: 3;
+      background-color: #050505 !important;
+      padding: 3.5rem 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      width: 100%;
+    }
+    .footer-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 64px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    @media (max-width: 768px) {
+      .footer-container {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+        padding: 0 24px;
+      }
+    }
+    .site-footer p {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.8) !important;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+      font-family: 'Inter', sans-serif;
+    }
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+    }
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.6) !important;
+      font-size: 0.85rem;
+      text-decoration: none;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      font-family: 'Inter', sans-serif;
+    }
+    .footer-links a:hover {
+      color: #fff !important;
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+    }
+  </style>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "error-container": "#93000a",
+            "on-primary-container": "#ffc8c2",
+            "surface-container-highest": "#353534",
+            "tertiary-fixed": "#cbe6ff",
+            "error": "#ff1a25",
+            "background": "#0a0a0a",
+            "secondary-container": "#920703",
+            "primary-fixed": "#ffdad6",
+            "primary-fixed-dim": "#ffb4ac",
+            "on-primary-fixed": "#410003",
+            "on-secondary-container": "#ff9a8a",
+            "on-primary": "#ffffff",
+            "on-primary-fixed-variant": "#92030f",
+            "tertiary": "#8fcdff",
+            "surface-container-lowest": "#050505",
+            "outline": "#aa8986",
+            "surface-container": "#121212",
+            "primary-container": "#ff1a25",
+            "on-error-container": "#ffdad6",
+            "on-tertiary-fixed": "#001e30",
+            "inverse-primary": "#ff1a25",
+            "surface": "#121212",
+            "inverse-surface": "#e5e2e1",
+            "on-secondary-fixed-variant": "#920703",
+            "on-secondary-fixed": "#410000",
+            "secondary-fixed-dim": "#ffb4a8",
+            "on-tertiary-container": "#b1daff",
+            "on-tertiary-fixed-variant": "#004b71",
+            "outline-variant": "#5a403e",
+            "primary": "#ff1a25",
+            "inverse-on-surface": "#313030",
+            "tertiary-container": "#006292",
+            "secondary": "#ffb4a8",
+            "surface-container-low": "#0d0d0d",
+            "surface-bright": "#393939",
+            "secondary-fixed": "#ffdad4",
+            "on-secondary": "#690000",
+            "on-background": "#ffffff",
+            "surface-dim": "#121212",
+            "on-tertiary": "#003450",
+            "tertiary-fixed-dim": "#8fcdff",
+            "surface-variant": "#353534",
+            "on-surface": "#e5e2e1",
+            "on-error": "#690005",
+            "surface-tint": "#ff1a25",
+            "surface-container-high": "#1e1e1e",
+            "on-surface-variant": "#a0a0a0"
+          },
+          "borderRadius": {
+            "DEFAULT": "4px",
+            "lg": "8px",
+            "xl": "12px",
+            "full": "9999px"
+          },
+          "spacing": {
+            "base": "8px",
+            "section-gap-desktop": "120px",
+            "section-gap-mobile": "60px",
+            "margin-mobile": "24px",
+            "gutter": "24px",
+            "margin-desktop": "64px",
+            "container-max-width": "1440px"
+          },
+          "fontFamily": {
+            "headline-lg-mobile": ["Montserrat"],
+            "subheading-spaced": ["Inter"],
+            "body-lg": ["Inter"],
+            "label-sm": ["Inter"],
+            "headline-lg": ["Montserrat"],
+            "display-xl": ["Montserrat"],
+            "body-md": ["Inter"]
+          },
+          "fontSize": {
+            "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+            "subheading-spaced": ["14px", {"lineHeight": "1.5", "letterSpacing": "0.2em", "fontWeight": "600"}],
+            "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+            "label-sm": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "600"}],
+            "headline-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "display-xl": ["80px", {"lineHeight": "1.0", "letterSpacing": "-0.04em", "fontWeight": "900"}],
+            "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}]
+          }
+        },
+      },
+    }
+  </script>
+</head>
+<body class="bg-background text-on-background selection:bg-primary selection:text-on-primary min-h-screen flex flex-col bg-vignette">
+
+  <!-- Top Navigation Bar -->
+  <header class="fixed top-0 w-full z-50 bg-background/40 backdrop-blur-xl border-b border-white/10">
+    <div class="flex justify-between items-center px-margin-desktop py-8 w-full max-w-container-max-width mx-auto">
+      <a href="index.html" class="font-display-xl text-headline-lg font-black tracking-tighter text-on-background cursor-pointer hover:text-primary transition-colors">JORDAN</a>
+      <nav class="hidden md:flex items-center gap-10">
+        <a class="font-subheading-spaced text-subheading-spaced uppercase tracking-widest text-on-background/70 hover:text-on-background transition-colors duration-400" href="index.html">SHOP</a>
+        <a class="font-subheading-spaced text-subheading-spaced uppercase tracking-widest text-on-background/70 hover:text-on-background transition-colors duration-400" href="Collection.html">COLLECTIONS</a>
+        <a class="font-subheading-spaced text-subheading-spaced uppercase tracking-widest text-on-background/70 hover:text-on-background transition-colors duration-400" href="Comunity.html">COMMUNITY</a>
+        <a class="font-subheading-spaced text-subheading-spaced uppercase tracking-widest text-on-background/70 hover:text-on-background transition-colors duration-400" href="Hertiage.html">HERITAGE</a>
+        <a class="font-subheading-spaced text-subheading-spaced uppercase tracking-widest text-on-background/70 hover:text-on-background transition-colors duration-400" href="threed.html">STUDIO</a>
+      </nav>
+      <div class="flex items-center gap-6">
+        <a href="bag.html" class="scale-95 active:scale-90 transition-transform duration-400 hover:text-primary flex items-center justify-center relative" aria-label="Shopping Bag">
+          <span class="material-symbols-outlined text-[24px]">shopping_bag</span>
+          <span id="cart-badge" class="absolute -top-1 -right-1 bg-primary text-white font-bold text-[9px] w-4 h-4 rounded-full flex items-center justify-center scale-0 transition-transform duration-300">0</span>
+        </a>
+        <a href="Profile.html" class="scale-95 active:scale-90 transition-transform duration-400 hover:text-primary flex items-center justify-center" aria-label="User Profile">
+          <span class="material-symbols-outlined text-[24px]">person</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Register Container -->
+  <main class="flex-1 flex items-center justify-center px-6 py-32">
+    <div id="register-card" class="glass-panel max-w-md w-full p-10 rounded-sm relative overflow-hidden transition-all duration-500">
+      
+      <!-- Top aesthetic border -->
+      <div class="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
+      
+      <div class="mb-10 text-center">
+        <span class="font-subheading-spaced text-[10px] uppercase tracking-[0.25em] text-primary">CREATE IDENTITY</span>
+        <h1 class="font-display-xl text-3xl uppercase mt-2 tracking-tight">REGISTER</h1>
+      </div>
+
+      <!-- General Error Alert -->
+      <div id="error-alert" class="hidden mb-6 p-4 border border-primary/20 bg-primary/5 text-primary text-xs font-label-sm uppercase tracking-wide rounded-sm flex items-center gap-3">
+        <span class="material-symbols-outlined text-sm">warning</span>
+        <span id="error-message">Registration failed.</span>
+      </div>
+
+      <form id="register-form" class="space-y-6">
+        <div class="flex flex-col gap-2">
+          <label class="font-label-sm text-[10px] uppercase text-on-surface-variant tracking-widest">USERNAME</label>
+          <input id="register-username" class="input-border-bottom py-3 text-white focus:outline-none" type="text" placeholder="FLIGHT_COMMANDER" required />
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label class="font-label-sm text-[10px] uppercase text-on-surface-variant tracking-widest">EMAIL ADDRESS</label>
+          <input id="register-email" class="input-border-bottom py-3 text-white focus:outline-none" type="email" placeholder="example@flightclub.com" required />
+        </div>
+        
+        <div class="flex flex-col gap-2 relative">
+          <label class="font-label-sm text-[10px] uppercase text-on-surface-variant tracking-widest">PASSWORD</label>
+          <input id="register-password" class="input-border-bottom py-3 text-white focus:outline-none" type="password" placeholder="••••••••" required />
+          
+          <!-- Password strength real-time validator UI -->
+          <div class="mt-3 bg-white/[0.02] border border-white/5 p-4 space-y-2 text-[10px] font-label-sm text-on-surface-variant tracking-wider uppercase">
+            <p class="font-bold text-[9px] mb-1 text-white">Security Checklist</p>
+            <div id="rule-length" class="rule-item text-red-500">
+              <span class="material-symbols-outlined text-xs">cancel</span>
+              <span>At least 8 characters</span>
+            </div>
+            <div id="rule-upper" class="rule-item text-red-500">
+              <span class="material-symbols-outlined text-xs">cancel</span>
+              <span>1 uppercase letter</span>
+            </div>
+            <div id="rule-number" class="rule-item text-red-500">
+              <span class="material-symbols-outlined text-xs">cancel</span>
+              <span>1 numeric digit</span>
+            </div>
+            <div id="rule-special" class="rule-item text-red-500">
+              <span class="material-symbols-outlined text-xs">cancel</span>
+              <span>1 special character</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label class="font-label-sm text-[10px] uppercase text-on-surface-variant tracking-widest">CONFIRM PASSWORD</label>
+          <input id="register-confirm-password" class="input-border-bottom py-3 text-white focus:outline-none" type="password" placeholder="••••••••" required />
+        </div>
+
+        <button type="submit" class="w-full bg-primary text-white py-4 font-subheading-spaced text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all ease-out-expo duration-400 active:scale-95">
+          JOIN THE SQUAD
+        </button>
+      </form>
+
+      <div class="mt-8 pt-8 border-t border-white/5 text-center text-xs font-label-sm uppercase tracking-wider text-on-surface-variant">
+        <span>ALREADY IN THE CLUB?</span>
+        <a href="Login.html" class="text-white hover:text-primary transition-colors font-bold ml-1">LOG IN</a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <p>&copy; 2026 JORDAN BRAND. All Rights Reserved. Created by RISHU.</p>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module">
+    import JordanAuth from './auth.js';
+    import './cart.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const registerForm = document.getElementById('register-form');
+      const registerUsername = document.getElementById('register-username');
+      const registerEmail = document.getElementById('register-email');
+      const registerPassword = document.getElementById('register-password');
+      const registerConfirmPassword = document.getElementById('register-confirm-password');
+      
+      const registerCard = document.getElementById('register-card');
+      const errorAlert = document.getElementById('error-alert');
+      const errorMessage = document.getElementById('error-message');
+
+      // Rules items
+      const ruleLength = document.getElementById('rule-length');
+      const ruleUpper = document.getElementById('rule-upper');
+      const ruleNumber = document.getElementById('rule-number');
+      const ruleSpecial = document.getElementById('rule-special');
+
+      // Redirect if already logged in
+      if (JordanAuth.getCurrentUser()) {
+        window.location.href = 'Profile.html';
+      }
+
+      // Real-time password check
+      registerPassword.addEventListener('input', () => {
+        const value = registerPassword.value;
+
+        // Rule: Length >= 8
+        updateRule(ruleLength, value.length >= 8);
+
+        // Rule: Upper
+        updateRule(ruleUpper, /[A-Z]/.test(value));
+
+        // Rule: Number
+        updateRule(ruleNumber, /[0-9]/.test(value));
+
+        // Rule: Special char
+        updateRule(ruleSpecial, /[!@#$%^&*(),.?":{}|<>]/.test(value));
+      });
+
+      function updateRule(element, isValid) {
+        const icon = element.querySelector('.material-symbols-outlined');
+        if (isValid) {
+          element.classList.remove('text-red-500');
+          element.classList.add('text-green-500');
+          icon.textContent = 'check_circle';
+        } else {
+          element.classList.remove('text-green-500');
+          element.classList.add('text-red-500');
+          icon.textContent = 'cancel';
+        }
+      }
+
+      registerForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        errorAlert.classList.add('hidden');
+        registerCard.classList.remove('shake-animate');
+
+        const username = registerUsername.value.trim();
+        const email = registerEmail.value.trim();
+        const password = registerPassword.value;
+        const confirmPassword = registerConfirmPassword.value;
+
+        // Client-side confirm match
+        if (password !== confirmPassword) {
+          showError('Passwords do not match.');
+          return;
+        }
+
+        try {
+          // Attempt registration
+          await JordanAuth.register(username, email, password);
+          window.location.href = 'Profile.html';
+        } catch (error) {
+          showError(error.message);
+        }
+      });
+
+      function showError(msg) {
+        errorMessage.textContent = msg.toUpperCase();
+        errorAlert.classList.remove('hidden');
+        
+        setTimeout(() => {
+          registerCard.classList.add('shake-animate');
+        }, 10);
+      }
+    });
+  </script>
+</body>
+</html>

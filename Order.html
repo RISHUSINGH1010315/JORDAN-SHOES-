@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>JORDAN | Secure Checkout</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .ease-out-expo {
+            transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .input-border-bottom {
+            border: none;
+            border-bottom: 1px solid rgba(170, 137, 134, 0.3);
+            background: transparent;
+        }
+        .input-border-bottom:focus {
+            border-bottom-color: #ffb4ac;
+            outline: none;
+            box-shadow: 0 1px 0 0 #ffb4ac;
+        }
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #131313;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #353534;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#93000a",
+                        "on-primary-container": "#ffc8c2",
+                        "surface-container-highest": "#353534",
+                        "tertiary-fixed": "#cbe6ff",
+                        "error": "#ffb4ab",
+                        "background": "#131313",
+                        "secondary-container": "#920703",
+                        "primary-fixed": "#ffdad6",
+                        "primary-fixed-dim": "#ffb4ac",
+                        "on-primary-fixed": "#410003",
+                        "on-secondary-container": "#ff9a8a",
+                        "on-primary": "#690007",
+                        "on-primary-fixed-variant": "#92030f",
+                        "tertiary": "#8fcdff",
+                        "surface-container-lowest": "#0e0e0e",
+                        "outline": "#aa8986",
+                        "surface-container": "#201f1f",
+                        "primary-container": "#b22222",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#001e30",
+                        "inverse-primary": "#b52424",
+                        "surface": "#131313",
+                        "inverse-surface": "#e5e2e1",
+                        "on-secondary-fixed-variant": "#920703",
+                        "on-secondary-fixed": "#410000",
+                        "secondary-fixed-dim": "#ffb4a8",
+                        "on-tertiary-container": "#b1daff",
+                        "on-tertiary-fixed-variant": "#004b71",
+                        "outline-variant": "#5a403e",
+                        "primary": "#ffb4ac",
+                        "inverse-on-surface": "#313030",
+                        "tertiary-container": "#006292",
+                        "secondary": "#ffb4a8",
+                        "surface-container-low": "#1c1b1b",
+                        "surface-bright": "#393939",
+                        "secondary-fixed": "#ffdad4",
+                        "on-secondary": "#690000",
+                        "on-background": "#e5e2e1",
+                        "surface-dim": "#131313",
+                        "on-tertiary": "#003450",
+                        "tertiary-fixed-dim": "#8fcdff",
+                        "surface-variant": "#353534",
+                        "on-surface": "#e5e2e1",
+                        "on-error": "#690005",
+                        "surface-tint": "#ffb4ac",
+                        "surface-container-high": "#2a2a2a",
+                        "on-surface-variant": "#e2beba"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "section-gap-desktop": "160px",
+                        "section-gap-mobile": "80px",
+                        "margin-mobile": "24px",
+                        "gutter": "24px",
+                        "margin-desktop": "64px",
+                        "container-max-width": "1440px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Montserrat"],
+                        "subheading-spaced": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg": ["Montserrat"],
+                        "display-xl": ["Montserrat"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "subheading-spaced": ["14px", {"lineHeight": "1.5", "letterSpacing": "0.2em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "display-xl": ["80px", {"lineHeight": "1.0", "letterSpacing": "-0.04em", "fontWeight": "900"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+<!-- Top Navigation (Reduced for Focus) -->
+<nav class="fixed top-0 w-full z-50 bg-transparent backdrop-blur-xl border-b border-white/10">
+<div class="flex justify-between items-center px-6 md:px-margin-desktop py-6 w-full max-w-container-max-width mx-auto">
+<a href="index.html" class="font-display-xl text-headline-lg font-black tracking-tighter text-on-background cursor-pointer hover:text-primary transition-colors">JORDAN</a>
+<a class="flex items-center gap-2 group transition-transform active:scale-95" href="Collection.html">
+<span class="material-symbols-outlined text-on-background/70 group-hover:text-primary transition-colors">close</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest hidden md:block">Exit Checkout</span>
+</a>
+</div>
+</nav>
+<main class="min-h-screen pt-32 pb-margin-desktop px-6 md:px-margin-desktop max-w-container-max-width mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
+<!-- Left Column: Order Summary -->
+<aside class="lg:col-span-5 order-2 lg:order-1">
+<div class="sticky top-32 space-y-12">
+<div>
+<h2 class="font-headline-lg text-headline-lg mb-8 uppercase">Order Summary</h2>
+<!-- Item Cards container -->
+<div id="checkout-items-list" class="space-y-4">
+  <!-- Rendered dynamically -->
+</div>
+</div>
+<!-- Totals Breakdown -->
+<div class="space-y-4 pt-8 border-t border-white/10">
+<div class="flex justify-between font-label-sm text-label-sm uppercase tracking-widest text-on-background/60">
+<span>Subtotal</span>
+<span id="checkout-subtotal">$0.00</span>
+</div>
+<div class="flex justify-between font-label-sm text-label-sm uppercase tracking-widest text-on-background/60">
+<span>Shipping</span>
+<span class="text-primary font-bold">COMPLIMENTARY</span>
+</div>
+<div class="flex justify-between font-label-sm text-label-sm uppercase tracking-widest text-on-background/60">
+<span>Tax</span>
+<span id="checkout-tax">$0.00</span>
+</div>
+<div class="flex justify-between pt-4 border-t border-white/20">
+<span class="font-headline-lg text-headline-lg-mobile uppercase">Total</span>
+<span id="checkout-total" class="font-headline-lg text-headline-lg-mobile text-primary">$0.00</span>
+</div>
+</div>
+<!-- High Security Badge -->
+<div class="p-6 border border-white/5 bg-surface-container-low flex items-center gap-4">
+<span class="material-symbols-outlined text-primary" data-weight="fill">verified_user</span>
+<div class="text-on-background/70 font-label-sm text-label-sm uppercase leading-relaxed">
+                            Encrypted SSL Transaction<br/>
+<span class="text-[10px] opacity-50">Enterprise-grade security protocol active</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Right Column: Checkout Form -->
+<section class="lg:col-span-7 order-1 lg:order-2">
+<form class="space-y-16" id="checkout-form">
+<!-- Step 1: Shipping -->
+<div class="checkout-step" data-step="1">
+<div class="flex items-center gap-4 mb-10">
+<span class="w-8 h-8 flex items-center justify-center bg-primary text-on-primary font-bold text-xs">01</span>
+<h2 class="font-headline-lg text-headline-lg-mobile uppercase tracking-tight">Shipping</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm uppercase text-on-background/50">First Name</label>
+<input class="input-border-bottom py-3 text-on-background" placeholder="MICHAEL" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm uppercase text-on-background/50">Last Name</label>
+<input class="input-border-bottom py-3 text-on-background" placeholder="JORDAN" type="text"/>
+</div>
+<div class="md:col-span-2 flex flex-col gap-2">
+<label class="font-label-sm text-label-sm uppercase text-on-background/50">Street Address</label>
+<input class="input-border-bottom py-3 text-on-background" placeholder="1901 WEST MADISON STREET" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm uppercase text-on-background/50">City</label>
+<input class="input-border-bottom py-3 text-on-background" placeholder="CHICAGO" type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm uppercase text-on-background/50">State</label>
+<input class="input-border-bottom py-3 text-on-background" placeholder="IL" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm uppercase text-on-background/50">Zip</label>
+<input class="input-border-bottom py-3 text-on-background" placeholder="60612" type="text"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Step 2: Delivery Method -->
+<div class="checkout-step" data-step="2">
+<div class="flex items-center gap-4 mb-10">
+<span class="w-8 h-8 flex items-center justify-center bg-surface-container-highest text-on-surface font-bold text-xs border border-white/10">02</span>
+<h2 class="font-headline-lg text-headline-lg-mobile uppercase tracking-tight text-on-background/40">Delivery</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<label class="relative flex items-center p-6 glass-panel cursor-pointer border border-transparent hover:border-primary/50 transition-all group">
+<input checked="" class="hidden peer" name="delivery" type="radio"/>
+<div class="flex flex-col">
+<span class="font-subheading-spaced text-subheading-spaced uppercase">Standard Ground</span>
+<span class="font-label-sm text-label-sm text-on-background/50 uppercase">3-5 Business Days</span>
+</div>
+<span class="ml-auto font-label-sm text-label-sm uppercase text-primary">Free</span>
+<div class="absolute inset-0 border-2 border-primary opacity-0 peer-checked:opacity-100 transition-opacity pointer-events-none"></div>
+</label>
+<label class="relative flex items-center p-6 glass-panel cursor-pointer border border-transparent hover:border-primary/50 transition-all group">
+<input class="hidden peer" name="delivery" type="radio"/>
+<div class="flex flex-col">
+<span class="font-subheading-spaced text-subheading-spaced uppercase">Express Priority</span>
+<span class="font-label-sm text-label-sm text-on-background/50 uppercase">1-2 Business Days</span>
+</div>
+<span class="ml-auto font-label-sm text-label-sm uppercase">$25.00</span>
+<div class="absolute inset-0 border-2 border-primary opacity-0 peer-checked:opacity-100 transition-opacity pointer-events-none"></div>
+</label>
+</div>
+</div>
+<!-- Step 3: Payment -->
+<div class="checkout-step" data-step="3">
+<div class="flex items-center gap-4 mb-10">
+<span class="w-8 h-8 flex items-center justify-center bg-surface-container-highest text-on-surface font-bold text-xs border border-white/10">03</span>
+<h2 class="font-headline-lg text-headline-lg-mobile uppercase tracking-tight text-on-background/40">Payment</h2>
+</div>
+<!-- Payment Methods Tabs -->
+<div class="flex gap-4 mb-10">
+<button class="flex-1 py-4 px-6 glass-panel flex items-center justify-center gap-3 border-b-2 border-primary transition-all" type="button">
+<span class="material-symbols-outlined text-primary">credit_card</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest">Card</span>
+</button>
+<button class="flex-1 py-4 px-6 glass-panel flex items-center justify-center gap-3 border-b-2 border-transparent hover:bg-white/10 transition-all opacity-50 grayscale hover:grayscale-0" type="button">
+<span class="material-symbols-outlined">contactless</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest">Apple Pay</span>
+</button>
+</div>
+<!-- Card Inputs -->
+<div class="space-y-10">
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm uppercase text-on-background/50">Cardholder Name</label>
+<input class="input-border-bottom py-3 text-on-background" placeholder="AS APPEARS ON CARD" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm uppercase text-on-background/50">Card Number</label>
+<div class="relative">
+<input class="input-border-bottom py-3 w-full text-on-background" placeholder="0000 0000 0000 0000" type="text"/>
+<div class="absolute right-0 top-1/2 -translate-y-1/2 flex gap-2">
+<div class="w-8 h-5 bg-white/10 rounded-sm"></div>
+<div class="w-8 h-5 bg-white/10 rounded-sm"></div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-8">
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm uppercase text-on-background/50">Expiry Date</label>
+<input class="input-border-bottom py-3 text-on-background" placeholder="MM/YY" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-sm text-label-sm uppercase text-on-background/50">CVV</label>
+<input class="input-border-bottom py-3 text-on-background" placeholder="•••" type="password"/>
+</div>
+</div>
+</div>
+<!-- Submit Button -->
+<button class="w-full mt-16 py-6 bg-primary text-on-primary font-headline-lg text-headline-lg-mobile uppercase tracking-widest hover:bg-secondary-container transition-all ease-out-expo scale-100 active:scale-95 duration-400" type="submit">
+                            Place Secure Order
+                        </button>
+<p class="text-center mt-6 font-label-sm text-[10px] text-on-background/30 uppercase tracking-[0.2em]">
+                            By placing this order, you agree to our Terms of Performance and Privacy Policy.
+                        </p>
+</div>
+</form>
+</section>
+</div>
+</main>
+<!-- Footer (Minimal for Checkout) -->
+<footer class="w-full border-t border-white/5 bg-background">
+<div class="flex flex-col md:flex-row justify-between items-center px-6 md:px-margin-desktop py-12 gap-base max-w-container-max-width mx-auto">
+<div class="font-display-xl text-headline-lg-mobile font-black text-on-background/20">JORDAN</div>
+<div class="flex gap-8">
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors" href="#">Accessibility</a>
+<a class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+</div>
+<div class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">© 2024 JORDAN BRAND.</div>
+</div>
+</footer>
+<script type="module">
+        import JordanCart from './cart.js';
+        import JordanAuth from './auth.js';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Security Sanitizer
+            function escapeHTML(str) {
+                if (!str) return '';
+                return str.replace(/[&<>"']/g, (m) => {
+                    const map = {
+                        '&': '&amp;',
+                        '<': '&lt;',
+                        '>': '&gt;',
+                        '"': '&quot;',
+                        "'": '&#x27;'
+                    };
+                    return map[m];
+                });
+            }
+
+            // Check if cart is empty, if so redirect to collections
+            const cart = JordanCart.getCart();
+            if (cart.length === 0) {
+                alert('YOUR SHOPPING BAG IS EMPTY. CHOOSE A SNEAKER FIRST!');
+                window.location.href = 'Collection.html';
+                return;
+            }
+
+            // Populate checkout items summary
+            const itemsList = document.getElementById('checkout-items-list');
+            itemsList.innerHTML = cart.map(item => `
+                <div class="group flex gap-6 p-6 glass-panel rounded-none border-l-4 border-l-primary relative overflow-hidden transition-all duration-400">
+                    <div class="w-24 h-24 flex-shrink-0 bg-surface-container-highest overflow-hidden">
+                        <img class="w-full h-full object-cover grayscale" src="${item.imgUrl}" alt="${escapeHTML(item.name)}"/>
+                    </div>
+                    <div class="flex flex-col justify-between py-1 flex-1">
+                        <div>
+                            <h3 class="font-subheading-spaced text-xs uppercase mb-1 text-white">${escapeHTML(item.name)}</h3>
+                            <p class="font-label-sm text-[10px] text-on-background/50 uppercase">Size: ${escapeHTML(item.size)} US | Qty: ${item.quantity}</p>
+                        </div>
+                        <p class="font-headline-lg text-sm text-primary">$${(item.price * item.quantity).toFixed(2)}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            // Populate checkout totals
+            const totals = JordanCart.getCartTotals();
+            document.getElementById('checkout-subtotal').textContent = `$${totals.subtotal.toFixed(2)}`;
+            document.getElementById('checkout-tax').textContent = `$${totals.tax.toFixed(2)}`;
+            document.getElementById('checkout-total').textContent = `$${totals.total.toFixed(2)}`;
+
+            // Step highlighting logic
+            const inputs = document.querySelectorAll('input');
+            const steps = document.querySelectorAll('.checkout-step');
+
+            inputs.forEach(input => {
+                input.addEventListener('focus', () => {
+                    const stepParent = input.closest('.checkout-step');
+                    steps.forEach(s => {
+                        const h2 = s.querySelector('h2');
+                        const badge = s.querySelector('span:first-child');
+                        if (s === stepParent) {
+                            h2.classList.remove('text-on-background/40');
+                            h2.classList.add('text-on-background');
+                            badge.classList.replace('bg-surface-container-highest', 'bg-primary');
+                            badge.classList.replace('text-on-surface', 'text-on-primary');
+                        }
+                    });
+                });
+            });
+
+            // Prevention for refresh
+            window.addEventListener('beforeunload', (e) => {
+                e.preventDefault();
+                e.returnValue = '';
+            });
+
+            // Micro-interaction for smooth scrolling on focus
+            inputs.forEach(input => {
+                input.addEventListener('focus', (e) => {
+                    const element = e.target;
+                    const rect = element.getBoundingClientRect();
+                    if (rect.top < 200 || rect.bottom > window.innerHeight - 100) {
+                        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                });
+            });
+
+            // Form submission logic
+            document.getElementById('checkout-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                // Enforce login for checkout history saving
+                const currentUser = JordanAuth.getCurrentUser();
+                if (!currentUser) {
+                    alert('PLEASE LOG IN TO YOUR JORDAN SQUAD ACCOUNT TO PLACE AN ORDER.');
+                    window.location.href = 'Login.html';
+                    return;
+                }
+
+                const btn = e.target.querySelector('button[type="submit"]');
+                btn.innerHTML = '<span class="flex items-center gap-4 justify-center"><svg class="animate-spin h-6 w-6 text-on-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> VALIDATING TRANSACTION...</span>';
+                btn.classList.add('pointer-events-none');
+                
+                setTimeout(() => {
+                    // Save the placed order to database
+                    const orderId = 'JD-' + Math.floor(10000 + Math.random() * 90000);
+                    const newOrder = {
+                        id: orderId,
+                        date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }),
+                        status: 'COMPLETED',
+                        price: totals.total,
+                        item: cart.map(i => `${i.name} (Size: ${i.size}) x${i.quantity}`).join(', ')
+                    };
+                    
+                    // Add order to history
+                    currentUser.orders.unshift(newOrder);
+                    
+                    // Add sneakers to profile wardrobe
+                    cart.forEach(item => {
+                        if (!currentUser.wardrobe) {
+                            currentUser.wardrobe = [];
+                        }
+                        if (!currentUser.wardrobe.some(s => s.name === item.name)) {
+                            currentUser.wardrobe.push({
+                                name: item.name,
+                                date: new Date().toLocaleDateString('en-US', { month: 'short', year: 'numeric' }),
+                                tag: 'ACQUIRED',
+                                imgUrl: item.imgUrl
+                            });
+                        }
+                    });
+
+                    // Save to user database
+                    const users = JSON.parse(localStorage.getItem('jordan_users')) || [];
+                    const idx = users.findIndex(u => u.email.toLowerCase() === currentUser.email.toLowerCase());
+                    if (idx !== -1) {
+                        users[idx].orders = currentUser.orders;
+                        users[idx].wardrobe = currentUser.wardrobe;
+                        localStorage.setItem('jordan_users', JSON.stringify(users));
+                    }
+
+                    // Clear shopping cart
+                    JordanCart.clearCart();
+
+                    btn.textContent = 'ORDER PLACED SECURELY';
+                    alert(`ORDER PLACED SUCCESSFULLY!\nORDER REFERENCE: ${orderId}`);
+                    
+                    // Redirect to profile page to see updated history
+                    window.location.href = 'Profile.html';
+                }, 2000);
+            });
+        });
+    </script>
+</body></html>

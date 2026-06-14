@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Heritage Archive | JORDAN</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        @layer base {
+            :root {
+                --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+            }
+        }
+        
+        .ease-out-expo {
+            transition-timing-function: var(--ease-out-expo);
+        }
+
+        .grain-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.05;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .blueprint-grid {
+            background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), 
+                              linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .text-glow-red {
+            text-shadow: 0 0 20px rgba(255, 180, 172, 0.3);
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #b22222;
+        }
+        
+        /* Premium Solid Black Footer */
+        .site-footer {
+          position: relative;
+          z-index: 3;
+          background-color: #050505 !important;
+          padding: 3.5rem 0;
+          border-top: 1px solid rgba(255, 255, 255, 0.08);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+          width: 100%;
+        }
+        .footer-container {
+          max-width: 1440px;
+          margin: 0 auto;
+          padding: 0 64px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+        @media (max-width: 768px) {
+          .footer-container {
+            flex-direction: column;
+            gap: 1.5rem;
+            text-align: center;
+            padding: 0 24px;
+          }
+        }
+        .site-footer p {
+          font-size: 0.85rem;
+          color: rgba(255, 255, 255, 0.8) !important;
+          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+          font-family: 'Inter', sans-serif;
+        }
+        .footer-links {
+          display: flex;
+          gap: 2rem;
+        }
+        .footer-links a {
+          color: rgba(255, 255, 255, 0.6) !important;
+          font-size: 0.85rem;
+          text-decoration: none;
+          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+          font-family: 'Inter', sans-serif;
+        }
+        .footer-links a:hover {
+          color: #fff !important;
+          text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#93000a",
+                        "on-primary-container": "#ffc8c2",
+                        "surface-container-highest": "#353534",
+                        "tertiary-fixed": "#cbe6ff",
+                        "error": "#ffb4ab",
+                        "background": "#131313",
+                        "secondary-container": "#920703",
+                        "primary-fixed": "#ffdad6",
+                        "primary-fixed-dim": "#ffb4ac",
+                        "on-primary-fixed": "#410003",
+                        "on-secondary-container": "#ff9a8a",
+                        "on-primary": "#690007",
+                        "on-primary-fixed-variant": "#92030f",
+                        "tertiary": "#8fcdff",
+                        "surface-container-lowest": "#0e0e0e",
+                        "outline": "#aa8986",
+                        "surface-container": "#201f1f",
+                        "primary-container": "#b22222",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#001e30",
+                        "inverse-primary": "#b52424",
+                        "surface": "#131313",
+                        "inverse-surface": "#e5e2e1",
+                        "on-secondary-fixed-variant": "#920703",
+                        "on-secondary-fixed": "#410000",
+                        "secondary-fixed-dim": "#ffb4a8",
+                        "on-tertiary-container": "#b1daff",
+                        "on-tertiary-fixed-variant": "#004b71",
+                        "outline-variant": "#5a403e",
+                        "primary": "#ffb4ac",
+                        "inverse-on-surface": "#313030",
+                        "tertiary-container": "#006292",
+                        "secondary": "#ffb4a8",
+                        "surface-container-low": "#1c1b1b",
+                        "surface-bright": "#393939",
+                        "secondary-fixed": "#ffdad4",
+                        "on-secondary": "#690000",
+                        "on-background": "#e5e2e1",
+                        "surface-dim": "#131313",
+                        "on-tertiary": "#003450",
+                        "tertiary-fixed-dim": "#8fcdff",
+                        "surface-variant": "#353534",
+                        "on-surface": "#e5e2e1",
+                        "on-error": "#690005",
+                        "surface-tint": "#ffb4ac",
+                        "surface-container-high": "#2a2a2a",
+                        "on-surface-variant": "#e2beba"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "8px",
+                        "section-gap-desktop": "160px",
+                        "section-gap-mobile": "80px",
+                        "margin-mobile": "24px",
+                        "gutter": "24px",
+                        "margin-desktop": "64px",
+                        "container-max-width": "1440px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Montserrat"],
+                        "subheading-spaced": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg": ["Montserrat"],
+                        "display-xl": ["Montserrat"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "subheading-spaced": ["14px", {"lineHeight": "1.5", "letterSpacing": "0.2em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "display-xl": ["80px", {"lineHeight": "1.0", "letterSpacing": "-0.04em", "fontWeight": "900"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background selection:bg-primary selection:text-on-primary overflow-x-hidden">
+<div class="grain-overlay"></div>
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-transparent backdrop-blur-xl border-b border-white/10">
+<div class="flex justify-between items-center px-margin-desktop py-8 w-full max-w-container-max-width mx-auto">
+<a href="index.html" class="font-display-xl text-headline-lg font-black tracking-tighter text-on-background cursor-pointer hover:text-primary transition-colors">JORDAN</a>
+<div class="hidden md:flex gap-12">
+<a class="font-subheading-spaced text-subheading-spaced uppercase tracking-widest text-on-background/70 hover:text-on-background transition-colors duration-400" href="index.html">SHOP</a>
+<a class="font-subheading-spaced text-subheading-spaced uppercase tracking-widest text-on-background/70 hover:text-on-background transition-colors duration-400" href="Collection.html">COLLECTIONS</a>
+<a class="font-subheading-spaced text-subheading-spaced uppercase tracking-widest text-on-background/70 hover:text-on-background transition-colors duration-400" href="Comunity.html">COMMUNITY</a>
+<a class="font-subheading-spaced text-subheading-spaced uppercase tracking-widest text-primary font-bold border-b border-primary pb-1" href="Hertiage.html">HERITAGE</a>
+<a class="font-subheading-spaced text-subheading-spaced uppercase tracking-widest text-on-background/70 hover:text-on-background transition-colors duration-400" href="threed.html">STUDIO</a>
+</div>
+<div class="flex items-center gap-6">
+<a href="bag.html" class="scale-95 active:scale-90 transition-transform duration-400 hover:text-primary flex items-center justify-center relative" aria-label="Shopping Bag">
+<span class="material-symbols-outlined text-on-background text-[24px]">shopping_bag</span>
+<span id="cart-badge" class="absolute -top-1 -right-1 bg-primary text-white font-bold text-[9px] w-4 h-4 rounded-full flex items-center justify-center scale-0 transition-transform duration-300">0</span>
+</a>
+<a href="Profile.html" class="scale-95 active:scale-90 transition-transform duration-400 hover:text-primary flex items-center justify-center" aria-label="User Account">
+<span class="material-symbols-outlined text-on-background text-[24px]">person</span>
+</a>
+</div>
+</div>
+</nav>
+<main>
+<!-- Hero Section -->
+<section class="relative h-screen flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-b from-black/60 to-background z-10"></div>
+<div class="absolute inset-0 z-0">
+<img alt="Heritage Hero" class="w-full h-full object-cover opacity-40 mix-blend-luminosity grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIS39qfWG56A7zkqCPKwDaPRTrZj3B2hYE5-Bf3k_B7gelAFAHo2a2DA11JD0DkCUxfGiUMHV8YUQo-SdS78v_Eorf_6pDjj9KnkEzob2AXAvP5Da0_QdljS3J3WgAwPf6AYC8D5k4qA9hR_1vG7EFgPJwsWQ7NK7bVnaZGj5Vi50oWtK4R1Gz-nVNjWXoercn72kbxtKCCAyAKdiODqdzE4lu5xxgi0MzREgClbyHmjy_gqrj4fGuuwFIFi3rJG1dXToe3KNV2Nps"/>
+</div>
+<div class="relative z-20 text-center px-margin-mobile">
+<h1 class="font-display-xl text-headline-lg md:text-display-xl uppercase leading-none mb-4 italic">THE ARCHIVE</h1>
+<p class="font-subheading-spaced text-subheading-spaced max-w-2xl mx-auto text-on-background/60">CELEBRATING FORTY YEARS OF UNCOMPROMISING EXCELLENCE AND THE REVOLUTION OF FLIGHT.</p>
+<div class="mt-12 flex justify-center">
+<div class="w-px h-24 bg-gradient-to-b from-primary to-transparent animate-pulse"></div>
+</div>
+</div>
+</section>
+<!-- 1985 Section -->
+<section class="relative py-section-gap-desktop bg-surface-container-lowest">
+<div class="max-w-container-max-width mx-auto px-margin-desktop grid md:grid-cols-12 gap-gutter items-center">
+<div class="md:col-span-1 leading-none">
+<span class="font-display-xl text-headline-lg vertical-text origin-left rotate-90 inline-block text-white/5 whitespace-nowrap">NINETEEN EIGHTY FIVE</span>
+</div>
+<div class="md:col-span-5 relative">
+<div class="aspect-[3/4] overflow-hidden glass-panel p-4">
+<img alt="1985 Archive" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 ease-out-expo scale-110 hover:scale-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIS39qfWG56A7zkqCPKwDaPRTrZj3B2hYE5-Bf3k_B7gelAFAHo2a2DA11JD0DkCUxfGiUMHV8YUQo-SdS78v_Eorf_6pDjj9KnkEzob2AXAvP5Da0_QdljS3J3WgAwPf6AYC8D5k4qA9hR_1vG7EFgPJwsWQ7NK7bVnaZGj5Vi50oWtK4R1Gz-nVNjWXoercn72kbxtKCCAyAKdiODqdzE4lu5xxgi0MzREgClbyHmjy_gqrj4fGuuwFIFi3rJG1dXToe3KNV2Nps"/>
+</div>
+<div class="absolute -bottom-8 -right-8 w-48 h-48 bg-primary/10 rounded-full blur-3xl"></div>
+</div>
+<div class="md:col-span-5 md:col-start-8">
+<span class="font-label-sm text-label-sm text-primary mb-4 block tracking-[0.3em]">CHAPTER 01</span>
+<h2 class="font-display-xl text-headline-lg mb-8 uppercase italic leading-[0.9]">THE BIRTH OF A LEGEND</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-12">In 1985, the landscape of professional basketball was changed forever. It wasn't just a shoe; it was a defiance of authority. Michael Jordan stepped onto the court in a black and red silhouette that broke league rules and set the blueprint for every sneaker that followed.</p>
+<div class="grid grid-cols-2 gap-8 border-t border-white/10 pt-12">
+<div>
+<p class="font-display-xl text-headline-lg text-primary">63</p>
+<p class="font-label-sm text-label-sm uppercase text-on-background/50">Points vs Boston</p>
+</div>
+<div>
+<p class="font-display-xl text-headline-lg text-on-background">01</p>
+<p class="font-label-sm text-label-sm uppercase text-on-background/50">Original Silhouette</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Technical Blueprints (Mixed Media Bento) -->
+<section class="py-section-gap-desktop blueprint-grid">
+<div class="max-w-container-max-width mx-auto px-margin-desktop">
+<div class="mb-24 flex justify-between items-end">
+<div>
+<span class="font-label-sm text-label-sm text-primary mb-2 block">CRAFT &amp; PRECISION</span>
+<h2 class="font-display-xl text-headline-lg uppercase italic">TECHNICAL ANATOMY</h2>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<!-- Bento Card 1 -->
+<div class="md:col-span-2 md:row-span-2 glass-panel p-12 flex flex-col justify-between group overflow-hidden relative">
+<div class="relative z-10">
+<span class="font-label-sm text-label-sm text-on-background/40">SCHEMATIC 001-A</span>
+<h3 class="font-display-xl text-headline-lg mt-4 mb-8">AIR UNIT STRUCTURE</h3>
+</div>
+<div class="relative h-64 flex items-center justify-center z-10">
+<!-- Visual placeholder for technical blueprint -->
+<div class="absolute inset-0 opacity-20 border border-dashed border-primary"></div>
+<img class="w-full h-full object-contain mix-blend-lighten grayscale" data-alt="A technical cross-section blueprint of an iconic basketball shoe sole, showing the internal air cushion technology with architectural lines and measurements. The style is a minimalist technical drawing on a dark background with white and red primary accents, evoking a high-end engineering mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuATkilcxCObsJgo6Yq8zJJ26yUi3OnhKZDQYcUO2b2ujnp0-G5iThn886ZmBTtgGsLDIWODVc3q93Bynk8nOa_aeKFUje54Tmdit6_rTISBe6HMvNG9Pae-c26fihJwKs6TI1fsEgu3YdtNQtPji2y3ebY6XecMheG-T_Wm8IPS0dbtJGFOxOx_KD_XW_WZz3GtfUZDYEvoqKxbl6B1C-fHWK7RzBRDT9_nwY89Sv4cF5U0hfhAlfbeFgHA3AHcHcsdCnGduyefkTmc"/>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant relative z-10">Revolutionary pressurized air encapsulated in a flexible, durable bag, providing cushioning without compromising structural integrity.</p>
+<div class="absolute -right-20 top-20 text-[200px] font-black text-white/[0.02] select-none group-hover:text-primary/5 transition-colors duration-700">FLIGHT</div>
+</div>
+<!-- Bento Card 2 -->
+<div class="glass-panel p-8 group">
+<span class="font-label-sm text-label-sm text-primary">MATERIALS</span>
+<div class="mt-4 flex justify-center py-4">
+<img class="w-full aspect-square object-cover grayscale opacity-60 group-hover:opacity-100 transition-opacity" data-alt="Close-up macro photography of premium full-grain black leather used in luxury athletic footwear. The lighting is studio-quality, highlighting the rich texture and pores of the leather against a deep black background. Subtle red highlights define the edges, reflecting a kinetic luxury aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2dN-rG8QkqSvEdJEIKNYsAi585SDUbqawrALmPvQVMHhjACkrroFwfk55LnyZRiwCSna_ahiiwHAQqO0scM6FmUyLvKfVS_kYFRqUqpvDJcDDMy-fXkx_LE-m1HN8c-u8-NFhE7b0G0q6DTm3UuHKxkHbT2hb4Mw1KkUE9zAs80bvKtGOXm3fi-ZPMIOe_lHOpKKBjjyGrRsCEOHjIgEX8cfPYZLnEA8yr_kdhdZC9FsL4JLwo0A9YXnp6gU_uJYfIVgjpmAj5xZL"/>
+</div>
+<h4 class="font-subheading-spaced text-subheading-spaced mt-4 uppercase">FULL GRAIN LEATHER</h4>
+</div>
+<!-- Bento Card 3 -->
+<div class="glass-panel p-8 group">
+<span class="font-label-sm text-label-sm text-primary">TRACTION</span>
+<div class="mt-4 flex justify-center py-4">
+<img class="w-full aspect-square object-cover grayscale opacity-60 group-hover:opacity-100 transition-opacity" data-alt="A geometric pattern of a classic rubber outsole herringbone traction pattern. Shot from a dramatic top-down perspective with high-contrast lighting that emphasizes the deep grooves and symmetrical design. The aesthetic is industrial and precise, using a stark black and white palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLTm4xfRRH9JpkQ6AbPrevVKbTiAPWu7CeKPzd0JKjXCZimhktWh15dellQI8PxSFsVThLK78sWFCmhs6a0rXvYtA52WIf-Bs4NIwvtWYiWB4PAI36y4BiurZdSMiYB3wqSWA_E3uiMvqqMTgrUd4gTrRjM87WLWgCi-D3naI4_j674lKcewbnrw8eWfGdTIHodYJ4cVyldA878p97FHNpbyAgCwrQQGHAAXc4fF9n9W5nLPZ5XtssDtcjt_9aRR4TCeV9_A0ekwoD"/>
+</div>
+<h4 class="font-subheading-spaced text-subheading-spaced mt-4 uppercase">HERRINGBONE PATTERN</h4>
+</div>
+<!-- Bento Card 4 (Large Text) -->
+<div class="md:col-span-2 glass-panel p-12 bg-primary-container relative overflow-hidden group">
+<div class="relative z-10">
+<h3 class="font-display-xl text-headline-lg text-white mb-6">"BY THE TIME THEY REALIZED WHAT WAS HAPPENING, IT WAS ALREADY OVER."</h3>
+<p class="font-label-sm text-label-sm uppercase tracking-[0.5em] text-white/70">— ARCHIVE NOTES 1988</p>
+</div>
+<div class="absolute right-0 bottom-0 opacity-10 translate-x-1/4 translate-y-1/4 scale-150 group-hover:scale-125 transition-transform duration-1000">
+<span class="material-symbols-outlined text-[300px]">sports_basketball</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Video/Cinematic Section -->
+<section class="relative h-[80vh] overflow-hidden flex items-center">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover grayscale brightness-50" data-alt="A wide cinematic shot of an empty urban basketball court at night under a single flickering streetlight. The atmosphere is heavy with atmosphere, featuring light rain and deep shadows. The color grading is moody and cinematic, dominated by deep blacks with a single vibrant red rim light on the hoop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8AdWq28oVLPbTqw8T7QKXvhrsXZdmvG_6oFocXNcFiCSDxncKIubKkzDbsfEkTLi7ZVIym5X4f_3z5KkG5UBB_Gci4msBl9tP7KMiEm4NxjLv4v2Cc9VKUx_G-EK-kblecmdxfthVvo9YFV_mF4_X3CkkzmViqaUuOln9p0b3WD1ge3mx6RUqdFhuChXCPSdK_Q3Ullp1NdREXpI7INg1bXMRStQvvafe1kyI47Zdgp9igsXuG-0gNeIkM9MHaZlTOm7yFKh7tnu6"/>
+<div class="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background"></div>
+</div>
+<div class="relative z-10 max-w-container-max-width mx-auto px-margin-desktop w-full grid md:grid-cols-2">
+<div>
+<h2 class="font-display-xl text-headline-lg uppercase italic mb-8">THE WILL TO WIN</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg mb-12">Every stitch, every perforation, and every air unit is a testament to the obsession with greatness. We don't just look back to remember; we look back to fuel the future.</p>
+<button class="bg-white text-black px-12 py-4 font-subheading-spaced text-subheading-spaced uppercase tracking-widest hover:bg-primary hover:text-white transition-all duration-400">WATCH FILM</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="footer-container">
+    <p>&copy; 2026 JORDAN BRAND. All Rights Reserved. Created by RISHU.</p>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+    </div>
+  </div>
+</footer>
+<script type="module">
+        import './cart.js';
+
+        // Smooth reveal interaction
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.remove('opacity-0', 'translate-y-10');
+                        entry.target.classList.add('opacity-100', 'translate-y-0');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.glass-panel').forEach(el => {
+                el.classList.add('opacity-0', 'translate-y-10', 'transition-all', 'duration-700', 'ease-out-expo');
+                observer.observe(el);
+            });
+        });
+    </script>
+</body></html>

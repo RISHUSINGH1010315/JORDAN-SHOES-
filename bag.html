@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Shopping Bag | JORDAN</title>
+  <meta name="description" content="Review the items in your shopping bag, select sizes, adjust quantities, and proceed to checkout.">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <style>
+    @layer base {
+      :root {
+        --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      }
+    }
+    .ease-out-expo { transition-timing-function: var(--ease-out-expo); }
+    
+    .glass-panel {
+      background: rgba(18, 18, 18, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    
+    .glass-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    /* Radial Vignette */
+    .bg-vignette {
+      background: radial-gradient(circle at center, rgba(178, 34, 36, 0.15) 0%, rgba(10, 10, 10, 1) 75%);
+    }
+
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #0a0a0a;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #ff1a25;
+    }
+
+    /* Premium Solid Black Footer */
+    .site-footer {
+      position: relative;
+      z-index: 3;
+      background-color: #050505 !important;
+      padding: 3.5rem 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      width: 100%;
+    }
+    .footer-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 64px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    @media (max-width: 768px) {
+      .footer-container {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+        padding: 0 24px;
+      }
+    }
+    .site-footer p {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.8) !important;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+      font-family: 'Inter', sans-serif;
+    }
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+    }
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.6) !important;
+      font-size: 0.85rem;
+      text-decoration: none;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      font-family: 'Inter', sans-serif;
+    }
+    .footer-links a:hover {
+      color: #fff !important;
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+    }
+  </style>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "error-container": "#93000a",
+            "on-primary-container": "#ffc8c2",
+            "surface-container-highest": "#353534",
+            "tertiary-fixed": "#cbe6ff",
+            "error": "#ff1a25",
+            "background": "#0a0a0a",
+            "secondary-container": "#920703",
+            "primary-fixed": "#ffdad6",
+            "primary-fixed-dim": "#ffb4ac",
+            "on-primary-fixed": "#410003",
+            "on-secondary-container": "#ff9a8a",
+            "on-primary": "#ffffff",
+            "on-primary-fixed-variant": "#92030f",
+            "tertiary": "#8fcdff",
+            "surface-container-lowest": "#050505",
+            "outline": "#aa8986",
+            "surface-container": "#121212",
+            "primary-container": "#ff1a25",
+            "on-error-container": "#ffdad6",
+            "on-tertiary-fixed": "#001e30",
+            "inverse-primary": "#ff1a25",
+            "surface": "#121212",
+            "inverse-surface": "#e5e2e1",
+            "on-secondary-fixed-variant": "#920703",
+            "on-secondary-fixed": "#410000",
+            "secondary-fixed-dim": "#ffb4a8",
+            "on-tertiary-container": "#b1daff",
+            "on-tertiary-fixed-variant": "#004b71",
+            "outline-variant": "#5a403e",
+            "primary": "#ff1a25",
+            "inverse-on-surface": "#313030",
+            "tertiary-container": "#006292",
+            "secondary": "#ffb4a8",
+            "surface-container-low": "#0d0d0d",
+            "surface-bright": "#393939",
+            "secondary-fixed": "#ffdad4",
+            "on-secondary": "#690000",
+            "on-background": "#ffffff",
+            "surface-dim": "#121212",
+            "on-tertiary": "#003450",
+            "tertiary-fixed-dim": "#8fcdff",
+            "surface-variant": "#353534",
+            "on-surface": "#e5e2e1",
+            "on-error": "#690005",
+            "surface-tint": "#ff1a25",
+            "surface-container-high": "#1e1e1e",
+            "on-surface-variant": "#a0a0a0"
+          },
+          "borderRadius": {
+            "DEFAULT": "4px",
+            "lg": "8px",
+            "xl": "12px",
+            "full": "9999px"
+          },
+          "spacing": {
+            "base": "8px",
+            "section-gap-desktop": "120px",
+            "section-gap-mobile": "60px",
+            "margin-mobile": "24px",
+            "gutter": "24px",
+            "margin-desktop": "64px",
+            "container-max-width": "1440px"
+          },
+          "fontFamily": {
+            "headline-lg-mobile": ["Montserrat"],
+            "subheading-spaced": ["Inter"],
+            "body-lg": ["Inter"],
+            "label-sm": ["Inter"],
+            "headline-lg": ["Montserrat"],
+            "display-xl": ["Montserrat"],
+            "body-md": ["Inter"]
+          },
+          "fontSize": {
+            "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+            "subheading-spaced": ["14px", {"lineHeight": "1.5", "letterSpacing": "0.2em", "fontWeight": "600"}],
+            "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+            "label-sm": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "600"}],
+            "headline-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "display-xl": ["80px", {"lineHeight": "1.0", "letterSpacing": "-0.04em", "fontWeight": "900"}],
+            "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}]
+          }
+        },
+      },
+    }
+  </script>
+</head>
+<body class="bg-background text-on-background selection:bg-primary selection:text-on-primary overflow-x-hidden custom-scrollbar min-h-screen flex flex-col bg-vignette">
+
+  <!-- Top Navigation Bar -->
+  <header class="fixed top-0 w-full z-50 bg-background/40 backdrop-blur-xl border-b border-white/10">
+    <div class="flex justify-between items-center px-margin-desktop py-8 w-full max-w-container-max-width mx-auto">
+      <a href="index.html" class="font-display-xl text-headline-lg font-black tracking-tighter text-on-background cursor-pointer hover:text-primary transition-colors">JORDAN</a>
+      <nav class="hidden md:flex items-center gap-10">
+        <a class="font-subheading-spaced text-subheading-spaced uppercase tracking-widest text-on-background/70 hover:text-on-background transition-colors duration-400" href="index.html">SHOP</a>
+        <a class="font-subheading-spaced text-subheading-spaced uppercase tracking-widest text-on-background/70 hover:text-on-background transition-colors duration-400" href="Collection.html">COLLECTIONS</a>
+        <a class="font-subheading-spaced text-subheading-spaced uppercase tracking-widest text-on-background/70 hover:text-on-background transition-colors duration-400" href="Comunity.html">COMMUNITY</a>
+        <a class="font-subheading-spaced text-subheading-spaced uppercase tracking-widest text-on-background/70 hover:text-on-background transition-colors duration-400" href="Hertiage.html">HERITAGE</a>
+        <a class="font-subheading-spaced text-subheading-spaced uppercase tracking-widest text-on-background/70 hover:text-on-background transition-colors duration-400" href="threed.html">STUDIO</a>
+      </nav>
+      <div class="flex items-center gap-6">
+        <a href="bag.html" class="scale-95 active:scale-90 transition-transform duration-400 text-primary flex items-center justify-center relative" aria-label="Shopping Bag">
+          <span class="material-symbols-outlined text-[24px]">shopping_bag</span>
+          <span id="cart-badge" class="absolute -top-1 -right-1 bg-primary text-white font-bold text-[9px] w-4 h-4 rounded-full flex items-center justify-center scale-0 transition-transform duration-300">0</span>
+        </a>
+        <a href="Profile.html" class="scale-95 active:scale-90 transition-transform duration-400 hover:text-primary flex items-center justify-center" aria-label="User Profile">
+          <span class="material-symbols-outlined text-[24px]">person</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Cart Section -->
+  <main class="pt-32 pb-section-gap-desktop max-w-container-max-width mx-auto px-margin-desktop flex-1 w-full flex flex-col justify-center">
+    
+    <!-- Title -->
+    <div class="mb-12">
+      <span class="font-subheading-spaced text-xs uppercase tracking-widest text-primary mb-2 block">YOUR SELECTIONS</span>
+      <h1 class="font-display-xl text-4xl uppercase tracking-tight">SHOPPING BAG</h1>
+    </div>
+
+    <!-- Empty State -->
+    <div id="cart-empty-state" class="hidden flex flex-col items-center justify-center py-24 glass-panel text-center rounded-sm">
+      <span class="material-symbols-outlined text-[64px] text-primary/30 mb-6">shopping_bag</span>
+      <h2 class="font-subheading-spaced text-xl uppercase tracking-wider text-white mb-2">YOUR BAG IS EMPTY</h2>
+      <p class="font-body-md text-sm text-on-surface-variant max-w-sm mb-10">Once you add items to your collection, they will appear here in your bag.</p>
+      <a href="Collection.html" class="bg-white text-black py-4 px-12 font-subheading-spaced text-xs uppercase tracking-widest hover:bg-primary hover:text-white transition-colors rounded-none">
+        GO TO SHOP
+      </a>
+    </div>
+
+    <!-- Active State: Cart Grid -->
+    <div id="cart-active-state" class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      
+      <!-- Cart Items Table/List -->
+      <div class="lg:col-span-8 space-y-6" id="cart-items-container">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <!-- Right Summary Panel -->
+      <aside class="lg:col-span-4 glass-panel p-8 rounded-sm space-y-8 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -z-10"></div>
+        
+        <h2 class="font-subheading-spaced text-sm uppercase tracking-widest text-white border-b border-white/5 pb-4">
+          ORDER SUMMARY
+        </h2>
+
+        <div class="space-y-4">
+          <div class="flex justify-between font-label-sm text-xs uppercase tracking-wider text-on-surface-variant">
+            <span>SUBTOTAL</span>
+            <span id="summary-subtotal">$0.00</span>
+          </div>
+          <div class="flex justify-between font-label-sm text-xs uppercase tracking-wider text-on-surface-variant">
+            <span>SHIPPING</span>
+            <span class="text-primary font-bold">COMPLIMENTARY</span>
+          </div>
+          <div class="flex justify-between font-label-sm text-xs uppercase tracking-wider text-on-surface-variant">
+            <span>ESTIMATED TAX (8%)</span>
+            <span id="summary-tax">$0.00</span>
+          </div>
+          <div class="flex justify-between pt-6 border-t border-white/10 font-headline-lg text-lg uppercase tracking-tight text-white">
+            <span>TOTAL</span>
+            <span id="summary-total" class="text-primary">$0.00</span>
+          </div>
+        </div>
+
+        <a href="Order.html" class="block w-full text-center bg-white text-black py-5 font-subheading-spaced text-xs uppercase tracking-widest hover:bg-primary hover:text-white transition-all ease-out-expo duration-400 active:scale-95">
+          PROCEED TO CHECKOUT
+        </a>
+
+        <div class="flex gap-4 items-center p-4 border border-white/5 bg-white/[0.01]">
+          <span class="material-symbols-outlined text-primary text-xl">verified_user</span>
+          <p class="font-label-sm text-[9px] uppercase tracking-wider text-on-surface-variant leading-relaxed">
+            Secure checkout powered by Flight Club Protocols. Transactions are fully encrypted.
+          </p>
+        </div>
+      </aside>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <p>&copy; 2026 JORDAN BRAND. All Rights Reserved. Created by RISHU.</p>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module">
+    import JordanCart from './cart.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Security Sanitizer
+      function escapeHTML(str) {
+        if (!str) return '';
+        return str.replace(/[&<>"']/g, (m) => {
+          const map = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#x27;'
+          };
+          return map[m];
+        });
+      }
+
+      const emptyState = document.getElementById('cart-empty-state');
+      const activeState = document.getElementById('cart-active-state');
+      const itemsContainer = document.getElementById('cart-items-container');
+      
+      const summarySubtotal = document.getElementById('summary-subtotal');
+      const summaryTax = document.getElementById('summary-tax');
+      const summaryTotal = document.getElementById('summary-total');
+
+      function renderCart() {
+        const cart = JordanCart.getCart();
+
+        if (cart.length === 0) {
+          activeState.classList.add('hidden');
+          emptyState.classList.remove('hidden');
+          return;
+        }
+
+        emptyState.classList.add('hidden');
+        activeState.classList.remove('hidden');
+
+        // Render items list
+        itemsContainer.innerHTML = cart.map(item => `
+          <div class="glass-card p-6 flex flex-col md:flex-row items-start md:items-center gap-6 relative overflow-hidden">
+            <!-- Product image -->
+            <div class="w-24 h-24 bg-surface-container-lowest shrink-0 overflow-hidden border border-white/5">
+              <img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" src="${item.imgUrl}" alt="${escapeHTML(item.name)}">
+            </div>
+            
+            <!-- Details info -->
+            <div class="flex-1 space-y-2">
+              <div class="flex justify-between items-start">
+                <h3 class="font-subheading-spaced text-sm font-bold text-white uppercase leading-tight">${escapeHTML(item.name)}</h3>
+                <span class="font-subheading-spaced text-sm font-bold text-primary md:hidden">$${(item.price * item.quantity).toFixed(2)}</span>
+              </div>
+              <p class="font-label-sm text-[10px] text-on-surface-variant uppercase tracking-widest">${escapeHTML(item.colorway)}</p>
+              
+              <!-- Selectors grid -->
+              <div class="flex flex-wrap gap-4 pt-1">
+                <!-- Size select -->
+                <div class="flex items-center gap-2">
+                  <span class="font-label-sm text-[8px] text-on-surface-variant uppercase tracking-wider">SIZE:</span>
+                  <select data-id="${escapeHTML(item.cartItemId)}" class="size-select bg-surface-container border-0 border-b border-white/10 text-white py-1 px-2 text-xs focus:ring-0 focus:border-primary">
+                    ${Array.from({length: 7}, (_, i) => 7 + i).map(sz => `
+                      <option value="${sz}" ${parseInt(item.size) === sz ? 'selected' : ''}>${sz}.0 US</option>
+                      <option value="${sz}.5" ${parseFloat(item.size) === sz + 0.5 ? 'selected' : ''}>${sz}.5 US</option>
+                    `).join('')}
+                  </select>
+                </div>
+                
+                <!-- Qty adjuster -->
+                <div class="flex items-center gap-2">
+                  <span class="font-label-sm text-[8px] text-on-surface-variant uppercase tracking-wider">QTY:</span>
+                  <div class="flex items-center border border-white/10 bg-surface-container">
+                    <button data-id="${escapeHTML(item.cartItemId)}" class="qty-btn-minus px-2 py-1 text-white hover:text-primary transition-colors text-xs font-bold">-</button>
+                    <span class="px-2 text-xs font-bold text-white min-w-[20px] text-center">${item.quantity}</span>
+                    <button data-id="${escapeHTML(item.cartItemId)}" class="qty-btn-plus px-2 py-1 text-white hover:text-primary transition-colors text-xs font-bold">+</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Price column (desktop) -->
+            <div class="hidden md:flex flex-col items-end shrink-0 pl-6">
+              <span class="font-subheading-spaced text-sm font-bold text-white">$${(item.price * item.quantity).toFixed(2)}</span>
+              <span class="font-label-sm text-[9px] text-on-surface-variant mt-1 uppercase">$${item.price.toFixed(2)} EACH</span>
+            </div>
+
+            <!-- Remove Button -->
+            <button data-id="${item.cartItemId}" class="remove-btn absolute top-4 right-4 text-on-surface-variant hover:text-primary transition-colors" title="Remove Item">
+              <span class="material-symbols-outlined text-base">close</span>
+            </button>
+          </div>
+        `).join('');
+
+        // Update Summary Totals
+        const totals = JordanCart.getCartTotals();
+        summarySubtotal.textContent = `$${totals.subtotal.toFixed(2)}`;
+        summaryTax.textContent = `$${totals.tax.toFixed(2)}`;
+        summaryTotal.textContent = `$${totals.total.toFixed(2)}`;
+
+        // Bind interactive events
+        bindCartEvents();
+      }
+
+      function bindCartEvents() {
+        // Size Selector Dropdown
+        document.querySelectorAll('.size-select').forEach(select => {
+          select.addEventListener('change', (e) => {
+            const cartItemId = e.target.getAttribute('data-id');
+            const newSize = e.target.value;
+            JordanCart.updateSize(cartItemId, newSize);
+            renderCart();
+          });
+        });
+
+        // Quantity Plus Button
+        document.querySelectorAll('.qty-btn-plus').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const cartItemId = btn.getAttribute('data-id');
+            const cart = JordanCart.getCart();
+            const item = cart.find(i => i.cartItemId === cartItemId);
+            if (item) {
+              JordanCart.updateQuantity(cartItemId, item.quantity + 1);
+              renderCart();
+            }
+          });
+        });
+
+        // Quantity Minus Button
+        document.querySelectorAll('.qty-btn-minus').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const cartItemId = btn.getAttribute('data-id');
+            const cart = JordanCart.getCart();
+            const item = cart.find(i => i.cartItemId === cartItemId);
+            if (item) {
+              JordanCart.updateQuantity(cartItemId, item.quantity - 1);
+              renderCart();
+            }
+          });
+        });
+
+        // Remove Item Button
+        document.querySelectorAll('.remove-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const cartItemId = btn.closest('button').getAttribute('data-id');
+            JordanCart.removeFromCart(cartItemId);
+            renderCart();
+          });
+        });
+      }
+
+      // Render initially
+      renderCart();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>User Profile | JORDAN</title>
+  <meta name="description" content="View your Jordan Brand profile, check your order history, edit your settings, and view your sneaker collections.">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <style>
+    @layer base {
+      :root {
+        --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      }
+    }
+    .ease-out-expo { transition-timing-function: var(--ease-out-expo); }
+    
+    .glass-panel {
+      background: rgba(18, 18, 18, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    
+    .glass-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .glass-card:hover {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(255, 26, 37, 0.3);
+      transform: translateY(-4px);
+    }
+
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #0a0a0a;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #ff1a25;
+    }
+    
+    /* Radial Vignette Shader effect */
+    .bg-vignette {
+      background: radial-gradient(circle at center, rgba(178, 34, 36, 0.15) 0%, rgba(10, 10, 10, 1) 75%);
+    }
+
+    /* Tab Transition */
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+      animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes fadeInUp {
+      from { transform: translateY(15px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    
+    /* Input custom styles */
+    .input-border-bottom {
+      border: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      background: transparent;
+      transition: all 0.4s;
+    }
+    .input-border-bottom:focus {
+      border-bottom-color: #ff1a25;
+      outline: none;
+      box-shadow: 0 1px 0 0 #ff1a25;
+    }
+
+    /* Premium Solid Black Footer */
+    .site-footer {
+      position: relative;
+      z-index: 3;
+      background-color: #050505 !important;
+      padding: 3.5rem 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      width: 100%;
+    }
+    .footer-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 64px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    @media (max-width: 768px) {
+      .footer-container {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+        padding: 0 24px;
+      }
+    }
+    .site-footer p {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.8) !important;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+      font-family: 'Inter', sans-serif;
+    }
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+    }
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.6) !important;
+      font-size: 0.85rem;
+      text-decoration: none;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      font-family: 'Inter', sans-serif;
+    }
+    .footer-links a:hover {
+      color: #fff !important;
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+    }
+  </style>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "error-container": "#93000a",
+            "on-primary-container": "#ffc8c2",
+            "surface-container-highest": "#353534",
+            "tertiary-fixed": "#cbe6ff",
+            "error": "#ff1a25",
+            "background": "#0a0a0a",
+            "secondary-container": "#920703",
+            "primary-fixed": "#ffdad6",
+            "primary-fixed-dim": "#ffb4ac",
+            "on-primary-fixed": "#410003",
+            "on-secondary-container": "#ff9a8a",
+            "on-primary": "#ffffff",
+            "on-primary-fixed-variant": "#92030f",
+            "tertiary": "#8fcdff",
+            "surface-container-lowest": "#050505",
+            "outline": "#aa8986",
+            "surface-container": "#121212",
+            "primary-container": "#ff1a25",
+            "on-error-container": "#ffdad6",
+            "on-tertiary-fixed": "#001e30",
+            "inverse-primary": "#ff1a25",
+            "surface": "#121212",
+            "inverse-surface": "#e5e2e1",
+            "on-secondary-fixed-variant": "#920703",
+            "on-secondary-fixed": "#410000",
+            "secondary-fixed-dim": "#ffb4a8",
+            "on-tertiary-container": "#b1daff",
+            "on-tertiary-fixed-variant": "#004b71",
+            "outline-variant": "#5a403e",
+            "primary": "#ff1a25",
+            "inverse-on-surface": "#313030",
+            "tertiary-container": "#006292",
+            "secondary": "#ffb4a8",
+            "surface-container-low": "#0d0d0d",
+            "surface-bright": "#393939",
+            "secondary-fixed": "#ffdad4",
+            "on-secondary": "#690000",
+            "on-background": "#ffffff",
+            "surface-dim": "#121212",
+            "on-tertiary": "#003450",
+            "tertiary-fixed-dim": "#8fcdff",
+            "surface-variant": "#353534",
+            "on-surface": "#e5e2e1",
+            "on-error": "#690005",
+            "surface-tint": "#ff1a25",
+            "surface-container-high": "#1e1e1e",
+            "on-surface-variant": "#a0a0a0"
+          },
+          "borderRadius": {
+            "DEFAULT": "4px",
+            "lg": "8px",
+            "xl": "12px",
+            "full": "9999px"
+          },
+          "spacing": {
+            "base": "8px",
+            "section-gap-desktop": "120px",
+            "section-gap-mobile": "60px",
+            "margin-mobile": "24px",
+            "gutter": "24px",
+            "margin-desktop": "64px",
+            "container-max-width": "1440px"
+          },
+          "fontFamily": {
+            "headline-lg-mobile": ["Montserrat"],
+            "subheading-spaced": ["Inter"],
+            "body-lg": ["Inter"],
+            "label-sm": ["Inter"],
+            "headline-lg": ["Montserrat"],
+            "display-xl": ["Montserrat"],
+            "body-md": ["Inter"]
+          },
+          "fontSize": {
+            "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+            "subheading-spaced": ["14px", {"lineHeight": "1.5", "letterSpacing": "0.2em", "fontWeight": "600"}],
+            "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+            "label-sm": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "600"}],
+            "headline-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "display-xl": ["80px", {"lineHeight": "1.0", "letterSpacing": "-0.04em", "fontWeight": "900"}],
+            "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}]
+          }
+        },
+      },
+    }
+  </script>
+</head>
+<body class="bg-background text-on-background selection:bg-primary selection:text-on-primary overflow-x-hidden custom-scrollbar min-h-screen flex flex-col bg-vignette">
+
+  <!-- Top Navigation Bar -->
+  <header class="fixed top-0 w-full z-50 bg-background/40 backdrop-blur-xl border-b border-white/10">
+    <div class="flex justify-between items-center px-margin-desktop py-8 w-full max-w-container-max-width mx-auto">
+      <a href="index.html" class="font-display-xl text-headline-lg font-black tracking-tighter text-on-background cursor-pointer hover:text-primary transition-colors">JORDAN</a>
+      <nav class="hidden md:flex items-center gap-10">
+        <a class="font-subheading-spaced text-subheading-spaced uppercase tracking-widest text-on-background/70 hover:text-on-background transition-colors duration-400" href="index.html">SHOP</a>
+        <a class="font-subheading-spaced text-subheading-spaced uppercase tracking-widest text-on-background/70 hover:text-on-background transition-colors duration-400" href="Collection.html">COLLECTIONS</a>
+        <a class="font-subheading-spaced text-subheading-spaced uppercase tracking-widest text-on-background/70 hover:text-on-background transition-colors duration-400" href="Comunity.html">COMMUNITY</a>
+        <a class="font-subheading-spaced text-subheading-spaced uppercase tracking-widest text-on-background/70 hover:text-on-background transition-colors duration-400" href="Hertiage.html">HERITAGE</a>
+        <a class="font-subheading-spaced text-subheading-spaced uppercase tracking-widest text-on-background/70 hover:text-on-background transition-colors duration-400" href="threed.html">STUDIO</a>
+      </nav>
+      <div class="flex items-center gap-6">
+        <a href="bag.html" class="scale-95 active:scale-90 transition-transform duration-400 hover:text-primary flex items-center justify-center relative" aria-label="Shopping Bag">
+          <span class="material-symbols-outlined text-[24px]">shopping_bag</span>
+          <span id="cart-badge" class="absolute -top-1 -right-1 bg-primary text-white font-bold text-[9px] w-4 h-4 rounded-full flex items-center justify-center scale-0 transition-transform duration-300">0</span>
+        </a>
+        <a href="Profile.html" class="scale-95 active:scale-90 transition-transform duration-400 text-primary flex items-center justify-center" aria-label="User Profile">
+          <span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">person</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="pt-32 pb-section-gap-desktop max-w-container-max-width mx-auto px-margin-desktop flex-1 w-full">
+    
+    <!-- Profile Grid Layout -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mt-10">
+      
+      <!-- Left Column: User Card & Stats -->
+      <aside class="lg:col-span-4 space-y-8">
+        <!-- User Identity card -->
+        <div class="glass-panel p-8 text-center relative overflow-hidden rounded-sm">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -z-10"></div>
+          
+          <!-- Avatar -->
+          <div class="relative w-32 h-32 mx-auto mb-6">
+            <div class="w-full h-full rounded-full border-2 border-primary overflow-hidden bg-surface-container-high p-1">
+              <img id="avatar-img" class="w-full h-full rounded-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqcCpdbCEPkClBwHtuoEDZ00lWVcClnHD106Gja02iRgMq6C0bJZNFxBsQcVsWNDq330ptL0gv8TCLHQ2xTiX5fu33vooKEviHEyP_S7kRgWyYcquuqEIYd6bSM5EMp3yrHzlmeWW8kNSy7JC06Iemri3fm6a8bDpYA0I6h84Yzx16pYWwvfpR7dmHtqkviyf0001XCKhKREIRGDcWY9l8gQcOE51ADV7T9fEPcAqOwljrjQ6-n5wYlMNQliGyuM6u6ikQ_oqleERY" alt="Profile Avatar">
+            </div>
+            <span class="absolute bottom-1 right-1 bg-primary text-white w-8 h-8 rounded-full flex items-center justify-center border-2 border-background cursor-pointer hover:scale-105 active:scale-95 transition-transform" title="Change Avatar" id="avatar-change-btn">
+              <span class="material-symbols-outlined text-[18px]">photo_camera</span>
+            </span>
+          </div>
+          
+          <h2 id="profile-name-display" class="font-headline-lg text-2xl uppercase tracking-wide text-white">MARCUS VANCE</h2>
+          <p class="font-label-sm text-[10px] text-primary tracking-[0.25em] uppercase mt-1">FLIGHT CLUB ELITE</p>
+          
+          <p id="profile-bio-display" class="font-body-md text-sm text-on-surface-variant/80 mt-6 leading-relaxed">
+            Sneaker collector, streetball player, and designer. Part of the Jordan family since 2018.
+          </p>
+          
+          <div class="mt-8 pt-8 border-t border-white/5 flex justify-center gap-6">
+            <a href="#" class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-on-surface-variant hover:text-white hover:border-primary transition-colors">
+              <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+            </a>
+            <a href="#" class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-on-surface-variant hover:text-white hover:border-primary transition-colors">
+              <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+          </div>
+          <button id="signout-btn" class="w-full mt-6 py-3 border border-red-500/20 hover:bg-red-500/10 text-red-500 font-subheading-spaced text-[10px] tracking-wider uppercase transition-colors">
+            SIGN OUT
+          </button>
+        </div>
+        
+        <!-- Gamified stats section -->
+        <div class="glass-panel p-8 space-y-6 rounded-sm">
+          <h3 class="font-subheading-spaced text-xs uppercase tracking-widest text-primary border-b border-white/5 pb-2">FLIGHT METRICS</h3>
+          <div class="grid grid-cols-2 gap-6">
+            <div class="p-4 bg-white/[0.01] border border-white/5 text-center">
+              <span class="font-display-xl text-3xl font-black text-white" id="collection-count">4</span>
+              <span class="block font-label-sm text-[9px] text-on-surface-variant uppercase tracking-wider mt-1">SNEAKERS OWNED</span>
+            </div>
+            <div class="p-4 bg-white/[0.01] border border-white/5 text-center">
+              <span class="font-display-xl text-3xl font-black text-primary">#142</span>
+              <span class="block font-label-sm text-[9px] text-on-surface-variant uppercase tracking-wider mt-1">DNA RANK</span>
+            </div>
+            <div class="p-4 bg-white/[0.01] border border-white/5 text-center col-span-2">
+              <div class="flex justify-between items-center mb-2">
+                <span class="font-label-sm text-[9px] text-on-surface-variant uppercase tracking-wider">LEVEL 4 FLIGHT STATUS</span>
+                <span class="font-label-sm text-[10px] text-primary">7,800 / 10,000 XP</span>
+              </div>
+              <div class="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
+                <div class="bg-primary h-full rounded-full" style="width: 78%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Right Column: Navigation & Content Tabs -->
+      <section class="lg:col-span-8 space-y-8">
+        <!-- Tab Selectors -->
+        <div class="flex gap-4 border-b border-white/10 pb-1">
+          <button class="profile-tab py-4 px-6 font-subheading-spaced text-xs uppercase tracking-widest text-white border-b-2 border-primary active" data-target="my-collection">
+            WARDROBE
+          </button>
+          <button class="profile-tab py-4 px-6 font-subheading-spaced text-xs uppercase tracking-widest text-on-surface-variant hover:text-white transition-colors border-b-2 border-transparent" data-target="order-history">
+            ORDERS
+          </button>
+          <button class="profile-tab py-4 px-6 font-subheading-spaced text-xs uppercase tracking-widest text-on-surface-variant hover:text-white transition-colors border-b-2 border-transparent" data-target="profile-settings">
+            SETTINGS
+          </button>
+        </div>
+
+        <!-- TAB CONTENT 1: WARDROBE -->
+        <div id="my-collection" class="tab-content active space-y-8">
+          <div class="flex justify-between items-center">
+            <h3 class="font-subheading-spaced text-sm uppercase tracking-widest text-white">YOUR SNEAKER ROTATION</h3>
+            <span class="text-xs text-on-surface-variant uppercase tracking-wider font-label-sm" id="rotation-status">Displaying 4 active pairs</span>
+          </div>
+
+          <!-- Sneaker Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="rotation-grid">
+            <!-- Sneaker 1 -->
+            <div class="glass-card p-6 flex gap-6 items-center">
+              <div class="w-24 h-24 bg-surface-container-lowest shrink-0 overflow-hidden">
+                <img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRmycPzeBDlm0iNN62pl8-SMwrmslJOGp7P-XZb3bfJI9mAMOZEnaGPk27qalTn1enzonOSkYRgJPT9u0zLmD0D3Ie4t0xVwldxZLCXUVQrXrsxmsE5bFSX3lL2cBMY3YTJTRuWq7DYTDpqFYeyjySZj5KKD0UcDJ6_i6yIcVz7F3-8Uv6m9pCWyhKHISQG2IaBH0T5xMBn8wA_l8WL8eixaOOnNIkxqbZvZWGbcSkyDw3-OD9wnlxkthZjVUZ0cLH2Bva-cCTRzQG" alt="Air Jordan 1">
+              </div>
+              <div class="space-y-1">
+                <h4 class="font-subheading-spaced text-xs font-bold text-white uppercase leading-tight">Air Jordan 1 'University Blue'</h4>
+                <p class="font-label-sm text-[10px] text-on-surface-variant uppercase">Acquired: May 2026</p>
+                <span class="inline-block bg-[#006292]/10 text-[#8fcdff] font-label-sm text-[8px] px-2 py-0.5 mt-1 uppercase tracking-wider rounded-sm">LIMIT DROP</span>
+              </div>
+            </div>
+            
+            <!-- Sneaker 2 -->
+            <div class="glass-card p-6 flex gap-6 items-center">
+              <div class="w-24 h-24 bg-surface-container-lowest shrink-0 overflow-hidden">
+                <img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDikgaMC1HaluhQTb_5pNiTxz9GvgBTG3Yl68W0qzWT4Niqt8o7N2eMclWTSiQSRV8gvPugPpOMW7W0L1GpEKezjcqcxpDsvxRvHEoq6Tjtph2G0UMFyqjSTv3Z5PzFQVn61KAwkOC7ELtXQzMM_lrPfcCTbmiH_ReGvikotnkmpbYXmtn-5eW2hSdt3oOGhfpjApSI6J9bu5bAmqjYMYg27ArqGdvNCCoH4kuqc7_7hn8OKXWKBrI93yclP8irhJ5o7k1lQ5Vzoim1" alt="Air Jordan 11">
+              </div>
+              <div class="space-y-1">
+                <h4 class="font-subheading-spaced text-xs font-bold text-white uppercase leading-tight">Air Jordan 11 'Concord'</h4>
+                <p class="font-label-sm text-[10px] text-on-surface-variant uppercase">Acquired: Feb 2026</p>
+                <span class="inline-block bg-primary/10 text-primary font-label-sm text-[8px] px-2 py-0.5 mt-1 uppercase tracking-wider rounded-sm">RETRO LEGACY</span>
+              </div>
+            </div>
+            
+            <!-- Sneaker 3 -->
+            <div class="glass-card p-6 flex gap-6 items-center">
+              <div class="w-24 h-24 bg-surface-container-lowest shrink-0 overflow-hidden">
+                <img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTegnM_I6C-GarQVu2Q5itoa5d08t2tEA57uuOsGsOa8wtdKZghF8ant6Za3akB3t6lahZKfH4CiKlia13ArBZIFKXW6v8eg1G_T4yrmjYjfeUEyKen3qpMPS1GHCd-053wGCM8e3JBEx_RhtQhztV4U_Q1BKTej7JN7eF6yRZHg-nzrxAE9rcZhUDpXyMeZ_R4SSUQMn4zuzA8FE9KJO1kXjC_KJdWYDOvIrEX7ymQ4oWlIAyVUM5Y8o5GLRPuN7_LeE6xXO_4R_v" alt="Air Jordan 1 Travis">
+              </div>
+              <div class="space-y-1">
+                <h4 class="font-subheading-spaced text-xs font-bold text-white uppercase leading-tight">AJ1 Low 'Travis Scott'</h4>
+                <p class="font-label-sm text-[10px] text-on-surface-variant uppercase">Acquired: Jan 2026</p>
+                <span class="inline-block bg-yellow-500/10 text-yellow-500 font-label-sm text-[8px] px-2 py-0.5 mt-1 uppercase tracking-wider rounded-sm">COLLAB</span>
+              </div>
+            </div>
+            
+            <!-- Sneaker 4 -->
+            <div class="glass-card p-6 flex gap-6 items-center">
+              <div class="w-24 h-24 bg-surface-container-lowest shrink-0 overflow-hidden">
+                <img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2SFmR5-Qg8iiOMz1OQdYoa5xaopvEsvUr_jZ-GMEHlKe4Dbcfw5LnGOnFkHreFKCekRsmdo5HwKzZZykKwoU1qs3QIb9zQR6Ik71gT890lmG7Ropy-8olqGzLqP2sb51rky0jKBDwbDOxYd8SSM8QaMXNVVe-SUBUq5bWWIKyZBP_5bO6Zo19v3PVSV2awgTzVDR_qF1ExLXK-ddC3ovHhJZnrGmPR1A3Pqwilz5WzmVK2_sIlPlKM_FtdbzvTMgG_TKeXtecuD_6" alt="Air Jordan 4">
+              </div>
+              <div class="space-y-1">
+                <h4 class="font-subheading-spaced text-xs font-bold text-white uppercase leading-tight">Air Jordan 4 'Black Cat'</h4>
+                <p class="font-label-sm text-[10px] text-on-surface-variant uppercase">Acquired: Dec 2025</p>
+                <span class="inline-block bg-white/10 text-white font-label-sm text-[8px] px-2 py-0.5 mt-1 uppercase tracking-wider rounded-sm">ALL BLACK</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB CONTENT 2: ORDERS -->
+        <div id="order-history" class="tab-content space-y-6">
+          <h3 class="font-subheading-spaced text-sm uppercase tracking-widest text-white mb-6">TRANSACTION LOGS</h3>
+          
+          <div class="space-y-4">
+            <!-- Order 1 -->
+            <div class="glass-panel p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-l-4 border-primary">
+              <div class="space-y-1">
+                <div class="flex items-center gap-3">
+                  <span class="font-subheading-spaced text-xs font-bold text-white uppercase">ORDER #JD-98421</span>
+                  <span class="px-2 py-0.5 bg-green-500/10 text-green-400 font-label-sm text-[8px] tracking-wider uppercase rounded-sm">DELIVERED</span>
+                </div>
+                <p class="font-body-md text-xs text-on-surface-variant">Placed on Jun 12, 2026 • 1 Item • $194.40</p>
+                <p class="font-body-md text-sm text-white mt-2">Air Jordan 1 Retro High OG (Chicago / Black / White)</p>
+              </div>
+              <div class="flex gap-4 w-full md:w-auto mt-4 md:mt-0">
+                <button class="flex-1 md:flex-none py-3 px-6 border border-white/10 font-subheading-spaced text-[10px] tracking-wider uppercase hover:border-primary transition-colors text-white">TRACK</button>
+                <button class="flex-1 md:flex-none py-3 px-6 bg-white text-black font-subheading-spaced text-[10px] tracking-wider uppercase hover:bg-primary hover:text-white transition-colors">INVOICE</button>
+              </div>
+            </div>
+
+            <!-- Order 2 -->
+            <div class="glass-panel p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+              <div class="space-y-1">
+                <div class="flex items-center gap-3">
+                  <span class="font-subheading-spaced text-xs font-bold text-white uppercase">ORDER #JD-94281</span>
+                  <span class="px-2 py-0.5 bg-white/10 text-on-surface-variant font-label-sm text-[8px] tracking-wider uppercase rounded-sm">COMPLETED</span>
+                </div>
+                <p class="font-body-md text-xs text-on-surface-variant">Placed on Feb 18, 2026 • 1 Item • $248.40</p>
+                <p class="font-body-md text-sm text-white mt-2">Air Jordan 11 'Concord'</p>
+              </div>
+              <div class="flex gap-4 w-full md:w-auto mt-4 md:mt-0">
+                <button class="flex-1 md:flex-none py-3 px-6 border border-white/10 font-subheading-spaced text-[10px] tracking-wider uppercase hover:border-primary transition-colors text-white">DETAILS</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB CONTENT 3: SETTINGS -->
+        <div id="profile-settings" class="tab-content">
+          <h3 class="font-subheading-spaced text-sm uppercase tracking-widest text-white mb-8">EDIT ACCOUNT DETAILS</h3>
+          
+          <form id="settings-form" class="space-y-8 max-w-xl">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div class="flex flex-col gap-2">
+                <label class="font-label-sm text-[10px] uppercase text-on-surface-variant tracking-widest">DISPLAY NAME</label>
+                <input id="settings-name" class="input-border-bottom py-3 text-white" type="text" value="MARCUS VANCE" required />
+              </div>
+              <div class="flex flex-col gap-2">
+                <label class="font-label-sm text-[10px] uppercase text-on-surface-variant tracking-widest">SNEAKER SIZE (US)</label>
+                <select id="settings-size" class="w-full bg-surface-container border-0 border-b border-white/10 text-white py-3 focus:ring-0 focus:border-primary">
+                  <option value="7">7.0 US</option>
+                  <option value="8">8.0 US</option>
+                  <option value="9">9.0 US</option>
+                  <option value="10">10.0 US</option>
+                  <option value="10.5" selected>10.5 US</option>
+                  <option value="11">11.0 US</option>
+                  <option value="12">12.0 US</option>
+                  <option value="13">13.0 US</option>
+                </select>
+              </div>
+              <div class="flex flex-col gap-2 md:col-span-2">
+                <label class="font-label-sm text-[10px] uppercase text-on-surface-variant tracking-widest">BIOGRAPHY</label>
+                <textarea id="settings-bio" class="input-border-bottom py-3 text-white resize-none" rows="2">Sneaker collector, streetball player, and designer. Part of the Jordan family since 2018.</textarea>
+              </div>
+              <div class="flex flex-col gap-2 md:col-span-2">
+                <label class="font-label-sm text-[10px] uppercase text-on-surface-variant tracking-widest">EMAIL ADDRESS</label>
+                <input id="settings-email" class="input-border-bottom py-3 text-white" type="email" value="marcus.vance@flightclub.com" required />
+              </div>
+            </div>
+
+            <button type="submit" class="w-full md:w-auto bg-primary text-white py-4 px-12 font-subheading-spaced text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-400">
+              SAVE CHANGES
+            </button>
+          </form>
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="fixed bottom-8 right-8 z-50 flex flex-col gap-3 pointer-events-none"></div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <p>&copy; 2026 JORDAN BRAND. All Rights Reserved. Created by RISHU.</p>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module">
+    import JordanAuth from './auth.js';
+    import './cart.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Security Sanitizer
+      function escapeHTML(str) {
+        if (!str) return '';
+        return str.replace(/[&<>"']/g, (m) => {
+          const map = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#x27;'
+          };
+          return map[m];
+        });
+      }
+
+      // 1. Authentication Security Guard
+      const user = JordanAuth.getCurrentUser();
+      if (!user) {
+        window.location.href = 'Login.html';
+        return;
+      }
+
+      // Elements
+      const tabs = document.querySelectorAll('.profile-tab');
+      const tabContents = document.querySelectorAll('.tab-content');
+      
+      const settingsForm = document.getElementById('settings-form');
+      const settingsName = document.getElementById('settings-name');
+      const settingsSize = document.getElementById('settings-size');
+      const settingsBio = document.getElementById('settings-bio');
+      const settingsEmail = document.getElementById('settings-email');
+      
+      const profileNameDisplay = document.getElementById('profile-name-display');
+      const profileBioDisplay = document.getElementById('profile-bio-display');
+      const collectionCountDisplay = document.getElementById('collection-count');
+      const rotationStatus = document.getElementById('rotation-status');
+      
+      const avatarImg = document.getElementById('avatar-img');
+      const avatarChangeBtn = document.getElementById('avatar-change-btn');
+      
+      const signoutBtn = document.getElementById('signout-btn');
+      const toastContainer = document.getElementById('toast-container');
+      const rotationGrid = document.getElementById('rotation-grid');
+      const orderHistoryList = document.getElementById('order-history');
+
+      // Avatar Preset Pool
+      const avatarPresets = [
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuCqcCpdbCEPkClBwHtuoEDZ00lWVcClnHD106Gja02iRgMq6C0bJZNFxBsQcVsWNDq330ptL0gv8TCLHQ2xTiX5fu33vooKEviHEyP_S7kRgWyYcquuqEIYd6bSM5EMp3yrHzlmeWW8kNSy7JC06Iemri3fm6a8bDpYA0I6h84Yzx16pYWwvfpR7dmHtqkviyf0001XCKhKREIRGDcWY9l8gQcOE51ADV7T9fEPcAqOwljrjQ6-n5wYlMNQliGyuM6u6ikQ_oqleERY",
+        "https://lh3.googleusercontent.com/aida-public/AB6AXuBgPQblfkXHniyRkWx7m0As-035v8ooBMlDpfaRJhy8llsOgpOso-R7teYZfSf9boEJQLc0meWWcfqpVx-UG3vvW9e6fv1wfLWReyN2Mac-UgehopsKhDgPYU7leAgIyNL73aiSzFgsE4CDn2eqbDTedCI55NL8VNCE3-Q2YG9iMXeM4vHZQW87COAlUwV8cB5byjjjNE0itHjnYypv4yfyM8OoTugMdKhFMdWzNLEHdS0AOZMi84UIkAbQHNToYiFUpV4ZO84RPiIG"
+      ];
+      let currentAvatarIndex = 0;
+
+      // Toast Display Helper
+      function showToast(title, body) {
+        const toast = document.createElement('div');
+        toast.className = 'glass-panel px-6 py-4 rounded-none border border-primary/20 shadow-2xl flex items-center gap-4 animate-slide-in pointer-events-auto max-w-sm';
+        toast.innerHTML = `
+          <span class="material-symbols-outlined text-primary text-[28px]">verified</span>
+          <div class="flex-1">
+            <p class="font-subheading-spaced text-xs uppercase tracking-widest text-white font-bold">${title}</p>
+            <p class="font-body-md text-xs text-on-surface-variant mt-1">${body}</p>
+          </div>
+        `;
+        toastContainer.appendChild(toast);
+        
+        // Slide out animation
+        setTimeout(() => {
+          toast.remove();
+        }, 3000);
+      }
+
+      // Load data from Auth Engine database
+      function loadProfile() {
+        const p = user.profile;
+        settingsName.value = p.name || user.username.toUpperCase();
+        settingsSize.value = p.size || "10.5";
+        settingsBio.value = p.bio || "Sneaker collector and part of the Jordan family.";
+        settingsEmail.value = p.email || user.email;
+        
+        profileNameDisplay.textContent = p.name || user.username.toUpperCase();
+        profileBioDisplay.textContent = p.bio || "Sneaker collector and part of the Jordan family.";
+        
+        if (p.avatarUrl) {
+          avatarImg.src = p.avatarUrl;
+        }
+
+        // Render Wardrobe Sneakers
+        const sneakers = user.wardrobe || [];
+        collectionCountDisplay.textContent = sneakers.length;
+        rotationStatus.textContent = `Displaying ${sneakers.length} active pair${sneakers.length === 1 ? '' : 's'}`;
+        
+        if (sneakers.length > 0) {
+          rotationGrid.innerHTML = sneakers.map(s => `
+            <div class="glass-card p-6 flex gap-6 items-center">
+              <div class="w-24 h-24 bg-surface-container-lowest shrink-0 overflow-hidden">
+                <img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" src="${s.imgUrl}" alt="${escapeHTML(s.name)}">
+              </div>
+              <div class="space-y-1">
+                <h4 class="font-subheading-spaced text-xs font-bold text-white uppercase leading-tight">${escapeHTML(s.name)}</h4>
+                <p class="font-label-sm text-[10px] text-on-surface-variant uppercase">Acquired: ${escapeHTML(s.date)}</p>
+                <span class="inline-block bg-primary/10 text-primary font-label-sm text-[8px] px-2 py-0.5 mt-1 uppercase tracking-wider rounded-sm">${escapeHTML(s.tag)}</span>
+              </div>
+            </div>
+          `).join('');
+        } else {
+          rotationGrid.innerHTML = `
+            <div class="col-span-2 text-center py-10 border border-dashed border-white/10 text-on-surface-variant text-sm font-label-sm uppercase tracking-wider">
+              No sneakers in your wardrobe rotation yet.
+            </div>
+          `;
+        }
+
+        // Render Orders History
+        const orders = user.orders || [];
+        const listHeader = `<h3 class="font-subheading-spaced text-sm uppercase tracking-widest text-white mb-6">TRANSACTION LOGS</h3>`;
+        
+        if (orders.length > 0) {
+          const listItems = orders.map(o => `
+            <div class="glass-panel p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 ${o.status === 'DELIVERED' || o.status === 'COMPLETED' ? 'border-l-4 border-primary' : ''}">
+              <div class="space-y-1">
+                <div class="flex items-center gap-3">
+                  <span class="font-subheading-spaced text-xs font-bold text-white uppercase">ORDER #${escapeHTML(o.id)}</span>
+                  <span class="px-2 py-0.5 bg-green-500/10 text-green-400 font-label-sm text-[8px] tracking-wider uppercase rounded-sm">${escapeHTML(o.status)}</span>
+                </div>
+                <p class="font-body-md text-xs text-on-surface-variant">Placed on ${escapeHTML(o.date)} • 1 Item • $${o.price.toFixed(2)}</p>
+                <p class="font-body-md text-sm text-white mt-2">${escapeHTML(o.item)}</p>
+              </div>
+              <div class="flex gap-4 w-full md:w-auto mt-4 md:mt-0">
+                <button class="flex-1 md:flex-none py-3 px-6 border border-white/10 font-subheading-spaced text-[10px] tracking-wider uppercase hover:border-primary transition-colors text-white">DETAILS</button>
+              </div>
+            </div>
+          `).join('');
+          orderHistoryList.innerHTML = listHeader + `<div class="space-y-4">${listItems}</div>`;
+        } else {
+          orderHistoryList.innerHTML = listHeader + `
+            <div class="text-center py-10 border border-dashed border-white/10 text-on-surface-variant text-sm font-label-sm uppercase tracking-wider">
+              No orders placed yet.
+            </div>
+          `;
+        }
+      }
+
+      // Save Profile data to database
+      settingsForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const profile = {
+          name: settingsName.value.trim(),
+          size: settingsSize.value,
+          bio: settingsBio.value.trim(),
+          email: settingsEmail.value.trim(),
+          avatarUrl: avatarImg.src
+        };
+        
+        // Save to database using auth controller
+        JordanAuth.updateProfile(profile);
+        
+        profileNameDisplay.textContent = profile.name;
+        profileBioDisplay.textContent = profile.bio;
+        
+        showToast("SETTINGS SAVED", "Your database profile settings have been updated successfully.");
+      });
+
+      // Change Avatar interaction
+      avatarChangeBtn.addEventListener('click', () => {
+        currentAvatarIndex = (currentAvatarIndex + 1) % avatarPresets.length;
+        avatarImg.src = avatarPresets[currentAvatarIndex];
+        
+        // Save avatar url to database
+        JordanAuth.updateProfile({ avatarUrl: avatarImg.src });
+        
+        showToast("AVATAR UPDATED", "Your profile avatar has been updated.");
+      });
+
+      // Sign out action
+      signoutBtn.addEventListener('click', () => {
+        JordanAuth.logout();
+      });
+
+      // Tabs switcher logic
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+          // Remove active states
+          tabs.forEach(t => {
+            t.classList.remove('text-white', 'border-primary');
+            t.classList.add('text-on-surface-variant', 'border-transparent');
+          });
+          tabContents.forEach(tc => tc.classList.remove('active'));
+          
+          // Add active states to clicked tab
+          tab.classList.add('text-white', 'border-primary');
+          tab.classList.remove('text-on-surface-variant', 'border-transparent');
+          
+          const targetId = tab.getAttribute('data-target');
+          document.getElementById(targetId).classList.add('active');
+        });
+      });
+
+      // Initial load
+      loadProfile();
+    });
+  </script>
+</body>
+</html>
