@@ -6,6 +6,7 @@ const TOTAL_FRAMES = 240;
 const frameImages = [];
 let loadedCount = 0;
 let isLoaded = false;
+let framesPathPrefix = 'frames/'; // Dynamic base path detected at runtime
 
 // DOM Elements
 const loader = document.getElementById('loader');
@@ -29,6 +30,45 @@ const CIRCUMFERENCE = 2 * Math.PI * 50; // r=50
 progressCircle.style.strokeDasharray = CIRCUMFERENCE;
 progressCircle.style.strokeDashoffset = CIRCUMFERENCE;
 
+// Dynamic frame path detection to support Vercel, localhost, and GitHub Pages (even if deployed incorrectly)
+function detectFramesPath() {
+  return new Promise((resolve) => {
+    // 1. Try to load the first frame using the default 'frames/' path
+    const testImg = new Image();
+    testImg.src = 'frames/ezgif-frame-001.jpg';
+    
+    testImg.onload = () => {
+      console.log("Frames detected at 'frames/'");
+      resolve('frames/');
+    };
+    
+    testImg.onerror = () => {
+      // 2. If it fails, try the fallback 'public/frames/' path (raw source server)
+      console.warn("Failed to load frame from 'frames/'. Trying 'public/frames/'...");
+      const fallbackImg = new Image();
+      fallbackImg.src = 'public/frames/ezgif-frame-001.jpg';
+      
+      fallbackImg.onload = () => {
+        console.log("Frames detected at 'public/frames/'");
+        resolve('public/frames/');
+      };
+      
+      fallbackImg.onerror = () => {
+        // 3. Try GitHub Pages specific fallback with repo name
+        console.warn("Failed to load frame from 'public/frames/'. Checking URL structure...");
+        const path = window.location.pathname;
+        if (path.includes('/JORDAN-SHOES-')) {
+          console.log("GitHub Pages repo detected. Resolving via '/JORDAN-SHOES-/frames/'");
+          resolve('/JORDAN-SHOES-/frames/');
+        } else {
+          // Fall back to default
+          resolve('frames/');
+        }
+      };
+    };
+  });
+}
+
 // 1. Image Preloader
 function preloadImages() {
   loaderStatus.textContent = "LOADING FRAME SEQUENCE...";
@@ -37,7 +77,7 @@ function preloadImages() {
     const img = new Image();
     // Padding numbers to 3 digits (e.g. 001, 042, 240)
     const paddedIndex = String(i).padStart(3, '0');
-    img.src = `frames/ezgif-frame-${paddedIndex}.jpg`;
+    img.src = `${framesPathPrefix}ezgif-frame-${paddedIndex}.jpg`;
     
     img.onload = () => {
       loadedCount++;
@@ -45,8 +85,8 @@ function preloadImages() {
     };
     
     img.onerror = () => {
-      console.warn(`Failed to load frame ${paddedIndex}`);
-      loadedCount++; // Increment anyway to prevent blockages, showing default error
+      console.warn(`Failed to load frame ${paddedIndex} at ${img.src}`);
+      loadedCount++; // Increment anyway to prevent blockages
       updateLoaderProgress();
     };
     
@@ -266,8 +306,11 @@ window.addEventListener('orientationchange', () => {
   setTimeout(initCanvasSize, 200);
 });
 
-// Run Preloading
-preloadImages();
+// Run Preloading after detecting path
+detectFramesPath().then((detectedPath) => {
+  framesPathPrefix = detectedPath;
+  preloadImages();
+});
 
 // 9. WebGL Vignette Shader Background Animation (from code.html)
 function initShaderCanvas(canvasId) {
