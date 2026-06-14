@@ -16,28 +16,29 @@
             transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
         }
         .glass-panel {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
         }
         .input-border-bottom {
             border: none;
-            border-bottom: 1px solid rgba(170, 137, 134, 0.3);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
             background: transparent;
         }
         .input-border-bottom:focus {
-            border-bottom-color: #ffb4ac;
+            border-bottom-color: #ff1a25;
             outline: none;
-            box-shadow: 0 1px 0 0 #ffb4ac;
+            box-shadow: 0 1px 0 0 #ff1a25;
         }
         ::-webkit-scrollbar {
             width: 4px;
         }
         ::-webkit-scrollbar-track {
-            background: #131313;
+            background: #fafafa;
         }
         ::-webkit-scrollbar-thumb {
-            background: #353534;
+            background: #ff1a25;
         }
     </style>
 <script id="tailwind-config">
@@ -48,51 +49,51 @@
                     "colors": {
                         "error-container": "#93000a",
                         "on-primary-container": "#ffc8c2",
-                        "surface-container-highest": "#353534",
+                        "surface-container-highest": "#e0e0e0",
                         "tertiary-fixed": "#cbe6ff",
-                        "error": "#ffb4ab",
-                        "background": "#131313",
+                        "error": "#ff1a25",
+                        "background": "#fafafa",
                         "secondary-container": "#920703",
                         "primary-fixed": "#ffdad6",
                         "primary-fixed-dim": "#ffb4ac",
                         "on-primary-fixed": "#410003",
                         "on-secondary-container": "#ff9a8a",
-                        "on-primary": "#690007",
+                        "on-primary": "#ffffff",
                         "on-primary-fixed-variant": "#92030f",
                         "tertiary": "#8fcdff",
-                        "surface-container-lowest": "#0e0e0e",
-                        "outline": "#aa8986",
-                        "surface-container": "#201f1f",
-                        "primary-container": "#b22222",
+                        "surface-container-lowest": "#eeeeee",
+                        "outline": "#7a7a7a",
+                        "surface-container": "#ffffff",
+                        "primary-container": "#ff1a25",
                         "on-error-container": "#ffdad6",
                         "on-tertiary-fixed": "#001e30",
-                        "inverse-primary": "#b52424",
-                        "surface": "#131313",
-                        "inverse-surface": "#e5e2e1",
+                        "inverse-primary": "#ff1a25",
+                        "surface": "#ffffff",
+                        "inverse-surface": "#121212",
                         "on-secondary-fixed-variant": "#920703",
                         "on-secondary-fixed": "#410000",
                         "secondary-fixed-dim": "#ffb4a8",
                         "on-tertiary-container": "#b1daff",
                         "on-tertiary-fixed-variant": "#004b71",
-                        "outline-variant": "#5a403e",
-                        "primary": "#ffb4ac",
-                        "inverse-on-surface": "#313030",
+                        "outline-variant": "#dcdcdc",
+                        "primary": "#ff1a25",
+                        "inverse-on-surface": "#f5f5f5",
                         "tertiary-container": "#006292",
                         "secondary": "#ffb4a8",
-                        "surface-container-low": "#1c1b1b",
-                        "surface-bright": "#393939",
+                        "surface-container-low": "#f5f5f5",
+                        "surface-bright": "#ffffff",
                         "secondary-fixed": "#ffdad4",
                         "on-secondary": "#690000",
-                        "on-background": "#e5e2e1",
-                        "surface-dim": "#131313",
+                        "on-background": "#000000",
+                        "surface-dim": "#f0f0f0",
                         "on-tertiary": "#003450",
                         "tertiary-fixed-dim": "#8fcdff",
-                        "surface-variant": "#353534",
-                        "on-surface": "#e5e2e1",
+                        "surface-variant": "#e0e0e0",
+                        "on-surface": "#111111",
                         "on-error": "#690005",
-                        "surface-tint": "#ffb4ac",
-                        "surface-container-high": "#2a2a2a",
-                        "on-surface-variant": "#e2beba"
+                        "surface-tint": "#ff1a25",
+                        "surface-container-high": "#ffffff",
+                        "on-surface-variant": "#4a4a4a"
                     },
                     "borderRadius": {
                         "DEFAULT": "0.25rem",
@@ -134,7 +135,7 @@
 </head>
 <body class="bg-background text-on-background font-body-md overflow-x-hidden">
 <!-- Top Navigation (Reduced for Focus) -->
-<nav class="fixed top-0 w-full z-50 bg-transparent backdrop-blur-xl border-b border-white/10">
+<nav class="fixed top-0 w-full z-50 bg-background/40 backdrop-blur-xl border-b border-black/10">
 <div class="flex justify-between items-center px-6 md:px-margin-desktop py-6 w-full max-w-container-max-width mx-auto">
 <a href="index.html" class="font-display-xl text-headline-lg font-black tracking-tighter text-on-background cursor-pointer hover:text-primary transition-colors">JORDAN</a>
 <a class="flex items-center gap-2 group transition-transform active:scale-95" href="Collection.html">
@@ -156,7 +157,7 @@
 </div>
 </div>
 <!-- Totals Breakdown -->
-<div class="space-y-4 pt-8 border-t border-white/10">
+<div class="space-y-4 pt-8 border-t border-black/10">
 <div class="flex justify-between font-label-sm text-label-sm uppercase tracking-widest text-on-background/60">
 <span>Subtotal</span>
 <span id="checkout-subtotal">$0.00</span>
@@ -169,13 +170,13 @@
 <span>Tax</span>
 <span id="checkout-tax">$0.00</span>
 </div>
-<div class="flex justify-between pt-4 border-t border-white/20">
+<div class="flex justify-between pt-4 border-t border-black/10">
 <span class="font-headline-lg text-headline-lg-mobile uppercase">Total</span>
 <span id="checkout-total" class="font-headline-lg text-headline-lg-mobile text-primary">$0.00</span>
 </div>
 </div>
-<!-- High Security Badge -->
-<div class="p-6 border border-white/5 bg-surface-container-low flex items-center gap-4">
+<!-- Safe Badge -->
+<div class="p-6 border border-black/10 bg-surface-container-low flex items-center gap-4">
 <span class="material-symbols-outlined text-primary" data-weight="fill">verified_user</span>
 <div class="text-on-background/70 font-label-sm text-label-sm uppercase leading-relaxed">
                             Encrypted SSL Transaction<br/>
@@ -224,11 +225,11 @@
 </div>
 <!-- Step 2: Delivery Method -->
 <div class="checkout-step" data-step="2">
-<div class="flex items-center gap-4 mb-10">
-<span class="w-8 h-8 flex items-center justify-center bg-surface-container-highest text-on-surface font-bold text-xs border border-white/10">02</span>
+<div class="flex items-center justify-center p-8 border border-black/10">
+<span class="w-8 h-8 flex items-center justify-center bg-surface-container-highest text-on-surface font-bold text-xs border border-black/10">02</span>
 <h2 class="font-headline-lg text-headline-lg-mobile uppercase tracking-tight text-on-background/40">Delivery</h2>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
 <label class="relative flex items-center p-6 glass-panel cursor-pointer border border-transparent hover:border-primary/50 transition-all group">
 <input checked="" class="hidden peer" name="delivery" type="radio"/>
 <div class="flex flex-col">
@@ -251,34 +252,34 @@
 </div>
 <!-- Step 3: Payment -->
 <div class="checkout-step" data-step="3">
-<div class="flex items-center gap-4 mb-10">
-<span class="w-8 h-8 flex items-center justify-center bg-surface-container-highest text-on-surface font-bold text-xs border border-white/10">03</span>
+<div class="flex items-center justify-center p-8 border border-black/10">
+<span class="w-8 h-8 flex items-center justify-center bg-surface-container-highest text-on-surface font-bold text-xs border border-black/10">03</span>
 <h2 class="font-headline-lg text-headline-lg-mobile uppercase tracking-tight text-on-background/40">Payment</h2>
 </div>
-<!-- Payment Methods Tabs -->
-<div class="flex gap-4 mb-10">
-<button class="flex-1 py-4 px-6 glass-panel flex items-center justify-center gap-3 border-b-2 border-primary transition-all" type="button">
-<span class="material-symbols-outlined text-primary">credit_card</span>
-<span class="font-label-sm text-label-sm uppercase tracking-widest">Card</span>
+<!-- Payment Card Details -->
+<div id="payment-card-details" class="hidden mt-8 p-10 glass-panel">
+<div class="flex gap-4 mb-8">
+<button class="flex-1 py-4 px-6 glass-panel flex items-center justify-center gap-3 border-b-2 border-transparent hover:bg-black/5 transition-all opacity-50 grayscale hover:grayscale-0" type="button">
+<span class="material-symbols-outlined text-sm">credit_card</span>
+<span class="font-label-sm text-xs uppercase tracking-widest">Card</span>
 </button>
-<button class="flex-1 py-4 px-6 glass-panel flex items-center justify-center gap-3 border-b-2 border-transparent hover:bg-white/10 transition-all opacity-50 grayscale hover:grayscale-0" type="button">
-<span class="material-symbols-outlined">contactless</span>
-<span class="font-label-sm text-label-sm uppercase tracking-widest">Apple Pay</span>
+<button class="flex-1 py-4 px-6 glass-panel flex items-center justify-center gap-3 border-b-2 border-transparent transition-all opacity-50 grayscale hover:grayscale-0" type="button">
+<span class="material-symbols-outlined text-sm">payments</span>
+<span class="font-label-sm text-xs uppercase tracking-widest">G-Pay</span>
 </button>
 </div>
-<!-- Card Inputs -->
-<div class="space-y-10">
+<div class="space-y-8">
 <div class="flex flex-col gap-2">
 <label class="font-label-sm text-label-sm uppercase text-on-background/50">Cardholder Name</label>
 <input class="input-border-bottom py-3 text-on-background" placeholder="AS APPEARS ON CARD" type="text"/>
 </div>
 <div class="flex flex-col gap-2">
 <label class="font-label-sm text-label-sm uppercase text-on-background/50">Card Number</label>
-<div class="relative">
+<div class="relative flex items-center">
 <input class="input-border-bottom py-3 w-full text-on-background" placeholder="0000 0000 0000 0000" type="text"/>
-<div class="absolute right-0 top-1/2 -translate-y-1/2 flex gap-2">
-<div class="w-8 h-5 bg-white/10 rounded-sm"></div>
-<div class="w-8 h-5 bg-white/10 rounded-sm"></div>
+<div class="absolute right-0 flex gap-1">
+<div class="w-8 h-5 bg-black/5 rounded-sm"></div>
+<div class="w-8 h-5 bg-black/5 rounded-sm"></div>
 </div>
 </div>
 </div>
@@ -306,7 +307,7 @@
 </div>
 </main>
 <!-- Footer (Minimal for Checkout) -->
-<footer class="w-full border-t border-white/5 bg-background">
+<footer class="w-full border-t border-black/10 bg-background">
 <div class="flex flex-col md:flex-row justify-between items-center px-6 md:px-margin-desktop py-12 gap-base max-w-container-max-width mx-auto">
 <div class="font-display-xl text-headline-lg-mobile font-black text-on-background/20">JORDAN</div>
 <div class="flex gap-8">
@@ -354,7 +355,7 @@
                     </div>
                     <div class="flex flex-col justify-between py-1 flex-1">
                         <div>
-                            <h3 class="font-subheading-spaced text-xs uppercase mb-1 text-white">${escapeHTML(item.name)}</h3>
+                            <h3 class="font-subheading-spaced text-xs uppercase mb-1 text-black">${escapeHTML(item.name)}</h3>
                             <p class="font-label-sm text-[10px] text-on-background/50 uppercase">Size: ${escapeHTML(item.size)} US | Qty: ${item.quantity}</p>
                         </div>
                         <p class="font-headline-lg text-sm text-primary">$${(item.price * item.quantity).toFixed(2)}</p>

@@ -17,21 +17,22 @@
     .ease-out-expo { transition-timing-function: var(--ease-out-expo); }
     
     .glass-panel {
-      background: rgba(18, 18, 18, 0.75);
+      background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     }
     
     /* Radial Vignette */
     .bg-vignette {
-      background: radial-gradient(circle at center, rgba(178, 34, 36, 0.15) 0%, rgba(10, 10, 10, 1) 75%);
+      background: radial-gradient(circle at center, rgba(178, 34, 36, 0.05) 0%, rgba(250, 250, 250, 1) 75%);
     }
     
     /* Input border effect */
     .input-border-bottom {
       border: none;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
       background: transparent;
       transition: all 0.4s;
     }
@@ -51,14 +52,14 @@
       animation: shake 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
-    /* Premium Solid Black Footer */
+    /* Premium Solid Light Footer */
     .site-footer {
       position: relative;
       z-index: 3;
-      background-color: #050505 !important;
+      background-color: #fafafa !important;
       padding: 3.5rem 0;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
       width: 100%;
     }
     .footer-container {
@@ -79,8 +80,7 @@
     }
     .site-footer p {
       font-size: 0.85rem;
-      color: rgba(255, 255, 255, 0.8) !important;
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+      color: rgba(0, 0, 0, 0.7) !important;
       font-family: 'Inter', sans-serif;
     }
     .footer-links {
@@ -88,16 +88,14 @@
       gap: 2rem;
     }
     .footer-links a {
-      color: rgba(255, 255, 255, 0.6) !important;
+      color: rgba(0, 0, 0, 0.5) !important;
       font-size: 0.85rem;
       text-decoration: none;
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       font-family: 'Inter', sans-serif;
     }
     .footer-links a:hover {
-      color: #fff !important;
-      text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+      color: #000000 !important;
     }
   </style>
   <script id="tailwind-config">
@@ -111,7 +109,7 @@
             "surface-container-highest": "#353534",
             "tertiary-fixed": "#cbe6ff",
             "error": "#ff1a25",
-            "background": "#0a0a0a",
+            "background": "#fafafa",
             "secondary-container": "#920703",
             "primary-fixed": "#ffdad6",
             "primary-fixed-dim": "#ffb4ac",
@@ -120,39 +118,39 @@
             "on-primary": "#ffffff",
             "on-primary-fixed-variant": "#92030f",
             "tertiary": "#8fcdff",
-            "surface-container-lowest": "#050505",
-            "outline": "#aa8986",
-            "surface-container": "#121212",
+            "surface-container-lowest": "#eeeeee",
+            "outline": "#7a7a7a",
+            "surface-container": "#ffffff",
             "primary-container": "#ff1a25",
             "on-error-container": "#ffdad6",
             "on-tertiary-fixed": "#001e30",
             "inverse-primary": "#ff1a25",
-            "surface": "#121212",
-            "inverse-surface": "#e5e2e1",
+            "surface": "#ffffff",
+            "inverse-surface": "#121212",
             "on-secondary-fixed-variant": "#920703",
             "on-secondary-fixed": "#410000",
             "secondary-fixed-dim": "#ffb4a8",
             "on-tertiary-container": "#b1daff",
             "on-tertiary-fixed-variant": "#004b71",
-            "outline-variant": "#5a403e",
+            "outline-variant": "#dcdcdc",
             "primary": "#ff1a25",
-            "inverse-on-surface": "#313030",
+            "inverse-on-surface": "#f5f5f5",
             "tertiary-container": "#006292",
             "secondary": "#ffb4a8",
-            "surface-container-low": "#0d0d0d",
-            "surface-bright": "#393939",
+            "surface-container-low": "#f5f5f5",
+            "surface-bright": "#ffffff",
             "secondary-fixed": "#ffdad4",
             "on-secondary": "#690000",
-            "on-background": "#ffffff",
-            "surface-dim": "#121212",
+            "on-background": "#000000",
+            "surface-dim": "#f0f0f0",
             "on-tertiary": "#003450",
             "tertiary-fixed-dim": "#8fcdff",
-            "surface-variant": "#353534",
-            "on-surface": "#e5e2e1",
+            "surface-variant": "#e0e0e0",
+            "on-surface": "#111111",
             "on-error": "#690005",
             "surface-tint": "#ff1a25",
-            "surface-container-high": "#1e1e1e",
-            "on-surface-variant": "#a0a0a0"
+            "surface-container-high": "#ffffff",
+            "on-surface-variant": "#4a4a4a"
           },
           "borderRadius": {
             "DEFAULT": "4px",
@@ -195,7 +193,7 @@
 <body class="bg-background text-on-background selection:bg-primary selection:text-on-primary min-h-screen flex flex-col bg-vignette">
 
   <!-- Top Navigation Bar -->
-  <header class="fixed top-0 w-full z-50 bg-background/40 backdrop-blur-xl border-b border-white/10">
+  <header class="fixed top-0 w-full z-50 bg-background/40 backdrop-blur-xl border-b border-black/10">
     <div class="flex justify-between items-center px-margin-desktop py-8 w-full max-w-container-max-width mx-auto">
       <a href="index.html" class="font-display-xl text-headline-lg font-black tracking-tighter text-on-background cursor-pointer hover:text-primary transition-colors">JORDAN</a>
       <nav class="hidden md:flex items-center gap-10">
@@ -238,30 +236,30 @@
       <form id="login-form" class="space-y-8">
         <div class="flex flex-col gap-2">
           <label class="font-label-sm text-[10px] uppercase text-on-surface-variant tracking-widest">EMAIL ADDRESS</label>
-          <input id="login-email" class="input-border-bottom py-3 text-white focus:outline-none" type="email" placeholder="example@flightclub.com" required autocomplete="email" />
+          <input id="login-email" class="input-border-bottom py-3 text-black focus:outline-none" type="email" placeholder="example@flightclub.com" required autocomplete="email" />
         </div>
         
         <div class="flex flex-col gap-2">
           <label class="font-label-sm text-[10px] uppercase text-on-surface-variant tracking-widest">PASSWORD</label>
-          <input id="login-password" class="input-border-bottom py-3 text-white focus:outline-none" type="password" placeholder="••••••••" required autocomplete="current-password" />
+          <input id="login-password" class="input-border-bottom py-3 text-black focus:outline-none" type="password" placeholder="••••••••" required autocomplete="current-password" />
         </div>
 
         <div class="flex items-center justify-between text-xs font-label-sm">
-          <label class="flex items-center gap-2 cursor-pointer text-on-surface-variant hover:text-white transition-colors">
-            <input class="w-4 h-4 bg-surface-container border-white/10 rounded-none checked:bg-primary focus:ring-0 focus:ring-offset-0" type="checkbox" />
+          <label class="flex items-center gap-2 cursor-pointer text-on-surface-variant hover:text-black transition-colors">
+            <input class="w-4 h-4 bg-surface-container border-black/10 rounded-none checked:bg-primary focus:ring-0 focus:ring-offset-0" type="checkbox" />
             <span class="uppercase tracking-wider">REMEMBER ME</span>
           </label>
           <a href="#" class="text-primary hover:underline uppercase tracking-wider">Forgot?</a>
         </div>
 
-        <button type="submit" class="w-full bg-primary text-white py-4 font-subheading-spaced text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all ease-out-expo duration-400 active:scale-95">
+        <button type="submit" class="w-full bg-primary text-white py-4 font-subheading-spaced text-xs uppercase tracking-widest hover:bg-black hover:text-white transition-all ease-out-expo duration-400 active:scale-95">
           ENTER FLIGHT CLUB
         </button>
       </form>
 
-      <div class="mt-8 pt-8 border-t border-white/5 text-center text-xs font-label-sm uppercase tracking-wider text-on-surface-variant">
+      <div class="mt-8 pt-8 border-t border-black/10 text-center text-xs font-label-sm uppercase tracking-wider text-on-surface-variant">
         <span>DON'T HAVE AN ACCOUNT?</span>
-        <a href="Registration.html" class="text-white hover:text-primary transition-colors font-bold ml-1">REGISTER</a>
+        <a href="Registration.html" class="text-black hover:text-primary transition-colors font-bold ml-1">REGISTER</a>
       </div>
 
     </div>
